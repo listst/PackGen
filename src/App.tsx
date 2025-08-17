@@ -5,6 +5,7 @@ import starterWolves from './data/starter_wolves.json';
 import eventExamples from './data/events_examples.json';
 import type { Pack } from './types/pack';
 import type { Wolf } from './types/wolf';
+import type { EventTemplate } from './types/event';
 import {
   Roster,
   Profile,
@@ -42,7 +43,7 @@ function App() {
     };
 
     // Load events
-    eventEngine.loadEvents(eventExamples);
+    eventEngine.loadEvents(eventExamples as unknown as EventTemplate[]);
 
     return initialPack;
   });

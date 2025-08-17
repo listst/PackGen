@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "test": "jest",
-    "lint": "eslint . && prettier --check .",
+    "lint": "tsc --noEmit --project tsconfig.app.json && eslint . && prettier --check .",
     "format": "prettier --write .",
     "preview": "vite preview"
   },

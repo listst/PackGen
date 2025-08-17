@@ -70,7 +70,11 @@ export class TrainingEngine {
 
     wolf.isTraining = true;
     wolf.trainingStartDay = pack.day;
-    wolf.trainingMentorId = mentorId;
+    if (mentorId) {
+      wolf.trainingMentorId = mentorId;
+    } else {
+      delete wolf.trainingMentorId;
+    }
 
     const mentorName = mentorId
       ? (getWolfById(pack, mentorId)?.name ?? 'Unknown')
@@ -93,7 +97,7 @@ export class TrainingEngine {
 
     const trainingDays = pack.day - wolf.trainingStartDay;
     const mentor = wolf.trainingMentorId
-      ? getWolfById(pack, wolf.trainingMentorId)
+      ? (getWolfById(pack, wolf.trainingMentorId) ?? null)
       : null;
 
     // Check if training is complete
@@ -133,21 +137,29 @@ export class TrainingEngine {
       `Day ${pack.day}: ${wolf.name} completed training and gained ${completionXP} XP!`
     );
 
-    return {
+    const result: TrainingResult = {
       wolfId: wolf.id,
       xpGained: completionXP,
-      mentorId: mentor?.id,
       mentorBonus,
       completed: true,
       leveledUp: levelResult.leveledUp,
-      statIncreased: levelResult.statIncreased,
     };
+
+    if (mentor) {
+      result.mentorId = mentor.id;
+    }
+
+    if (levelResult.statIncreased) {
+      result.statIncreased = levelResult.statIncreased;
+    }
+
+    return result;
   }
 
   // Grant weekly training XP
   private grantWeeklyXP(
     wolf: Wolf,
-    pack: Pack,
+    _pack: Pack,
     mentor: Wolf | null
   ): TrainingResult {
     const mentorBonus = this.calculateMentorBonus(mentor);
@@ -162,15 +174,23 @@ export class TrainingEngine {
 
     const levelResult = this.checkLevelUp(wolf);
 
-    return {
+    const result: TrainingResult = {
       wolfId: wolf.id,
       xpGained: weeklyXP,
-      mentorId: mentor?.id,
       mentorBonus,
       completed: false,
       leveledUp: levelResult.leveledUp,
-      statIncreased: levelResult.statIncreased,
     };
+
+    if (mentor) {
+      result.mentorId = mentor.id;
+    }
+
+    if (levelResult.statIncreased) {
+      result.statIncreased = levelResult.statIncreased;
+    }
+
+    return result;
   }
 
   // Calculate mentor bonus
@@ -338,12 +358,22 @@ export class TrainingEngine {
     const progress = Math.min(1, trainingDays / this.config.durationDays);
     const daysRemaining = Math.max(0, this.config.durationDays - trainingDays);
 
-    return {
+    const result = {
       isTraining: true,
       daysRemaining,
       progress,
-      mentor: wolf.trainingMentorId,
+    } as {
+      isTraining: boolean;
+      daysRemaining: number;
+      progress: number;
+      mentor?: string;
     };
+
+    if (wolf.trainingMentorId) {
+      result.mentor = wolf.trainingMentorId;
+    }
+
+    return result;
   }
 
   // Process all training wolves in a pack

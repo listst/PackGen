@@ -3,10 +3,10 @@ import type { Pack } from './pack';
 
 // Safe field access using dot notation
 export function getField(obj: Record<string, unknown>, path: string): unknown {
-  return path.split('.').reduce((current, key) => {
+  return path.split('.').reduce((current: unknown, key: string): unknown => {
     if (current === null || current === undefined) return undefined;
-    return current[key];
-  }, obj);
+    return (current as Record<string, unknown>)[key];
+  }, obj as unknown);
 }
 
 // Safe field setting using dot notation
@@ -19,12 +19,18 @@ export function setField(
   const lastKey = keys.pop();
   if (!lastKey) return;
 
-  const target = keys.reduce((current, key) => {
-    if (current[key] === undefined || current[key] === null) {
-      current[key] = {};
-    }
-    return current[key];
-  }, obj);
+  const target = keys.reduce(
+    (
+      current: Record<string, unknown>,
+      key: string
+    ): Record<string, unknown> => {
+      if (current[key] === undefined || current[key] === null) {
+        current[key] = {};
+      }
+      return current[key] as Record<string, unknown>;
+    },
+    obj
+  );
 
   target[lastKey] = value;
 }
@@ -50,7 +56,10 @@ export function clampWolfStats(wolf: Wolf): void {
 
   if (wolf.bonds) {
     Object.keys(wolf.bonds).forEach((id) => {
-      wolf.bonds![id] = clamp(wolf.bonds![id], -100, 100);
+      const bondValue = wolf.bonds![id];
+      if (typeof bondValue === 'number') {
+        wolf.bonds![id] = clamp(bondValue, -100, 100);
+      }
     });
   }
 }

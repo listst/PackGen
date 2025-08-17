@@ -193,7 +193,11 @@ export function Roster({ wolves, onWolfSelect }: RosterProps) {
         }}
       >
         {filteredAndSortedWolves.map((wolf) => (
-          <WolfCard key={wolf.id} wolf={wolf} onClick={onWolfSelect} />
+          <WolfCard
+            key={wolf.id}
+            wolf={wolf}
+            {...(onWolfSelect && { onClick: onWolfSelect })}
+          />
         ))}
       </div>
 

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { Pack, Wolf } from '../../types/pack';
+import type { Pack } from '../../types/pack';
+import type { Wolf } from '../../types/wolf';
 import { healerEngine } from '../../engine/healer';
 import { getWolvesByRole, isAlive } from '../../types/utils';
 

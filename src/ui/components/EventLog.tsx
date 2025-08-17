@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { Pack, EventResult } from '../../types/pack';
+import type { Pack } from '../../types/pack';
+import type { EventResult } from '../../types/event';
 
 interface EventLogProps {
   pack: Pack;
@@ -239,7 +240,7 @@ export function EventLog({ pack }: EventLogProps) {
 // Helper functions
 function extractDayFromLog(log: string): number {
   const match = log.match(/^Day (\d+):/);
-  return match ? parseInt(match[1], 10) : 0;
+  return match && match[1] ? parseInt(match[1], 10) : 0;
 }
 
 function categorizeLogEntry(log: string): FilterType {

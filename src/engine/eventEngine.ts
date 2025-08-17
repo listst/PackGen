@@ -124,9 +124,16 @@ export class EventEngine {
               : pack;
         if (!targetObj) return;
 
-        const currentValue = getField(targetObj, action.stat) as number;
+        const currentValue = getField(
+          targetObj as unknown as Record<string, unknown>,
+          action.stat
+        ) as number;
         if (typeof currentValue === 'number') {
-          setField(targetObj, action.stat, currentValue + action.delta);
+          setField(
+            targetObj as unknown as Record<string, unknown>,
+            action.stat,
+            currentValue + action.delta
+          );
           if (action.target === 'wolf' || action.target === 'target') {
             clampWolfStats(targetObj as Wolf);
           }
@@ -143,7 +150,11 @@ export class EventEngine {
               : pack;
         if (!targetObj) return;
 
-        setField(targetObj, action.stat, action.value);
+        setField(
+          targetObj as unknown as Record<string, unknown>,
+          action.stat,
+          action.value
+        );
         if (action.target === 'wolf' || action.target === 'target') {
           clampWolfStats(targetObj as Wolf);
         }
@@ -189,9 +200,7 @@ export class EventEngine {
       }
 
       case 'remove_wolf': {
-        if (action.targetSelector === 'target' && target) {
-          target._dead = true;
-        } else if (action.targetSelector === 'wolf') {
+        if (action.targetSelector === 'wolf') {
           wolf._dead = true;
         } else if (action.targetSelector === 'lowest_health') {
           const lowestHealth = pack.wolves
@@ -274,11 +283,14 @@ export class EventEngine {
     const result: EventResult = {
       eventId: template.id,
       wolfId: wolf.id,
-      targetWolfId: target?.id,
       text: eventText,
       day: pack.day,
       actions: template.actions,
     };
+
+    if (target) {
+      result.targetWolfId = target.id;
+    }
 
     pack.eventHistory.push(result);
     return result;

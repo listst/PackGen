@@ -77,7 +77,7 @@ export const ConditionSchema = z.lazy(() =>
   })
 );
 
-export const ConditionGroupSchema = z.lazy(() =>
+export const ConditionGroupSchema: z.ZodLazy<z.ZodType<unknown>> = z.lazy(() =>
   z.object({
     any: z.array(z.union([ConditionSchema, ConditionGroupSchema])).optional(),
     all: z.array(z.union([ConditionSchema, ConditionGroupSchema])).optional(),

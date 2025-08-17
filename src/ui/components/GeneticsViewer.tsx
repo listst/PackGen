@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import type { Pack, Wolf } from '../../types/pack';
+import type { Pack } from '../../types/pack';
+import type { Wolf } from '../../types/wolf';
 import { getAliveWolves, isBreedingAge } from '../../types/utils';
 
 interface GeneticsViewerProps {
@@ -46,9 +47,8 @@ export function GeneticsViewer({ pack, onWolfSelect }: GeneticsViewerProps) {
       Math.abs(female.traits.trainability - male.traits.trainability);
 
     // Bond bonus if they have a relationship
-    const bondBonus = female.bonds?.[male.id]
-      ? Math.abs(female.bonds[male.id]) / 100
-      : 0;
+    const bondValue = female.bonds?.[male.id];
+    const bondBonus = bondValue ? Math.abs(bondValue) / 100 : 0;
 
     // Fertility factor
     const fertilityFactor =

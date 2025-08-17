@@ -138,15 +138,22 @@ export class HealerEngine {
       );
     }
 
-    return {
+    const result: HealingResult = {
       healerId: healer.id,
       patientId: patient.id,
       success,
       hpHealed,
       herbsUsed: this.config.herbsPerTend,
-      healerDamage: healerDamage > 0 ? healerDamage : undefined,
-      patientDamage: patientDamage > 0 ? patientDamage : undefined,
     };
+
+    if (healerDamage > 0) {
+      result.healerDamage = healerDamage;
+    }
+    if (patientDamage > 0) {
+      result.patientDamage = patientDamage;
+    }
+
+    return result;
   }
 
   // Auto-heal the most injured wolves
@@ -257,11 +264,14 @@ export class HealerEngine {
       text: template.text,
       objectives: [], // Will be properly structured condition groups
       progress: 0,
-      targetWolfId: targetWolf?.id,
       unlocked: true,
       completed: false,
       storyEvents: [],
     };
+
+    if (targetWolf) {
+      prophecy.targetWolfId = targetWolf.id;
+    }
 
     pack.prophecies.push(prophecy);
 
@@ -275,12 +285,17 @@ export class HealerEngine {
       `Day ${pack.day}: ${healer.name} received a prophecy at the Crystal Pool: "${template.text}"`
     );
 
-    return {
+    const result: ProphecyResult = {
       prophecyId,
       text: template.text,
-      targetWolfId: targetWolf?.id,
       objectives: template.objectives,
     };
+
+    if (targetWolf) {
+      result.targetWolfId = targetWolf.id;
+    }
+
+    return result;
   }
 
   // Check prophecy progress

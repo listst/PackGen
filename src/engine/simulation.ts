@@ -361,7 +361,10 @@ export class SimulationEngine {
       pack.wolves.forEach((wolf) => {
         if (wolf.bonds) {
           Object.keys(wolf.bonds).forEach((otherId) => {
-            wolf.bonds![otherId] = Math.max(-100, wolf.bonds![otherId] - 1);
+            const bondValue = wolf.bonds![otherId];
+            if (typeof bondValue === 'number') {
+              wolf.bonds![otherId] = Math.max(-100, bondValue - 1);
+            }
           });
         }
       });

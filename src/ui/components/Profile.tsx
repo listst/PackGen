@@ -1,4 +1,5 @@
-import type { Wolf, Pack } from '../../types/pack';
+import type { Wolf } from '../../types/wolf';
+import type { Pack } from '../../types/pack';
 
 interface ProfileProps {
   wolf: Wolf;
@@ -23,10 +24,14 @@ export function Profile({ wolf, pack, onClose }: ProfileProps) {
     .filter(
       (w) => w.id !== wolf.id && !w._dead && !w._dispersed && wolf.bonds?.[w.id]
     )
-    .map((w) => ({
-      wolf: w,
-      bond: wolf.bonds![w.id],
-    }))
+    .map((w) => {
+      const bondValue = wolf.bonds![w.id];
+      return {
+        wolf: w,
+        bond: bondValue ?? 0,
+      };
+    })
+    .filter((r) => r.bond !== 0)
     .sort((a, b) => Math.abs(b.bond) - Math.abs(a.bond));
 
   // Find mate
