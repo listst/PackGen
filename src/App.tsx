@@ -14,12 +14,15 @@ import {
   TerritoryPanel,
   GeneticsViewer,
   SaveLoadPanel,
+  PatrolPanel,
 } from './ui/components';
 import { SaveLoadManager } from './utils/saveLoad';
+import { migratePack } from './utils/migration';
 
 type TabType =
   | 'overview'
   | 'roster'
+  | 'patrols'
   | 'healer'
   | 'territory'
   | 'genetics'
@@ -33,13 +36,23 @@ function App() {
       name: 'Moonhowl Pack',
       day: 1,
       season: 'spring',
-      wolves: starterWolves as Wolf[],
+      wolves: (starterWolves as Wolf[]).map((wolf) => ({
+        ...wolf,
+        // Migrate alpha_mate role to beta for backward compatibility
+        role: (wolf.role as string) === 'alpha_mate' ? 'beta' : wolf.role,
+      })),
+      matingPairs: [],
       herbs: 5,
       logs: ['Day 1: The pack begins their journey...'],
       eventHistory: [],
       prophecies: [],
       storyEvents: [],
       prophecyPower: 0,
+      // Patrol system
+      assignedPatrols: [],
+      patrolHistory: [],
+      patrolReputation: 50,
+      food: 5,
     };
 
     // Load events
@@ -91,6 +104,12 @@ function App() {
     setPack(newPack);
   };
 
+  const handlePackLoad = (loadedPack: Pack) => {
+    // Apply migration to handle deprecated features
+    const migratedPack = migratePack(loadedPack);
+    setPack(migratedPack);
+  };
+
   const aliveWolves = pack.wolves.filter((w) => !w._dead && !w._dispersed);
   const packStats = simulationEngine.getPackStats(pack);
 
@@ -100,6 +119,11 @@ function App() {
   const tabs = [
     { id: 'overview' as TabType, label: '🏠 Overview', count: null },
     { id: 'roster' as TabType, label: '🐺 Roster', count: aliveWolves.length },
+    {
+      id: 'patrols' as TabType,
+      label: '🚶 Patrols',
+      count: pack.assignedPatrols?.filter((p) => !p.completed).length || 0,
+    },
     { id: 'healer' as TabType, label: '🔮 Healer', count: pack.herbs },
     {
       id: 'territory' as TabType,
@@ -243,6 +267,12 @@ function App() {
                     <span style={{ fontWeight: 'bold' }}>
                       {aliveWolves.length}
                     </span>
+                  </div>
+                  <div
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                  >
+                    <span style={{ opacity: 0.8 }}>Food:</span>
+                    <span style={{ fontWeight: 'bold' }}>{pack.food || 0}</span>
                   </div>
                   <div
                     style={{ display: 'flex', justifyContent: 'space-between' }}
@@ -393,11 +423,7 @@ function App() {
             >
               {['alpha', 'beta', 'hunter', 'healer', 'pup', 'elder'].map(
                 (role) => {
-                  const roleWolves = aliveWolves.filter(
-                    (w) =>
-                      w.role === role ||
-                      (role === 'alpha' && w.role === 'alpha_mate')
-                  );
+                  const roleWolves = aliveWolves.filter((w) => w.role === role);
                   const avgHealth =
                     roleWolves.length > 0
                       ? roleWolves.reduce((sum, w) => sum + w.stats.health, 0) /
@@ -442,6 +468,10 @@ function App() {
           <Roster wolves={pack.wolves} onWolfSelect={setSelectedWolf} />
         )}
 
+        {activeTab === 'patrols' && (
+          <PatrolPanel pack={pack} onPackUpdate={setPack} />
+        )}
+
         {activeTab === 'healer' && (
           <HealerPanel pack={pack} onPackUpdate={setPack} />
         )}
@@ -457,7 +487,7 @@ function App() {
         {activeTab === 'saves' && (
           <SaveLoadPanel
             pack={pack}
-            onPackLoad={setPack}
+            onPackLoad={handlePackLoad}
             onSaveComplete={() => {
               // Could show a success message here
             }}

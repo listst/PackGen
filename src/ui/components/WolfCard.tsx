@@ -8,7 +8,6 @@ interface WolfCardProps {
 
 const roleColors = {
   alpha: '#ff6b6b',
-  alpha_mate: '#ff8e8e',
   beta: '#4ecdc4',
   healer: '#45b7d1',
   hunter: '#96ceb4',

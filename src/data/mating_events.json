@@ -1,0 +1,315 @@
+[
+  {
+    "id": "courtship_successful_001",
+    "title": "Successful Courtship",
+    "text": "{wolf.name} and {target.name} have formed a strong bond after a successful courtship.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.0
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 7.0
+        },
+        {
+          "field": "sex",
+          "op": "==",
+          "value": "male"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 20
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} successfully courted {target.name}. Their bond has strengthened."
+      }
+    ],
+    "weight": 3,
+    "tags": ["courtship", "spring"],
+    "allowFallback": false
+  },
+  {
+    "id": "courtship_rejected_001",
+    "title": "Courtship Rejected",
+    "text": "{wolf.name} attempted to court {target.name}, but was firmly rejected.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.0
+        },
+        {
+          "field": "sex",
+          "op": "==",
+          "value": "male"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": -10
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": -1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} was rejected by {target.name} and feels less confident."
+      }
+    ],
+    "weight": 2,
+    "tags": ["courtship", "rejection"],
+    "allowFallback": false
+  },
+  {
+    "id": "pair_bonding_001",
+    "title": "Pair Bonding",
+    "text": "{wolf.name} and their mate spend quality time together, strengthening their bond.",
+    "condition": {
+      "all": [
+        {
+          "field": "mateId",
+          "op": "!=",
+          "value": null
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "mateId",
+        "delta": 5
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} and their mate grow closer together."
+      }
+    ],
+    "weight": 4,
+    "tags": ["mating", "bonding"],
+    "allowFallback": false
+  },
+  {
+    "id": "rivalry_over_mate_001",
+    "title": "Rivalry Over Mate",
+    "text": "{wolf.name} and {target.name} compete for the attention of a potential mate.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.5
+        },
+        {
+          "field": "sex",
+          "op": "==",
+          "value": "male"
+        },
+        {
+          "field": "mateId",
+          "op": "==",
+          "value": null
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": -15
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} and {target.name} compete fiercely, both becoming more assertive."
+      }
+    ],
+    "weight": 2,
+    "tags": ["rivalry", "courtship"],
+    "allowFallback": false
+  },
+  {
+    "id": "alpha_approves_pairing_001",
+    "title": "Alpha Approves Pairing",
+    "text": "The alpha approves of {wolf.name} and {target.name} forming a pair.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "alpha"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} gives their blessing to a new mating pair in the pack."
+      }
+    ],
+    "weight": 1,
+    "tags": ["alpha", "approval", "mating"],
+    "allowFallback": false
+  },
+  {
+    "id": "spring_courtship_season_001",
+    "title": "Spring Courtship",
+    "text": "With spring in the air, {wolf.name} feels the urge to find a mate.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.0
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 7.0
+        },
+        {
+          "field": "mateId",
+          "op": "==",
+          "value": null
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} feels more social and looks for companionship this spring."
+      }
+    ],
+    "weight": 3,
+    "tags": ["spring", "courtship", "season"],
+    "allowFallback": false
+  },
+  {
+    "id": "expecting_mother_001",
+    "title": "Expecting Mother",
+    "text": "{wolf.name} is expecting pups and prepares for the upcoming birth.",
+    "condition": {
+      "all": [
+        {
+          "field": "pregnant",
+          "op": "==",
+          "value": true
+        },
+        {
+          "field": "sex",
+          "op": "==",
+          "value": "female"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": -1
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.speed",
+        "delta": -1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} moves more carefully as she prepares for motherhood."
+      }
+    ],
+    "weight": 2,
+    "tags": ["pregnancy", "motherhood"],
+    "allowFallback": false
+  },
+  {
+    "id": "protective_father_001",
+    "title": "Protective Father",
+    "text": "{wolf.name} becomes more protective of his mate and territory.",
+    "condition": {
+      "all": [
+        {
+          "field": "sex",
+          "op": "==",
+          "value": "male"
+        },
+        {
+          "field": "mateId",
+          "op": "!=",
+          "value": null
+        },
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 2.0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.strength",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} becomes more protective and vigilant."
+      }
+    ],
+    "weight": 2,
+    "tags": ["protection", "mating", "father"],
+    "allowFallback": false
+  }
+]

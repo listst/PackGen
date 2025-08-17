@@ -6,12 +6,13 @@ import {
   isSpring,
   isAlive,
   isPup,
-  isBreedingAge,
   random,
   getWolvesByRole,
   getAliveWolves,
 } from '../types/utils';
 import { eventEngine } from './eventEngine';
+import { MatingSystem } from './mating';
+import { PatrolEngine } from './patrol';
 
 // Default game configuration
 export const DEFAULT_CONFIG: GameConfig = {
@@ -25,23 +26,47 @@ export const DEFAULT_CONFIG: GameConfig = {
   healerHerbsPerTend: 1,
   healHpRange: { min: 15, max: 25 },
   healerBaseSuccessRate: 0.9,
+  matingSystem: {
+    courtshipDuration: 14, // minimum days before mating
+    bondDecayRate: 0.2, // slower daily bond strength decay
+    minBreedingBond: 80, // higher minimum bond strength to breed (mates stage)
+    maxLittersPerYear: 1, // breeding limit per female
+    breedingSeasonOnly: true, // spring-only breeding
+    inbreedingPrevention: true, // prevent family member mating
+    alphaApprovalRequired: false, // alpha must approve new pairs
+    relationshipProgressionRate: 0.5, // slower relationship progression
+  },
   seasonalModifiers: {
-    spring: { birthWindow: true, huntSuccess: 1.0 },
-    summer: { huntSuccess: 1.2 },
-    autumn: { battleFrequency: 1.1 },
-    winter: { huntSuccess: 0.8 },
+    spring: { birthWindow: true, huntSuccess: 1.0, courtshipBonus: 1.5 },
+    summer: { huntSuccess: 1.2, bondDecay: 1.0 },
+    autumn: { battleFrequency: 1.1, bondDecay: 1.2 },
+    winter: { huntSuccess: 0.8, bondDecay: 1.5 },
+  },
+  patrolSystem: {
+    minHuntingPatrolsPerMonth: 2,
+    minBorderPatrolsPerMonth: 1,
+    maxPatrolsPerWolfPerMonth: 3,
+    patrolCooldownDays: 3,
+    baseSuccessRate: 0.7,
+    reputationImpact: 0.3,
   },
 };
 
 export class SimulationEngine {
   private config: GameConfig;
+  private matingSystem: MatingSystem;
+  private patrolEngine: PatrolEngine;
 
   constructor(config: GameConfig = DEFAULT_CONFIG) {
     this.config = config;
+    this.matingSystem = new MatingSystem(config);
+    this.patrolEngine = new PatrolEngine(config);
   }
 
   updateConfig(newConfig: Partial<GameConfig>): void {
     this.config = { ...this.config, ...newConfig };
+    this.matingSystem = new MatingSystem(this.config);
+    this.patrolEngine.updateConfig(this.config);
   }
 
   // Main simulation tick - advances one day
@@ -52,6 +77,9 @@ export class SimulationEngine {
 
     // Process aging and natural mortality
     this.processAging(pack);
+
+    // Process mating system (courtship and pair bonds)
+    this.processMatingSystem(pack);
 
     // Process pregnancies and births
     this.processPregnancies(pack);
@@ -64,6 +92,9 @@ export class SimulationEngine {
 
     // Process natural healing
     this.processNaturalHealing(pack);
+
+    // Process scheduled patrols
+    this.processPatrols(pack);
 
     // Run daily events
     const eventCount = random.nextInt(
@@ -116,6 +147,18 @@ export class SimulationEngine {
     });
   }
 
+  private processMatingSystem(pack: Pack): void {
+    // Process relationship progression and daily bonding
+    this.matingSystem.processRelationships(pack);
+    this.matingSystem.buildDailyBonds(pack);
+
+    // Process pair bond maintenance and dissolution
+    this.matingSystem.processPairBonds(pack);
+
+    // Process courtship attempts (weekly during spring)
+    this.matingSystem.processCourtship(pack);
+  }
+
   private processPregnancies(pack: Pack): void {
     const pregnantWolves = pack.wolves.filter(
       (w) => isAlive(w) && w.pregnant && w.pregnancyDay !== undefined
@@ -125,18 +168,23 @@ export class SimulationEngine {
       const daysSincePregnancy = pack.day - (wolf.pregnancyDay ?? 0);
 
       if (daysSincePregnancy >= this.config.gestationDays) {
-        // Time to give birth
+        // Only give birth in spring (enforced restriction)
         if (isSpring(pack.season)) {
           this.giveBirth(wolf, pack);
+        } else {
+          // Miscarriage if not in spring season (enforces spring-only births)
+          pack.logs.push(
+            `Day ${pack.day}: ${wolf.name} lost her litter due to harsh conditions.`
+          );
         }
         wolf.pregnant = false;
         delete wolf.pregnancyDay;
       }
     });
 
-    // Spring mating season
+    // New mating system - only process breeding in spring
     if (isSpring(pack.season)) {
-      this.processMating(pack);
+      this.processBreeding(pack);
     }
   }
 
@@ -151,10 +199,32 @@ export class SimulationEngine {
       ? (pack.wolves.find((w) => w.id === mother.mateId) ?? null)
       : null;
 
+    const litterIds: string[] = [];
+
     for (let i = 0; i < litterSize; i++) {
       const pup = this.createPup(mother, father, pack);
       pack.wolves.push(pup);
+      litterIds.push(pup.id);
     }
+
+    // Update breeding history
+    const currentYear = Math.floor(pack.day / (this.config.daysPerSeason * 4));
+    if (!mother.breedingHistory) {
+      mother.breedingHistory = { totalLitters: 0 };
+    }
+    mother.breedingHistory.lastLitterYear = currentYear;
+    mother.breedingHistory.totalLitters += 1;
+    mother.breedingHistory.litterId = (
+      mother.breedingHistory.litterId || []
+    ).concat(litterIds);
+
+    // Update family trees for all pups in the litter
+    litterIds.forEach((pupId) => {
+      const pup = pack.wolves.find((w) => w.id === pupId);
+      if (pup && pup.familyTree) {
+        pup.familyTree.siblingIds = litterIds.filter((id) => id !== pupId);
+      }
+    });
 
     pack.logs.push(
       `Day ${pack.day}: ${mother.name} gave birth to ${litterSize} pups!`
@@ -176,8 +246,27 @@ export class SimulationEngine {
     const fatherStats = father?.stats ?? mother.stats;
     const fatherTraits = father?.traits ?? mother.traits;
 
+    const pupId = `pup_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+
+    // Initialize family tree
+    const parentIds = [mother.id];
+    if (father) parentIds.push(father.id);
+
+    // Update parent family trees
+    if (!mother.familyTree) {
+      mother.familyTree = { parentIds: [], siblingIds: [], offspringIds: [] };
+    }
+    mother.familyTree.offspringIds.push(pupId);
+
+    if (father) {
+      if (!father.familyTree) {
+        father.familyTree = { parentIds: [], siblingIds: [], offspringIds: [] };
+      }
+      father.familyTree.offspringIds.push(pupId);
+    }
+
     return {
-      id: `pup_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      id: pupId,
       name: this.generatePupName(),
       sex: random.choice(['male', 'female']),
       age: 0,
@@ -224,33 +313,48 @@ export class SimulationEngine {
       xp: 0,
       level: 0,
       bonds: {},
+      breedingHistory: { totalLitters: 0 },
+      familyTree: {
+        parentIds,
+        siblingIds: [], // Will be filled in by giveBirth method
+        offspringIds: [],
+      },
     };
   }
 
-  private processMating(pack: Pack): void {
-    const femalesInHeat = pack.wolves.filter(
-      (w) => isAlive(w) && w.sex === 'female' && isBreedingAge(w) && !w.pregnant
-    );
+  private processBreeding(pack: Pack): void {
+    // Only process breeding for established mating pairs
+    pack.matingPairs.forEach((pair) => {
+      const female = pack.wolves.find((w) => w.id === pair.femaleId);
+      const male = pack.wolves.find((w) => w.id === pair.maleId);
 
-    femalesInHeat.forEach((female) => {
-      let pregnancyChance = 0.1; // base chance
-
-      // Higher chance if mated
-      if (female.mateId) {
-        const mate = pack.wolves.find((w) => w.id === female.mateId);
-        if (mate && isAlive(mate) && isBreedingAge(mate)) {
-          pregnancyChance = 0.4; // 40% chance for mated pairs
-        }
-      } else {
-        pregnancyChance = 0.15; // 15% chance for unmated
+      if (!female || !male || !isAlive(female) || !isAlive(male)) {
+        return;
       }
 
-      // Fertility modifier
-      pregnancyChance *= female.traits.fertility / 10;
+      // Use new breeding restrictions from mating system
+      if (!this.matingSystem.canBreed(female, pack)) {
+        return;
+      }
+
+      // Breeding chance based on bond strength and fertility
+      const bondModifier = pair.bondStrength / 100; // 0-1 multiplier
+      const fertilityModifier =
+        (female.traits.fertility + male.traits.fertility) / 20; // 0-1 multiplier
+      const baseChance = 0.3; // 30% base chance per season
+
+      const pregnancyChance = baseChance * bondModifier * fertilityModifier;
 
       if (random.next() < pregnancyChance) {
         female.pregnant = true;
         female.pregnancyDay = pack.day;
+
+        // Update pair's breeding season
+        const currentYear = Math.floor(
+          pack.day / (this.config.daysPerSeason * 4)
+        );
+        pair.lastBreedingSeason = currentYear;
+
         pack.logs.push(`Day ${pack.day}: ${female.name} has become pregnant.`);
       }
     });
@@ -428,6 +532,29 @@ export class SimulationEngine {
       season: pack.season,
       day: pack.day,
     };
+  }
+
+  private processPatrols(pack: Pack): void {
+    // Initialize patrol state if needed
+    if (!pack.assignedPatrols) pack.assignedPatrols = [];
+    if (!pack.patrolHistory) pack.patrolHistory = [];
+    if (pack.patrolReputation === undefined) pack.patrolReputation = 50;
+    if (pack.food === undefined) pack.food = 5;
+
+    // Process scheduled patrols
+    const patrolResults = this.patrolEngine.processScheduledPatrols(pack);
+
+    // Log patrol results
+    patrolResults.forEach((result) => {
+      pack.logs.push(
+        `Day ${pack.day}: Patrol returned - ${result.description}`
+      );
+    });
+  }
+
+  // Public methods for patrol management
+  getPatrolEngine(): PatrolEngine {
+    return this.patrolEngine;
   }
 
   simulateMultipleDays(pack: Pack, days: number): EventResult[] {

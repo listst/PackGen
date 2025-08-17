@@ -21,13 +21,49 @@ export interface Traits {
 
 export type Role =
   | 'alpha'
-  | 'alpha_mate'
   | 'beta'
   | 'healer'
   | 'hunter'
   | 'omega'
   | 'pup'
   | 'elder';
+
+export interface MatingPair {
+  id: string;
+  maleId: string;
+  femaleId: string;
+  bondedDay: number; // when they became a pair
+  bondStrength: number; // 0-100, affects breeding success
+  lastBreedingSeason?: number; // season year when they last bred
+  courtshipEvents: string[]; // track courtship history
+}
+
+export interface BreedingHistory {
+  lastLitterYear?: number; // year when last litter was born
+  totalLitters: number;
+  litterId?: string[]; // IDs of offspring for family tracking
+}
+
+export type RelationshipStage =
+  | 'strangers'
+  | 'acquainted'
+  | 'friends'
+  | 'attracted'
+  | 'courting'
+  | 'mates';
+
+export interface Relationship {
+  stage: RelationshipStage;
+  daysMet: number; // days since first meeting
+  daysSinceStageChange: number; // days since last stage progression
+  bond: number; // -100 to 100, relationship strength
+}
+
+export interface FamilyTree {
+  parentIds: string[]; // mother and father IDs
+  siblingIds: string[]; // siblings from same litter
+  offspringIds: string[]; // children
+}
 
 export interface Wolf {
   id: string; // unique
@@ -42,8 +78,11 @@ export interface Wolf {
   level?: number;
   pregnant?: boolean;
   pregnancyDay?: number; // day when pregnancy began
-  mateId?: string | null;
-  bonds?: Record<string, number>; // relationship scores to other wolves -100..+100
+  mateId?: string | null; // current mate ID (for backward compatibility)
+  bonds?: Record<string, number>; // relationship scores to other wolves -100..+100 (legacy)
+  relationships?: Record<string, Relationship>; // new relationship system
+  breedingHistory?: BreedingHistory;
+  familyTree?: FamilyTree;
   _dead?: boolean;
   _dispersed?: boolean;
   maxLifespan?: number; // base lifespan drawn at birth

@@ -32,7 +32,6 @@ export function Roster({ wolves, onWolfSelect }: RosterProps) {
         case 'role': {
           const roleOrder = [
             'alpha',
-            'alpha_mate',
             'beta',
             'healer',
             'hunter',

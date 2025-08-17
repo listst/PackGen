@@ -1,0 +1,316 @@
+[
+  {
+    "id": "friendship_bonding_001",
+    "title": "Growing Friendship",
+    "text": "{wolf.name} and {target.name} spend time together and grow closer as friends.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} and {target.name} enjoyed each other's company today."
+      }
+    ],
+    "weight": 4,
+    "tags": ["friendship", "bonding"],
+    "allowFallback": false
+  },
+  {
+    "id": "shared_activity_001",
+    "title": "Shared Hunt",
+    "text": "{wolf.name} and {target.name} work together on a hunt, building trust.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 40
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} and {target.name} successfully hunted together."
+      }
+    ],
+    "weight": 3,
+    "tags": ["hunting", "cooperation"],
+    "allowFallback": false
+  },
+  {
+    "id": "comfort_support_001",
+    "title": "Offering Comfort",
+    "text": "{wolf.name} comforts {target.name} during a difficult time.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 60
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} provided comfort to {target.name}."
+      }
+    ],
+    "weight": 2,
+    "tags": ["support", "healing"],
+    "allowFallback": false
+  },
+  {
+    "id": "playful_interaction_001",
+    "title": "Playful Moment",
+    "text": "{wolf.name} and {target.name} engage in playful behavior, strengthening their bond.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 5.0
+        },
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} and {target.name} played together joyfully."
+      }
+    ],
+    "weight": 3,
+    "tags": ["play", "youth"],
+    "allowFallback": false
+  },
+  {
+    "id": "romantic_attraction_001",
+    "title": "Romantic Interest",
+    "text": "{wolf.name} finds themselves drawn to {target.name} in a new way.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.5
+        },
+        {
+          "field": "age",
+          "op": "<=",
+          "value": 6.0
+        },
+        {
+          "field": "mateId",
+          "op": "==",
+          "value": null
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} feels a special connection with {target.name}."
+      }
+    ],
+    "weight": 2,
+    "tags": ["attraction", "romance"],
+    "allowFallback": false
+  },
+  {
+    "id": "jealousy_moment_001",
+    "title": "Moment of Jealousy",
+    "text": "{wolf.name} feels a pang of jealousy seeing {target.name} with another wolf.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.5
+        },
+        {
+          "field": "mateId",
+          "op": "==",
+          "value": null
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": -1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} felt jealous watching {target.name} with others."
+      }
+    ],
+    "weight": 1,
+    "tags": ["jealousy", "emotion"],
+    "allowFallback": false
+  },
+  {
+    "id": "mentor_relationship_001",
+    "title": "Mentorship Bond",
+    "text": "{wolf.name} takes {target.name} under their wing, forming a mentor relationship.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 3.0
+        },
+        {
+          "field": "traits.trainability",
+          "op": ">",
+          "value": 6
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} shared wisdom with {target.name}."
+      }
+    ],
+    "weight": 2,
+    "tags": ["mentorship", "wisdom"],
+    "allowFallback": false
+  },
+  {
+    "id": "disagreement_001",
+    "title": "Minor Disagreement",
+    "text": "{wolf.name} and {target.name} have a small disagreement but work through it.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">=",
+          "value": 1.0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} and {target.name} resolved a minor conflict."
+      }
+    ],
+    "weight": 2,
+    "tags": ["conflict", "resolution"],
+    "allowFallback": false
+  },
+  {
+    "id": "grooming_bonding_001",
+    "title": "Grooming Session",
+    "text": "{wolf.name} grooms {target.name}, showing care and affection.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "stats.health",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} gently groomed {target.name}."
+      }
+    ],
+    "weight": 3,
+    "tags": ["grooming", "care"],
+    "allowFallback": false
+  },
+  {
+    "id": "shared_meal_001",
+    "title": "Sharing Food",
+    "text": "{wolf.name} shares their meal with {target.name}, a sign of trust and friendship.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 70
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} generously shared food with {target.name}."
+      }
+    ],
+    "weight": 2,
+    "tags": ["sharing", "generosity"],
+    "allowFallback": false
+  }
+]

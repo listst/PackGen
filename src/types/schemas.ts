@@ -24,7 +24,6 @@ export const TraitsSchema = z.object({
 
 export const RoleSchema = z.enum([
   'alpha',
-  'alpha_mate',
   'beta',
   'healer',
   'hunter',
@@ -32,6 +31,44 @@ export const RoleSchema = z.enum([
   'pup',
   'elder',
 ]);
+
+export const BreedingHistorySchema = z.object({
+  lastLitterYear: z.number().optional(),
+  totalLitters: z.number().min(0),
+  litterId: z.array(z.string()).optional(),
+});
+
+export const FamilyTreeSchema = z.object({
+  parentIds: z.array(z.string()),
+  siblingIds: z.array(z.string()),
+  offspringIds: z.array(z.string()),
+});
+
+export const RelationshipStageSchema = z.enum([
+  'strangers',
+  'acquainted',
+  'friends',
+  'attracted',
+  'courting',
+  'mates',
+]);
+
+export const RelationshipSchema = z.object({
+  stage: RelationshipStageSchema,
+  daysMet: z.number().min(0),
+  daysSinceStageChange: z.number().min(0),
+  bond: z.number().min(-100).max(100),
+});
+
+export const MatingPairSchema = z.object({
+  id: z.string(),
+  maleId: z.string(),
+  femaleId: z.string(),
+  bondedDay: z.number(),
+  bondStrength: z.number().min(0).max(100),
+  lastBreedingSeason: z.number().optional(),
+  courtshipEvents: z.array(z.string()),
+});
 
 export const WolfSchema = z.object({
   id: z.string(),
@@ -48,6 +85,9 @@ export const WolfSchema = z.object({
   pregnancyDay: z.number().optional(),
   mateId: z.string().nullable().optional(),
   bonds: z.record(z.string(), z.number().min(-100).max(100)).optional(),
+  relationships: z.record(z.string(), RelationshipSchema).optional(),
+  breedingHistory: BreedingHistorySchema.optional(),
+  familyTree: FamilyTreeSchema.optional(),
   _dead: z.boolean().optional(),
   _dispersed: z.boolean().optional(),
   maxLifespan: z.number().optional(),
@@ -146,6 +186,7 @@ export const PackSchema = z.object({
   day: z.number().min(0),
   season: SeasonSchema,
   wolves: z.array(WolfSchema),
+  matingPairs: z.array(MatingPairSchema).default([]),
   herbs: z.number().min(0),
   logs: z.array(z.string()),
   eventHistory: z.array(z.any()), // EventResult schema would be complex
