@@ -9,36 +9,42 @@ A comprehensive wolf pack management and simulation game built with React, TypeS
 ## ✨ Features
 
 ### 🧬 **Advanced Genetics System**
+
 - Realistic breeding mechanics with genetic inheritance
 - Compatibility analysis between potential mates
 - Genetic diversity tracking and optimization
 - Offspring trait prediction with mutation factors
 
 ### 🏞️ **Territory Management**
+
 - Biome-based territories with unique characteristics
 - Rival pack interactions and territorial disputes
 - Resource management (herbs, hunting grounds)
 - Exploration and border patrol mechanics
 
 ### ⚔️ **Combat & Training**
+
 - Comprehensive wolf combat system
 - Experience points and leveling mechanics
 - Mentor-apprentice training relationships
 - Role-based skill development
 
 ### 🔮 **Mystical Elements**
+
 - Healer wolves with special abilities
 - Prophecy system with Crystal Pool visions
 - Herb gathering and healing mechanics
 - Spiritual bonds and pack dynamics
 
 ### 📊 **Pack Management**
+
 - Detailed wolf profiles with stats and traits
 - Pack hierarchy and role assignments
 - Health monitoring and care systems
 - Comprehensive event logging
 
 ### 💾 **Save System**
+
 - Multiple save slots with auto-save functionality
 - Import/export saves as JSON files
 - Save game previews and metadata
@@ -47,23 +53,27 @@ A comprehensive wolf pack management and simulation game built with React, TypeS
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm or yarn package manager
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd packgen-web
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -86,6 +96,7 @@ npm test             # Run test suite (when implemented)
 ## 🎮 How to Play
 
 ### Getting Started
+
 1. **Overview Tab**: Monitor your pack's status and simulate days
 2. **Roster Tab**: View all wolves with filtering and sorting options
 3. **Healer Tab**: Manage healers, gather herbs, and receive prophecies
@@ -95,6 +106,7 @@ npm test             # Run test suite (when implemented)
 7. **Events Tab**: Review the complete history of pack events
 
 ### Basic Gameplay Loop
+
 1. **Simulate Days**: Advance time to trigger events and pack evolution
 2. **Manage Wolves**: Monitor health, assign roles, and track relationships
 3. **Breed Strategically**: Use the genetics system to improve your pack
@@ -102,6 +114,7 @@ npm test             # Run test suite (when implemented)
 5. **Expand Territory**: Explore and defend your pack's homeland
 
 ### Wolf Roles
+
 - **Alpha**: Pack leaders with high strength and intelligence
 - **Alpha Mate**: Partner to the alpha with leadership qualities
 - **Beta**: Second-in-command, assists with pack management
@@ -112,13 +125,16 @@ npm test             # Run test suite (when implemented)
 - **Elder**: Experienced wolves with wisdom bonuses
 
 ### Stats & Traits
+
 **Core Stats:**
+
 - **Health**: Wolf's current physical condition (0-100)
 - **Strength**: Physical power affecting combat and hunting
 - **Speed**: Agility affecting hunting success and combat
 - **Intelligence**: Mental acuity affecting training and problem-solving
 
 **Personality Traits:**
+
 - **Bravery**: Willingness to face danger and lead others
 - **Sociability**: Ability to form bonds and work with pack
 - **Trainability**: Aptitude for learning new skills
@@ -127,6 +143,7 @@ npm test             # Run test suite (when implemented)
 ## 🏗️ Architecture
 
 ### Project Structure
+
 ```
 src/
 ├── engine/          # Core simulation systems
@@ -152,6 +169,7 @@ src/
 ```
 
 ### Technology Stack
+
 - **React 18**: Modern UI framework with hooks
 - **TypeScript**: Type-safe development with strict mode
 - **Vite**: Fast build tool with hot module replacement
@@ -161,6 +179,7 @@ src/
 ### Key Systems
 
 #### Event Engine
+
 The event system uses a custom DSL (Domain Specific Language) for authoring game events:
 
 ```json
@@ -181,14 +200,18 @@ The event system uses a custom DSL (Domain Specific Language) for authoring game
 ```
 
 #### Genetics System
+
 Breeding combines parental traits with realistic inheritance patterns:
+
 - **Base inheritance**: Average of parent stats with ±1 mutation
 - **Genetic diversity**: Encourages varied pairings
 - **Fertility factors**: Age and trait-based breeding success
 - **Bond bonuses**: Relationship strength affects compatibility
 
 #### Save System
+
 Robust save management with multiple features:
+
 - **Auto-save**: Every 10 simulated days
 - **Manual saves**: User-named save slots (max 10)
 - **Import/Export**: JSON-based save sharing
@@ -197,25 +220,29 @@ Robust save management with multiple features:
 ## 🔧 Configuration
 
 ### Game Configuration
+
 Modify `src/engine/simulation.ts` to adjust game parameters:
 
 ```typescript
 export const DEFAULT_CONFIG: GameConfig = {
-  daysPerSeason: 40,           // Days per season cycle
+  daysPerSeason: 40, // Days per season cycle
   eventsPerDay: { min: 2, max: 4 }, // Random events per day
-  gestationDays: 14,           // Pregnancy duration
-  trainingStartAge: 40,        // Training eligibility (days)
-  trainingDuration: 40,        // Training completion time
+  gestationDays: 14, // Pregnancy duration
+  trainingStartAge: 40, // Training eligibility (days)
+  trainingDuration: 40, // Training completion time
   maxLifespan: { min: 12, max: 14 }, // Wolf lifespan range
-  xpToLevel: 100,             // Experience points per level
-  healerHerbsPerTend: 1,      // Herbs consumed per healing
+  xpToLevel: 100, // Experience points per level
+  healerHerbsPerTend: 1, // Herbs consumed per healing
   healHpRange: { min: 15, max: 25 }, // Healing amount range
-  healerBaseSuccessRate: 0.9,  // Base healing success rate
-  seasonalModifiers: { /* ... */ } // Season-specific bonuses
+  healerBaseSuccessRate: 0.9, // Base healing success rate
+  seasonalModifiers: {
+    /* ... */
+  }, // Season-specific bonuses
 };
 ```
 
 ### Adding Custom Events
+
 Create new events in `src/data/events_examples.json`:
 
 ```json
@@ -234,12 +261,14 @@ Create new events in `src/data/events_examples.json`:
 ## 📈 Development
 
 ### Code Quality
+
 - **TypeScript Strict Mode**: Full type safety enforcement
 - **ESLint Configuration**: Comprehensive linting rules
 - **Prettier Integration**: Automatic code formatting
 - **Git Hooks**: Pre-commit quality checks
 
 ### Testing Strategy
+
 ```bash
 npm test                    # Run all tests
 npm run test:watch         # Watch mode for development
@@ -247,12 +276,14 @@ npm run test:coverage      # Generate coverage report
 ```
 
 ### Building for Production
+
 ```bash
 npm run build              # Create optimized production build
 npm run preview            # Test production build locally
 ```
 
 The production build is optimized with:
+
 - Code splitting for faster loading
 - Tree shaking to remove unused code
 - Asset optimization and compression
@@ -261,6 +292,7 @@ The production build is optimized with:
 ## 🤝 Contributing
 
 ### Getting Started
+
 1. Fork the repository
 2. Create a feature branch: `git checkout -b feature/amazing-feature`
 3. Make your changes following the established patterns
@@ -270,6 +302,7 @@ The production build is optimized with:
 7. Open a Pull Request
 
 ### Development Guidelines
+
 - Follow TypeScript strict mode requirements
 - Use existing component patterns and styling
 - Add JSDoc comments for complex functions
@@ -277,6 +310,7 @@ The production build is optimized with:
 - Update documentation for API changes
 
 ### Code Style
+
 - Use functional components with hooks
 - Prefer immutable data patterns
 - Keep components focused and reusable
@@ -286,17 +320,20 @@ The production build is optimized with:
 ## 📊 Game Balance
 
 ### Wolf Stats Range
+
 - **Health**: 0-100 (current condition)
 - **Core Stats**: 0-10 (strength, speed, intelligence)
 - **Traits**: 0-10 (bravery, sociability, trainability, fertility)
 
 ### Breeding Mechanics
+
 - **Optimal Age**: 2-8 years for best fertility
 - **Genetic Diversity**: Encouraged through compatibility scoring
 - **Mutation Rate**: ±1 stat variance from parent average
 - **Litter Size**: 1-4 pups (weighted probability)
 
 ### Event Frequency
+
 - **Daily Events**: 2-4 random events per simulated day
 - **Seasonal Modifiers**: Spring births, winter hardships
 - **Rarity Distribution**: 60% common, 25% uncommon, 12% rare, 3% legendary
@@ -304,17 +341,20 @@ The production build is optimized with:
 ## 🐛 Known Issues & Limitations
 
 ### Current Limitations
+
 - Events are read-only during gameplay (no dynamic event creation)
 - AI for rival packs is simplified
 - No multiplayer functionality
 - Limited sound/visual effects
 
 ### Performance Notes
+
 - Save files can become large with extensive play sessions
 - Event history is maintained indefinitely (may impact performance)
 - No lazy loading for large wolf populations
 
 ### Future Enhancements
+
 - Dynamic event system with user-created events
 - Enhanced AI for rival pack behaviors
 - Multiplayer pack interactions
@@ -335,4 +375,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Ready to lead your pack to greatness? Start your PackGen adventure today!** 🐺🌙
 
-*For support, feature requests, or contributions, please open an issue or pull request on our GitHub repository.*
+_For support, feature requests, or contributions, please open an issue or pull request on our GitHub repository._
