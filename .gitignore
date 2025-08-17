@@ -43,6 +43,9 @@ logs/
 tmp/
 temp/
 
+# Documentation (untracked)
+docs/untracked/
+
 # Mac system files
 .AppleDouble
 .LSOverride
