@@ -1,0 +1,264 @@
+[
+  {
+    "id": "hunt_success",
+    "title": "Hunt Success",
+    "text": "{wolf.name} led a successful hunt and brought meat for the pack.",
+    "condition": {
+      "all": [
+        { "field": "role", "op": "==", "value": "hunter" },
+        { "field": "stats.health", "op": ">", "value": 30 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 8
+      },
+      { "type": "log", "text": "{wolf.name} brought food." }
+    ],
+    "weight": 8,
+    "tags": ["hunting"]
+  },
+  {
+    "id": "hunt_injury",
+    "title": "Hunt Injury",
+    "text": "While hunting, {wolf.name} was injured by prey.",
+    "condition": {
+      "all": [
+        { "field": "role", "op": "==", "value": "hunter" },
+        { "field": "traits.bravery", "op": ">=", "value": 7 },
+        { "field": "stats.health", "op": ">", "value": 0 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -18
+      },
+      { "type": "log", "text": "{wolf.name} got injured hunting." }
+    ],
+    "weight": 4,
+    "tags": ["hunting", "injury"]
+  },
+  {
+    "id": "pup_born",
+    "title": "Pup Born",
+    "text": "{wolf.name} gave birth to healthy pups!",
+    "condition": {
+      "all": [
+        { "field": "sex", "op": "==", "value": "female" },
+        { "field": "pregnant", "op": "==", "value": true }
+      ]
+    },
+    "actions": [
+      {
+        "type": "spawn_wolf",
+        "wolfTemplate": {
+          "role": "pup",
+          "appearance": {
+            "furColor": "mixed",
+            "pattern": "speckled",
+            "eyeColor": "blue"
+          },
+          "stats": {
+            "health": 70,
+            "strength": 2,
+            "speed": 3,
+            "intelligence": 3
+          },
+          "traits": {
+            "bravery": 3,
+            "sociability": 6,
+            "trainability": 3,
+            "fertility": 0
+          }
+        },
+        "count": 1
+      },
+      { "type": "log", "text": "{wolf.name} welcomed new pups." }
+    ],
+    "weight": 3,
+    "tags": ["birth"]
+  },
+  {
+    "id": "illness",
+    "title": "Illness",
+    "text": "{wolf.name} came down with an illness.",
+    "condition": {
+      "all": [{ "field": "stats.health", "op": "<", "value": 60 }]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -12
+      },
+      { "type": "set_stat", "target": "wolf", "stat": "isSick", "value": true },
+      { "type": "log", "text": "{wolf.name} is ill." }
+    ],
+    "weight": 5,
+    "tags": ["sickness"]
+  },
+  {
+    "id": "rival_raid",
+    "title": "Rival Raid",
+    "text": "A rival pack raided the territory and {wolf.name} was caught in the skirmish.",
+    "condition": {
+      "all": [{ "field": "stats.health", "op": ">", "value": 10 }]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -20
+      },
+      { "type": "log", "text": "{wolf.name} survived a raid with injuries." }
+    ],
+    "weight": 2,
+    "tags": ["conflict"]
+  },
+  {
+    "id": "den_flood",
+    "title": "Den Flood",
+    "text": "A sudden flood hit the den. Pups were in danger.",
+    "condition": {
+      "any": [{ "field": "role", "op": "==", "value": "pup" }]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -15
+      },
+      { "type": "log", "text": "Den flood injured pups." }
+    ],
+    "weight": 1,
+    "tags": ["disaster"],
+    "allowFallback": true
+  },
+  {
+    "id": "alpha_challenge",
+    "title": "Alpha Challenge",
+    "text": "{wolf.name} challenged the alpha!",
+    "condition": {
+      "all": [
+        { "field": "role", "op": "==", "value": "beta" },
+        { "field": "traits.bravery", "op": ">=", "value": 7 }
+      ]
+    },
+    "actions": [
+      { "type": "trigger_story", "storyId": "alpha_challenge_resolution" },
+      { "type": "log", "text": "{wolf.name} has challenged leadership." }
+    ],
+    "weight": 2,
+    "tags": ["social"]
+  },
+  {
+    "id": "dispersal",
+    "title": "Dispersal",
+    "text": "{wolf.name} decided to disperse and try to find a new territory.",
+    "condition": {
+      "all": [
+        { "field": "age", "op": ">=", "value": 1.5 },
+        { "field": "age", "op": "<=", "value": 3 }
+      ]
+    },
+    "actions": [
+      { "type": "log", "text": "{wolf.name} dispersed from the pack." },
+      { "type": "remove_wolf", "targetSelector": "wolf" }
+    ],
+    "weight": 2,
+    "tags": ["dispersal"]
+  },
+  {
+    "id": "scavenge_find",
+    "title": "Scavenge Find",
+    "text": "{wolf.name} found a carcass and scavenged food.",
+    "condition": {
+      "all": [{ "field": "stats.health", "op": "<", "value": 95 }]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 6
+      },
+      { "type": "log", "text": "{wolf.name} scavenged some food." }
+    ],
+    "weight": 6,
+    "tags": ["food"]
+  },
+  {
+    "id": "bonding",
+    "title": "Pack Bonding",
+    "text": "The pack shared a calm night; {wolf.name} bonded with another.",
+    "condition": {
+      "all": [{ "field": "traits.sociability", "op": ">", "value": 6 }]
+    },
+    "actions": [
+      { "type": "adjust_bond", "withWolfIdField": "target.id", "delta": 5 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 4
+      },
+      { "type": "log", "text": "{wolf.name} bonded with the pack." }
+    ],
+    "weight": 6,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "healer_assist",
+    "title": "Healer Assistance",
+    "text": "{wolf.name} (healer) tended to {target.name} and helped them recover.",
+    "condition": {
+      "all": [
+        { "field": "role", "op": "==", "value": "healer" },
+        { "field": "stats.health", "op": ">", "value": 20 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "target",
+        "stat": "stats.health",
+        "delta": 15
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -2
+      },
+      { "type": "log", "text": "{wolf.name} tended to {target.name}." }
+    ],
+    "weight": 5,
+    "tags": ["healing"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_speed_rise",
+    "title": "Pool Vision: Speed of the Wind",
+    "text": "The Crystal Pool whispers: 'A wolf of great speed will rise...'.",
+    "condition": {
+      "all": [{ "field": "pack.day", "op": ">=", "value": 60 }]
+    },
+    "actions": [
+      { "type": "trigger_story", "storyId": "speed_rise_story" },
+      { "type": "log", "text": "A prophecy echoes at the Pool." }
+    ],
+    "weight": 0,
+    "tags": ["prophecy", "story"],
+    "allowFallback": true
+  }
+]

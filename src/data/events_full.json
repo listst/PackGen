@@ -1,0 +1,6582 @@
+[
+  {
+    "id": "hunting_hunt_success_000",
+    "title": "Hunt Success",
+    "text": "{wolf.name} hunt success.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 5,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_success_001",
+    "title": "Hunt Success",
+    "text": "{wolf.name} hunt success.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 1,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "hunting_hunt_success_002",
+    "title": "Hunt Success",
+    "text": "{wolf.name} hunt success.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 8,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_failure_003",
+    "title": "Hunt Failure",
+    "text": "{wolf.name} hunt failure.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 8,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "hunting_hunt_failure_004",
+    "title": "Hunt Failure",
+    "text": "{wolf.name} hunt failure.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_failure_005",
+    "title": "Hunt Failure",
+    "text": "{wolf.name} hunt failure.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_injury_006",
+    "title": "Hunt Injury",
+    "text": "{wolf.name} hunt injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 5,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_injury_007",
+    "title": "Hunt Injury",
+    "text": "{wolf.name} hunt injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 3,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_injury_008",
+    "title": "Hunt Injury",
+    "text": "{wolf.name} hunt injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_discovery_009",
+    "title": "Hunt Discovery",
+    "text": "{wolf.name} hunt discovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 5,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_discovery_010",
+    "title": "Hunt Discovery",
+    "text": "{wolf.name} hunt discovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_discovery_011",
+    "title": "Hunt Discovery",
+    "text": "{wolf.name} hunt discovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 1,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_competition_012",
+    "title": "Hunt Competition",
+    "text": "{wolf.name} hunt competition.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 5,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_competition_013",
+    "title": "Hunt Competition",
+    "text": "{wolf.name} hunt competition.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 6,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_competition_014",
+    "title": "Hunt Competition",
+    "text": "{wolf.name} hunt competition.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_weather_015",
+    "title": "Hunt Weather",
+    "text": "{wolf.name} hunt weather.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 1,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_weather_016",
+    "title": "Hunt Weather",
+    "text": "{wolf.name} hunt weather.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_weather_017",
+    "title": "Hunt Weather",
+    "text": "{wolf.name} hunt weather.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 6,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "hunting_hunt_stamina_018",
+    "title": "Hunt Stamina",
+    "text": "{wolf.name} hunt stamina.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_stamina_019",
+    "title": "Hunt Stamina",
+    "text": "{wolf.name} hunt stamina.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 7,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "hunting_hunt_stamina_020",
+    "title": "Hunt Stamina",
+    "text": "{wolf.name} hunt stamina.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_teamwork_021",
+    "title": "Hunt Teamwork",
+    "text": "{wolf.name} hunt teamwork.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 8,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_teamwork_022",
+    "title": "Hunt Teamwork",
+    "text": "{wolf.name} hunt teamwork.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 4,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_teamwork_023",
+    "title": "Hunt Teamwork",
+    "text": "{wolf.name} hunt teamwork.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_prey_escape_024",
+    "title": "Hunt Prey Escape",
+    "text": "{wolf.name} hunt prey escape.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_prey_escape_025",
+    "title": "Hunt Prey Escape",
+    "text": "{wolf.name} hunt prey escape.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_prey_escape_026",
+    "title": "Hunt Prey Escape",
+    "text": "{wolf.name} hunt prey escape.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 6,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_territory_dispute_027",
+    "title": "Hunt Territory Dispute",
+    "text": "{wolf.name} hunt territory dispute.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 2,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "hunting_hunt_territory_dispute_028",
+    "title": "Hunt Territory Dispute",
+    "text": "{wolf.name} hunt territory dispute.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 3,
+    "tags": ["hunting"],
+    "allowFallback": false
+  },
+  {
+    "id": "hunting_hunt_territory_dispute_029",
+    "title": "Hunt Territory Dispute",
+    "text": "{wolf.name} hunt territory dispute.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "hunter"
+        },
+        {
+          "field": "stats.health",
+          "op": ">",
+          "value": 20
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} completed a hunt."
+      }
+    ],
+    "weight": 6,
+    "tags": ["hunting"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_bonding_030",
+    "title": "Bonding",
+    "text": "{wolf.name} bonding.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_bonding_031",
+    "title": "Bonding",
+    "text": "{wolf.name} bonding.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_bonding_032",
+    "title": "Bonding",
+    "text": "{wolf.name} bonding.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_rivalry_033",
+    "title": "Rivalry",
+    "text": "{wolf.name} rivalry.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_rivalry_034",
+    "title": "Rivalry",
+    "text": "{wolf.name} rivalry.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_rivalry_035",
+    "title": "Rivalry",
+    "text": "{wolf.name} rivalry.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_mentorship_036",
+    "title": "Mentorship",
+    "text": "{wolf.name} mentorship.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 6,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_mentorship_037",
+    "title": "Mentorship",
+    "text": "{wolf.name} mentorship.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_mentorship_038",
+    "title": "Mentorship",
+    "text": "{wolf.name} mentorship.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_leadership_039",
+    "title": "Leadership",
+    "text": "{wolf.name} leadership.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 7,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_leadership_040",
+    "title": "Leadership",
+    "text": "{wolf.name} leadership.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 8,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_leadership_041",
+    "title": "Leadership",
+    "text": "{wolf.name} leadership.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 8,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_cooperation_042",
+    "title": "Cooperation",
+    "text": "{wolf.name} cooperation.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 7,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_cooperation_043",
+    "title": "Cooperation",
+    "text": "{wolf.name} cooperation.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 7,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_cooperation_044",
+    "title": "Cooperation",
+    "text": "{wolf.name} cooperation.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_conflict_resolution_045",
+    "title": "Conflict Resolution",
+    "text": "{wolf.name} conflict resolution.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 8,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_conflict_resolution_046",
+    "title": "Conflict Resolution",
+    "text": "{wolf.name} conflict resolution.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 5,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_conflict_resolution_047",
+    "title": "Conflict Resolution",
+    "text": "{wolf.name} conflict resolution.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 2,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_pack_meeting_048",
+    "title": "Pack Meeting",
+    "text": "{wolf.name} pack meeting.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_pack_meeting_049",
+    "title": "Pack Meeting",
+    "text": "{wolf.name} pack meeting.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_pack_meeting_050",
+    "title": "Pack Meeting",
+    "text": "{wolf.name} pack meeting.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_story_telling_051",
+    "title": "Story Telling",
+    "text": "{wolf.name} story telling.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 5,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "social_story_telling_052",
+    "title": "Story Telling",
+    "text": "{wolf.name} story telling.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_story_telling_053",
+    "title": "Story Telling",
+    "text": "{wolf.name} story telling.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_play_time_054",
+    "title": "Play Time",
+    "text": "{wolf.name} play time.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 3,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_play_time_055",
+    "title": "Play Time",
+    "text": "{wolf.name} play time.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_play_time_056",
+    "title": "Play Time",
+    "text": "{wolf.name} play time.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_grooming_057",
+    "title": "Grooming",
+    "text": "{wolf.name} grooming.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_grooming_058",
+    "title": "Grooming",
+    "text": "{wolf.name} grooming.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 1,
+    "tags": ["social"],
+    "allowFallback": false
+  },
+  {
+    "id": "social_grooming_059",
+    "title": "Grooming",
+    "text": "{wolf.name} grooming.",
+    "condition": {
+      "all": [
+        {
+          "field": "traits.sociability",
+          "op": ">",
+          "value": 4
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "adjust_bond",
+        "withWolfIdField": "target.id",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} had a social interaction."
+      }
+    ],
+    "weight": 4,
+    "tags": ["social"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_illness_060",
+    "title": "Illness",
+    "text": "{wolf.name} illness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_illness_061",
+    "title": "Illness",
+    "text": "{wolf.name} illness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 3,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_illness_062",
+    "title": "Illness",
+    "text": "{wolf.name} illness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 7,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_injury_063",
+    "title": "Injury",
+    "text": "{wolf.name} injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_injury_064",
+    "title": "Injury",
+    "text": "{wolf.name} injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 6,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_injury_065",
+    "title": "Injury",
+    "text": "{wolf.name} injury.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 2,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_recovery_066",
+    "title": "Recovery",
+    "text": "{wolf.name} recovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_recovery_067",
+    "title": "Recovery",
+    "text": "{wolf.name} recovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_recovery_068",
+    "title": "Recovery",
+    "text": "{wolf.name} recovery.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 5,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_exhaustion_069",
+    "title": "Exhaustion",
+    "text": "{wolf.name} exhaustion.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_exhaustion_070",
+    "title": "Exhaustion",
+    "text": "{wolf.name} exhaustion.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 5,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_exhaustion_071",
+    "title": "Exhaustion",
+    "text": "{wolf.name} exhaustion.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 5,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_vigor_072",
+    "title": "Vigor",
+    "text": "{wolf.name} vigor.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_vigor_073",
+    "title": "Vigor",
+    "text": "{wolf.name} vigor.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_vigor_074",
+    "title": "Vigor",
+    "text": "{wolf.name} vigor.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_aging_075",
+    "title": "Aging",
+    "text": "{wolf.name} aging.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_aging_076",
+    "title": "Aging",
+    "text": "{wolf.name} aging.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 1,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_aging_077",
+    "title": "Aging",
+    "text": "{wolf.name} aging.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 3,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_strength_gain_078",
+    "title": "Strength Gain",
+    "text": "{wolf.name} strength gain.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 3,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_strength_gain_079",
+    "title": "Strength Gain",
+    "text": "{wolf.name} strength gain.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_strength_gain_080",
+    "title": "Strength Gain",
+    "text": "{wolf.name} strength gain.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 1,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_speed_training_081",
+    "title": "Speed Training",
+    "text": "{wolf.name} speed training.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_speed_training_082",
+    "title": "Speed Training",
+    "text": "{wolf.name} speed training.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 1,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_speed_training_083",
+    "title": "Speed Training",
+    "text": "{wolf.name} speed training.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 7,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_endurance_084",
+    "title": "Endurance",
+    "text": "{wolf.name} endurance.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_endurance_085",
+    "title": "Endurance",
+    "text": "{wolf.name} endurance.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 8,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_endurance_086",
+    "title": "Endurance",
+    "text": "{wolf.name} endurance.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 2,
+    "tags": ["health"],
+    "allowFallback": true
+  },
+  {
+    "id": "health_weakness_087",
+    "title": "Weakness",
+    "text": "{wolf.name} weakness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 4,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_weakness_088",
+    "title": "Weakness",
+    "text": "{wolf.name} weakness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 2,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "health_weakness_089",
+    "title": "Weakness",
+    "text": "{wolf.name} weakness.",
+    "condition": {
+      "all": [
+        {
+          "field": "stats.health",
+          "op": "<",
+          "value": 80
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a health event."
+      }
+    ],
+    "weight": 7,
+    "tags": ["health"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_storm_090",
+    "title": "Weather Storm",
+    "text": "{wolf.name} weather storm.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_storm_091",
+    "title": "Weather Storm",
+    "text": "{wolf.name} weather storm.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 5,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_weather_storm_092",
+    "title": "Weather Storm",
+    "text": "{wolf.name} weather storm.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 4,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_drought_093",
+    "title": "Weather Drought",
+    "text": "{wolf.name} weather drought.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_weather_drought_094",
+    "title": "Weather Drought",
+    "text": "{wolf.name} weather drought.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_drought_095",
+    "title": "Weather Drought",
+    "text": "{wolf.name} weather drought.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 8,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_cold_096",
+    "title": "Weather Cold",
+    "text": "{wolf.name} weather cold.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_weather_cold_097",
+    "title": "Weather Cold",
+    "text": "{wolf.name} weather cold.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_cold_098",
+    "title": "Weather Cold",
+    "text": "{wolf.name} weather cold.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_heat_099",
+    "title": "Weather Heat",
+    "text": "{wolf.name} weather heat.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 3,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_weather_heat_100",
+    "title": "Weather Heat",
+    "text": "{wolf.name} weather heat.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_weather_heat_101",
+    "title": "Weather Heat",
+    "text": "{wolf.name} weather heat.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 7,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_flood_102",
+    "title": "Flood",
+    "text": "{wolf.name} flood.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_flood_103",
+    "title": "Flood",
+    "text": "{wolf.name} flood.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 7,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_flood_104",
+    "title": "Flood",
+    "text": "{wolf.name} flood.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 2,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_earthquake_105",
+    "title": "Earthquake",
+    "text": "{wolf.name} earthquake.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 3,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_earthquake_106",
+    "title": "Earthquake",
+    "text": "{wolf.name} earthquake.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 1,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_earthquake_107",
+    "title": "Earthquake",
+    "text": "{wolf.name} earthquake.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 5,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_fire_108",
+    "title": "Fire",
+    "text": "{wolf.name} fire.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 3,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_fire_109",
+    "title": "Fire",
+    "text": "{wolf.name} fire.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 8,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_fire_110",
+    "title": "Fire",
+    "text": "{wolf.name} fire.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 4,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_abundance_111",
+    "title": "Abundance",
+    "text": "{wolf.name} abundance.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 3,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_abundance_112",
+    "title": "Abundance",
+    "text": "{wolf.name} abundance.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 3,
+    "tags": ["environment"],
+    "allowFallback": true
+  },
+  {
+    "id": "environment_abundance_113",
+    "title": "Abundance",
+    "text": "{wolf.name} abundance.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 2,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_scarcity_114",
+    "title": "Scarcity",
+    "text": "{wolf.name} scarcity.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_scarcity_115",
+    "title": "Scarcity",
+    "text": "{wolf.name} scarcity.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 7,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_scarcity_116",
+    "title": "Scarcity",
+    "text": "{wolf.name} scarcity.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 2,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_migration_117",
+    "title": "Migration",
+    "text": "{wolf.name} migration.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_migration_118",
+    "title": "Migration",
+    "text": "{wolf.name} migration.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "environment_migration_119",
+    "title": "Migration",
+    "text": "{wolf.name} migration.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.5
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} weathered an environmental challenge."
+      }
+    ],
+    "weight": 6,
+    "tags": ["environment"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_rival_encounter_120",
+    "title": "Rival Encounter",
+    "text": "{wolf.name} rival encounter.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_rival_encounter_121",
+    "title": "Rival Encounter",
+    "text": "{wolf.name} rival encounter.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 6,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_rival_encounter_122",
+    "title": "Rival Encounter",
+    "text": "{wolf.name} rival encounter.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_border_patrol_123",
+    "title": "Border Patrol",
+    "text": "{wolf.name} border patrol.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 1,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_border_patrol_124",
+    "title": "Border Patrol",
+    "text": "{wolf.name} border patrol.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_border_patrol_125",
+    "title": "Border Patrol",
+    "text": "{wolf.name} border patrol.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 6,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_scent_marking_126",
+    "title": "Scent Marking",
+    "text": "{wolf.name} scent marking.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 5,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_scent_marking_127",
+    "title": "Scent Marking",
+    "text": "{wolf.name} scent marking.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 3,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_scent_marking_128",
+    "title": "Scent Marking",
+    "text": "{wolf.name} scent marking.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 3,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_territory_expansion_129",
+    "title": "Territory Expansion",
+    "text": "{wolf.name} territory expansion.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 8,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_territory_expansion_130",
+    "title": "Territory Expansion",
+    "text": "{wolf.name} territory expansion.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_territory_expansion_131",
+    "title": "Territory Expansion",
+    "text": "{wolf.name} territory expansion.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_resource_discovery_132",
+    "title": "Resource Discovery",
+    "text": "{wolf.name} resource discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 8,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_resource_discovery_133",
+    "title": "Resource Discovery",
+    "text": "{wolf.name} resource discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 1,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_resource_discovery_134",
+    "title": "Resource Discovery",
+    "text": "{wolf.name} resource discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 1,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_den_maintenance_135",
+    "title": "Den Maintenance",
+    "text": "{wolf.name} den maintenance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 7,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_den_maintenance_136",
+    "title": "Den Maintenance",
+    "text": "{wolf.name} den maintenance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 1,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_den_maintenance_137",
+    "title": "Den Maintenance",
+    "text": "{wolf.name} den maintenance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 3,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_trail_discovery_138",
+    "title": "Trail Discovery",
+    "text": "{wolf.name} trail discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 8,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_trail_discovery_139",
+    "title": "Trail Discovery",
+    "text": "{wolf.name} trail discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 5,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_trail_discovery_140",
+    "title": "Trail Discovery",
+    "text": "{wolf.name} trail discovery.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_landmark_141",
+    "title": "Landmark",
+    "text": "{wolf.name} landmark.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_landmark_142",
+    "title": "Landmark",
+    "text": "{wolf.name} landmark.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 8,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_landmark_143",
+    "title": "Landmark",
+    "text": "{wolf.name} landmark.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "territory_predator_144",
+    "title": "Predator",
+    "text": "{wolf.name} predator.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 3,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_predator_145",
+    "title": "Predator",
+    "text": "{wolf.name} predator.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_predator_146",
+    "title": "Predator",
+    "text": "{wolf.name} predator.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 3,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_prey_abundance_147",
+    "title": "Prey Abundance",
+    "text": "{wolf.name} prey abundance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 5,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_prey_abundance_148",
+    "title": "Prey Abundance",
+    "text": "{wolf.name} prey abundance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["territory"],
+    "allowFallback": false
+  },
+  {
+    "id": "territory_prey_abundance_149",
+    "title": "Prey Abundance",
+    "text": "{wolf.name} prey abundance.",
+    "condition": {
+      "any": [
+        {
+          "field": "role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} patrolled the territory."
+      }
+    ],
+    "weight": 1,
+    "tags": ["territory"],
+    "allowFallback": true
+  },
+  {
+    "id": "training_skill_development_150",
+    "title": "Skill Development",
+    "text": "{wolf.name} skill development.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 8,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_skill_development_151",
+    "title": "Skill Development",
+    "text": "{wolf.name} skill development.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 1,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_skill_development_152",
+    "title": "Skill Development",
+    "text": "{wolf.name} skill development.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 6,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_mentor_lesson_153",
+    "title": "Mentor Lesson",
+    "text": "{wolf.name} mentor lesson.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 1,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_mentor_lesson_154",
+    "title": "Mentor Lesson",
+    "text": "{wolf.name} mentor lesson.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 8,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_mentor_lesson_155",
+    "title": "Mentor Lesson",
+    "text": "{wolf.name} mentor lesson.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_practice_session_156",
+    "title": "Practice Session",
+    "text": "{wolf.name} practice session.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 3,
+    "tags": ["training"],
+    "allowFallback": true
+  },
+  {
+    "id": "training_practice_session_157",
+    "title": "Practice Session",
+    "text": "{wolf.name} practice session.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 6,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_practice_session_158",
+    "title": "Practice Session",
+    "text": "{wolf.name} practice session.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 2,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_achievement_159",
+    "title": "Achievement",
+    "text": "{wolf.name} achievement.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 3,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_achievement_160",
+    "title": "Achievement",
+    "text": "{wolf.name} achievement.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 2,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_achievement_161",
+    "title": "Achievement",
+    "text": "{wolf.name} achievement.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 1,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_challenge_162",
+    "title": "Challenge",
+    "text": "{wolf.name} challenge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_challenge_163",
+    "title": "Challenge",
+    "text": "{wolf.name} challenge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 4,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_challenge_164",
+    "title": "Challenge",
+    "text": "{wolf.name} challenge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 3,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_breakthrough_165",
+    "title": "Breakthrough",
+    "text": "{wolf.name} breakthrough.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 1,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_breakthrough_166",
+    "title": "Breakthrough",
+    "text": "{wolf.name} breakthrough.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 6,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_breakthrough_167",
+    "title": "Breakthrough",
+    "text": "{wolf.name} breakthrough.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 1,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_struggle_168",
+    "title": "Struggle",
+    "text": "{wolf.name} struggle.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 8,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_struggle_169",
+    "title": "Struggle",
+    "text": "{wolf.name} struggle.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_struggle_170",
+    "title": "Struggle",
+    "text": "{wolf.name} struggle.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_graduation_171",
+    "title": "Graduation",
+    "text": "{wolf.name} graduation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 6,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_graduation_172",
+    "title": "Graduation",
+    "text": "{wolf.name} graduation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_graduation_173",
+    "title": "Graduation",
+    "text": "{wolf.name} graduation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 4,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_specialization_174",
+    "title": "Specialization",
+    "text": "{wolf.name} specialization.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 4,
+    "tags": ["training"],
+    "allowFallback": true
+  },
+  {
+    "id": "training_specialization_175",
+    "title": "Specialization",
+    "text": "{wolf.name} specialization.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 4,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_specialization_176",
+    "title": "Specialization",
+    "text": "{wolf.name} specialization.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 7,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_technique_177",
+    "title": "Technique",
+    "text": "{wolf.name} technique.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 3,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "training_technique_178",
+    "title": "Technique",
+    "text": "{wolf.name} technique.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 8,
+    "tags": ["training"],
+    "allowFallback": true
+  },
+  {
+    "id": "training_technique_179",
+    "title": "Technique",
+    "text": "{wolf.name} technique.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "pup"
+        },
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0.3
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "xp",
+        "delta": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned something new."
+      }
+    ],
+    "weight": 3,
+    "tags": ["training"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_crystal_vision_180",
+    "title": "Crystal Vision",
+    "text": "{wolf.name} crystal vision.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 7,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_crystal_vision_181",
+    "title": "Crystal Vision",
+    "text": "{wolf.name} crystal vision.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 7,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_crystal_vision_182",
+    "title": "Crystal Vision",
+    "text": "{wolf.name} crystal vision.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 1,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_dream_prophecy_183",
+    "title": "Dream Prophecy",
+    "text": "{wolf.name} dream prophecy.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 7,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_dream_prophecy_184",
+    "title": "Dream Prophecy",
+    "text": "{wolf.name} dream prophecy.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_dream_prophecy_185",
+    "title": "Dream Prophecy",
+    "text": "{wolf.name} dream prophecy.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_omen_sighting_186",
+    "title": "Omen Sighting",
+    "text": "{wolf.name} omen sighting.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 5,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_omen_sighting_187",
+    "title": "Omen Sighting",
+    "text": "{wolf.name} omen sighting.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 7,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_omen_sighting_188",
+    "title": "Omen Sighting",
+    "text": "{wolf.name} omen sighting.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 8,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_ancient_knowledge_189",
+    "title": "Ancient Knowledge",
+    "text": "{wolf.name} ancient knowledge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 6,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_ancient_knowledge_190",
+    "title": "Ancient Knowledge",
+    "text": "{wolf.name} ancient knowledge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_ancient_knowledge_191",
+    "title": "Ancient Knowledge",
+    "text": "{wolf.name} ancient knowledge.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 4,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_spirit_guidance_192",
+    "title": "Spirit Guidance",
+    "text": "{wolf.name} spirit guidance.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 6,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_spirit_guidance_193",
+    "title": "Spirit Guidance",
+    "text": "{wolf.name} spirit guidance.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_spirit_guidance_194",
+    "title": "Spirit Guidance",
+    "text": "{wolf.name} spirit guidance.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_mystical_event_195",
+    "title": "Mystical Event",
+    "text": "{wolf.name} mystical event.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 8,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_mystical_event_196",
+    "title": "Mystical Event",
+    "text": "{wolf.name} mystical event.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_mystical_event_197",
+    "title": "Mystical Event",
+    "text": "{wolf.name} mystical event.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 2,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_ritual_198",
+    "title": "Ritual",
+    "text": "{wolf.name} ritual.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 8,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_ritual_199",
+    "title": "Ritual",
+    "text": "{wolf.name} ritual.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 4,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_ritual_200",
+    "title": "Ritual",
+    "text": "{wolf.name} ritual.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 5,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_blessing_201",
+    "title": "Blessing",
+    "text": "{wolf.name} blessing.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 4,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_blessing_202",
+    "title": "Blessing",
+    "text": "{wolf.name} blessing.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 4,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_blessing_203",
+    "title": "Blessing",
+    "text": "{wolf.name} blessing.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 6,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_warning_204",
+    "title": "Warning",
+    "text": "{wolf.name} warning.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 8,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_warning_205",
+    "title": "Warning",
+    "text": "{wolf.name} warning.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 5,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_warning_206",
+    "title": "Warning",
+    "text": "{wolf.name} warning.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 7,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "prophecy_revelation_207",
+    "title": "Revelation",
+    "text": "{wolf.name} revelation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_revelation_208",
+    "title": "Revelation",
+    "text": "{wolf.name} revelation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 2,
+    "tags": ["prophecy"],
+    "allowFallback": true
+  },
+  {
+    "id": "prophecy_revelation_209",
+    "title": "Revelation",
+    "text": "{wolf.name} revelation.",
+    "condition": {
+      "all": [
+        {
+          "field": "role",
+          "op": "==",
+          "value": "healer"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "trigger_story",
+        "storyId": "random_prophecy"
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision."
+      }
+    ],
+    "weight": 3,
+    "tags": ["prophecy"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_birth_210",
+    "title": "Birth",
+    "text": "{wolf.name} birth.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 1,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_birth_211",
+    "title": "Birth",
+    "text": "{wolf.name} birth.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 6,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_birth_212",
+    "title": "Birth",
+    "text": "{wolf.name} birth.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 8,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_naming_213",
+    "title": "Naming",
+    "text": "{wolf.name} naming.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 6,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_naming_214",
+    "title": "Naming",
+    "text": "{wolf.name} naming.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 5,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_naming_215",
+    "title": "Naming",
+    "text": "{wolf.name} naming.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 6,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_first_steps_216",
+    "title": "First Steps",
+    "text": "{wolf.name} first steps.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 2,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_first_steps_217",
+    "title": "First Steps",
+    "text": "{wolf.name} first steps.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 1,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_first_steps_218",
+    "title": "First Steps",
+    "text": "{wolf.name} first steps.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 7,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_coming_of_age_219",
+    "title": "Coming Of Age",
+    "text": "{wolf.name} coming of age.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 8,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_coming_of_age_220",
+    "title": "Coming Of Age",
+    "text": "{wolf.name} coming of age.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 5,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_coming_of_age_221",
+    "title": "Coming Of Age",
+    "text": "{wolf.name} coming of age.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 7,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_mating_222",
+    "title": "Mating",
+    "text": "{wolf.name} mating.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 6,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_mating_223",
+    "title": "Mating",
+    "text": "{wolf.name} mating.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 7,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_mating_224",
+    "title": "Mating",
+    "text": "{wolf.name} mating.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 2,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_pregnancy_225",
+    "title": "Pregnancy",
+    "text": "{wolf.name} pregnancy.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 4,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_pregnancy_226",
+    "title": "Pregnancy",
+    "text": "{wolf.name} pregnancy.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 6,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  },
+  {
+    "id": "lifecycle_pregnancy_227",
+    "title": "Pregnancy",
+    "text": "{wolf.name} pregnancy.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 3,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_elder_wisdom_228",
+    "title": "Elder Wisdom",
+    "text": "{wolf.name} elder wisdom.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 2,
+    "tags": ["lifecycle"],
+    "allowFallback": false
+  },
+  {
+    "id": "lifecycle_elder_wisdom_229",
+    "title": "Elder Wisdom",
+    "text": "{wolf.name} elder wisdom.",
+    "condition": {
+      "all": [
+        {
+          "field": "age",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "log",
+        "text": "{wolf.name} experienced a life milestone."
+      }
+    ],
+    "weight": 4,
+    "tags": ["lifecycle"],
+    "allowFallback": true
+  }
+]

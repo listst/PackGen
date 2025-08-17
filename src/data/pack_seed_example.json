@@ -1,0 +1,280 @@
+{
+  "name": "Shadowcrest Pack",
+  "day": 1,
+  "season": "summer",
+  "wolves": [
+    {
+      "id": "w001",
+      "name": "Ash",
+      "sex": "male",
+      "age": 4,
+      "role": "alpha",
+      "appearance": {
+        "furColor": "grey",
+        "pattern": "sable",
+        "eyeColor": "amber",
+        "scars": ["left ear notch"]
+      },
+      "stats": {
+        "health": 90,
+        "strength": 8,
+        "speed": 7,
+        "intelligence": 7
+      },
+      "traits": {
+        "bravery": 9,
+        "sociability": 7,
+        "trainability": 7,
+        "fertility": 6
+      },
+      "xp": 20,
+      "level": 0,
+      "mateId": "w002",
+      "bonds": {
+        "w002": 85,
+        "w003": 65,
+        "w008": 45
+      }
+    },
+    {
+      "id": "w002",
+      "name": "Ember",
+      "sex": "female",
+      "age": 3.5,
+      "role": "alpha_mate",
+      "appearance": {
+        "furColor": "dark brown",
+        "pattern": "solid",
+        "eyeColor": "brown",
+        "scars": []
+      },
+      "stats": {
+        "health": 88,
+        "strength": 7,
+        "speed": 8,
+        "intelligence": 8
+      },
+      "traits": {
+        "bravery": 8,
+        "sociability": 6,
+        "trainability": 7,
+        "fertility": 8
+      },
+      "xp": 15,
+      "level": 0,
+      "mateId": "w001",
+      "bonds": {
+        "w001": 85,
+        "w003": 50,
+        "w008": 60
+      }
+    },
+    {
+      "id": "w003",
+      "name": "Stone",
+      "sex": "male",
+      "age": 5,
+      "role": "beta",
+      "appearance": {
+        "furColor": "silver",
+        "pattern": "striped",
+        "eyeColor": "yellow",
+        "scars": ["leg scar"]
+      },
+      "stats": {
+        "health": 85,
+        "strength": 9,
+        "speed": 6,
+        "intelligence": 6
+      },
+      "traits": {
+        "bravery": 8,
+        "sociability": 5,
+        "trainability": 6,
+        "fertility": 4
+      },
+      "xp": 10,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w001": 65,
+        "w002": 50,
+        "w004": 40
+      }
+    },
+    {
+      "id": "w004",
+      "name": "Bram",
+      "sex": "male",
+      "age": 2,
+      "role": "hunter",
+      "appearance": {
+        "furColor": "brown",
+        "pattern": "patched",
+        "eyeColor": "green",
+        "scars": []
+      },
+      "stats": {
+        "health": 80,
+        "strength": 6,
+        "speed": 9,
+        "intelligence": 6
+      },
+      "traits": {
+        "bravery": 7,
+        "sociability": 6,
+        "trainability": 7,
+        "fertility": 5
+      },
+      "xp": 5,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w003": 40,
+        "w005": 35,
+        "w006": 25
+      }
+    },
+    {
+      "id": "w005",
+      "name": "Ivy",
+      "sex": "female",
+      "age": 1.8,
+      "role": "hunter",
+      "appearance": {
+        "furColor": "tan",
+        "pattern": "mottled",
+        "eyeColor": "gold",
+        "scars": []
+      },
+      "stats": {
+        "health": 82,
+        "strength": 6,
+        "speed": 8,
+        "intelligence": 7
+      },
+      "traits": {
+        "bravery": 6,
+        "sociability": 8,
+        "trainability": 8,
+        "fertility": 7
+      },
+      "xp": 2,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w004": 35,
+        "w006": 45,
+        "w007": 50
+      }
+    },
+    {
+      "id": "w006",
+      "name": "Rook",
+      "sex": "male",
+      "age": 1.2,
+      "role": "pup",
+      "appearance": {
+        "furColor": "black",
+        "pattern": "solid",
+        "eyeColor": "blue",
+        "scars": []
+      },
+      "stats": {
+        "health": 70,
+        "strength": 3,
+        "speed": 4,
+        "intelligence": 4
+      },
+      "traits": {
+        "bravery": 4,
+        "sociability": 6,
+        "trainability": 6,
+        "fertility": 0
+      },
+      "xp": 0,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w005": 45,
+        "w007": 60,
+        "w008": 30
+      }
+    },
+    {
+      "id": "w007",
+      "name": "Lark",
+      "sex": "female",
+      "age": 0.9,
+      "role": "pup",
+      "appearance": {
+        "furColor": "grey",
+        "pattern": "speckled",
+        "eyeColor": "blue",
+        "scars": []
+      },
+      "stats": {
+        "health": 75,
+        "strength": 3,
+        "speed": 5,
+        "intelligence": 5
+      },
+      "traits": {
+        "bravery": 5,
+        "sociability": 7,
+        "trainability": 7,
+        "fertility": 0
+      },
+      "xp": 0,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w005": 50,
+        "w006": 60,
+        "w008": 40
+      }
+    },
+    {
+      "id": "w008",
+      "name": "Moss",
+      "sex": "female",
+      "age": 2.3,
+      "role": "healer",
+      "appearance": {
+        "furColor": "olive",
+        "pattern": "mottled",
+        "eyeColor": "green",
+        "scars": []
+      },
+      "stats": {
+        "health": 78,
+        "strength": 5,
+        "speed": 6,
+        "intelligence": 6
+      },
+      "traits": {
+        "bravery": 4,
+        "sociability": 9,
+        "trainability": 6,
+        "fertility": 4
+      },
+      "xp": 8,
+      "level": 0,
+      "mateId": null,
+      "bonds": {
+        "w001": 45,
+        "w002": 60,
+        "w006": 30,
+        "w007": 40
+      }
+    }
+  ],
+  "herbs": 5,
+  "logs": [
+    "Day 1: The Shadowcrest Pack begins their story in the heart of summer."
+  ],
+  "eventHistory": [],
+  "prophecies": [],
+  "storyEvents": [],
+  "prophecyPower": 0
+}
