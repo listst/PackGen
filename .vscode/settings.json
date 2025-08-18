@@ -1,0 +1,21 @@
+{
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": ["."],
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "typescript.preferences.inlayHints.enumMemberValues.enabled": false,
+  "typescript.preferences.inlayHints.functionLikeReturnTypes.enabled": false,
+  "typescript.preferences.inlayHints.parameterNames.enabled": false,
+  "typescript.preferences.inlayHints.parameterTypes.enabled": false,
+  "typescript.preferences.inlayHints.propertyDeclarationTypes.enabled": false,
+  "typescript.preferences.inlayHints.variableTypes.enabled": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}
