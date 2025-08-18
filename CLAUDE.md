@@ -119,23 +119,27 @@ Core game parameters are in `src/engine/simulation.ts` in the `DEFAULT_CONFIG` o
 ## Build & Deployment
 
 **Local Development:**
+
 - Production build creates optimized bundle in `dist/`
 - Vite handles code splitting and tree shaking
 - Source maps included for debugging
 
 **GitHub Pages Deployment:**
+
 - Uses `gh-pages` package for automated deployment
 - Deploys from `dist/` folder to `gh-pages` branch
 - Vite config sets base path to `/PackGen/` for GitHub Pages
 - GitHub Pages must be configured to serve from `gh-pages` branch (not main)
 
 **Deployment Commands:**
+
 ```bash
 npm run deploy          # Build and deploy to GitHub Pages
 npm run predeploy       # Run lint and build (called automatically)
 ```
 
 **Important Notes:**
+
 - The repository serves at `https://listst.github.io/PackGen/`
 - If GitHub Pages shows white page, check that it's configured to serve from `gh-pages` branch
 - Use GitHub CLI to configure: `gh api repos/listst/PackGen/pages -X PUT -f source=gh-pages`

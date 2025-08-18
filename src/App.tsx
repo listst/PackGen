@@ -6,6 +6,13 @@ import eventExamples from './data/events_examples.json';
 import moonEvents from './data/moon_events.json';
 import consequenceTemplates from './data/consequence_templates.json';
 import multiOutcomeConsequences from './data/multi_outcome_consequences.json';
+// New organized event imports
+import seasonalEvents from './data/events/seasonal_events.json';
+import biomeEvents from './data/events/biome_events.json';
+import roleEvents from './data/events/role_events.json';
+import storyChains from './data/events/story_chains.json';
+import disasterEvents from './data/events/disaster_events.json';
+import culturalEvents from './data/events/cultural_events.json';
 import type { Pack } from './types/pack';
 import type { Wolf } from './types/wolf';
 import type {
@@ -79,7 +86,7 @@ function App() {
       },
     };
 
-    // Load events
+    // Load events - legacy files
     eventEngine.loadEvents(eventExamples as unknown as EventTemplate[]);
     eventEngine.loadMoonEvents(moonEvents as unknown as MoonEvent[]);
     eventEngine.loadConsequenceTemplates(
@@ -88,6 +95,14 @@ function App() {
     eventEngine.loadMultiOutcomeConsequences(
       multiOutcomeConsequences as unknown as MultiOutcomeConsequence[]
     );
+
+    // Load new organized event categories
+    eventEngine.addEvents(seasonalEvents as unknown as EventTemplate[]);
+    eventEngine.addEvents(biomeEvents as unknown as EventTemplate[]);
+    eventEngine.addEvents(roleEvents as unknown as EventTemplate[]);
+    eventEngine.addEvents(storyChains as unknown as EventTemplate[]);
+    eventEngine.addEvents(disasterEvents as unknown as EventTemplate[]);
+    eventEngine.addEvents(culturalEvents as unknown as EventTemplate[]);
 
     return initialPack;
   });

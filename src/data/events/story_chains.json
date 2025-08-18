@@ -1,0 +1,334 @@
+[
+  {
+    "id": "rival_pack_saga_start",
+    "title": "Strangers at the Border",
+    "text": "Scout {wolf.name} reports strange scents and tracks near the territory's eastern border. The signs suggest a large pack moving through the area, potentially seeking new territory.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["hunter", "beta", "alpha"]
+        },
+        { "field": "pack.wolves.length", "op": ">=", "value": 5 },
+        { "field": "pack.food", "op": ">", "value": 3 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "rival_pack_encounter",
+        "daysDelay": 5
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered signs of a potentially hostile pack approaching the territory."
+      }
+    ],
+    "weight": 4,
+    "tags": ["story_chain", "rival_pack", "tension"],
+    "storyChainId": "rival_pack_saga"
+  },
+  {
+    "id": "mysterious_illness_start",
+    "title": "The Silent Sickness",
+    "text": "Healer {wolf.name} notices unusual symptoms in several pack members - lethargy, loss of appetite, and a strange cough. This mysterious illness threatens to spread throughout the pack.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "healer" },
+        { "field": "pack.wolves.length", "op": ">=", "value": 4 },
+        { "field": "pack.herbs", "op": ">=", "value": 2 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "illness_investigation",
+        "daysDelay": 3
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -1 },
+      {
+        "type": "log",
+        "text": "Healer {wolf.name} begins investigating a mysterious illness threatening the pack's health."
+      }
+    ],
+    "weight": 5,
+    "tags": ["story_chain", "illness", "mystery"],
+    "storyChainId": "mysterious_illness"
+  },
+  {
+    "id": "lost_pup_saga_start",
+    "title": "Missing from the Den",
+    "text": "Panic spreads through the pack as young {wolf.name} is discovered missing from the den. Their scent trail leads toward dangerous territory filled with predators and treacherous terrain.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.age", "op": ">=", "value": 0.3 },
+        { "field": "wolf.age", "op": "<=", "value": 0.8 }
+      ]
+    },
+    "actions": [
+      { "type": "remove_wolf", "targetSelector": "wolf" },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "search_party_formation",
+        "daysDelay": 1
+      },
+      { "type": "adjust_approval", "delta": -10 },
+      {
+        "type": "log",
+        "text": "Young {wolf.name} has gone missing, sending the entire pack into a desperate search."
+      }
+    ],
+    "weight": 3,
+    "tags": ["story_chain", "family", "crisis"],
+    "storyChainId": "lost_pup_saga"
+  },
+  {
+    "id": "ancient_prophecy_start",
+    "title": "The Prophecy Awakens",
+    "text": "During a dream, {wolf.name} receives visions of an ancient prophecy speaking of a great trial that will test the pack's unity. The cryptic images hint at both danger and opportunity.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["healer", "alpha", "elder"]
+        },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "pack.prophecyPower", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 3
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "prophecy_interpretation",
+        "daysDelay": 7
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received mysterious visions that may foretell the pack's destiny."
+      }
+    ],
+    "weight": 2,
+    "tags": ["story_chain", "prophecy", "mystical"],
+    "storyChainId": "ancient_prophecy"
+  },
+  {
+    "id": "territory_expansion_saga_start",
+    "title": "The Fertile Valley",
+    "text": "Scout {wolf.name} discovers a lush valley beyond the current territory boundaries. The area is rich with prey and fresh water, but claiming it will require significant effort and risk.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["hunter", "beta", "alpha"]
+        },
+        { "field": "pack.food", "op": ">", "value": 4 },
+        { "field": "pack.packApproval", "op": ">", "value": 50 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "valley_exploration",
+        "daysDelay": 4
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 15 },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered a promising new territory that could transform the pack's future."
+      }
+    ],
+    "weight": 6,
+    "tags": ["story_chain", "territory", "opportunity"],
+    "storyChainId": "territory_expansion"
+  },
+  {
+    "id": "leadership_challenge_start",
+    "title": "Whispers of Discontent",
+    "text": "Beta {wolf.name} overhears pack members quietly questioning the alpha's recent decisions. The seeds of a potential leadership challenge are beginning to sprout.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "beta" },
+        { "field": "pack.packApproval", "op": "<", "value": 40 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "leadership_tension",
+        "daysDelay": 6
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "Beta {wolf.name} senses growing tension that could lead to a challenge of pack leadership."
+      }
+    ],
+    "weight": 4,
+    "tags": ["story_chain", "leadership", "politics"],
+    "storyChainId": "leadership_challenge"
+  },
+  {
+    "id": "harsh_winter_saga_start",
+    "title": "Winter's Early Arrival",
+    "text": "An unusually early and harsh winter catches the pack unprepared. {wolf.name} realizes the pack must take immediate action to survive the brutal months ahead.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "in", "value": ["autumn", "winter"] },
+        { "field": "pack.food", "op": "<=", "value": 3 },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "winter_preparation",
+        "daysDelay": 2
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -1 },
+      {
+        "type": "log",
+        "text": "{wolf.name} recognizes the urgent need to prepare for an exceptionally harsh winter."
+      }
+    ],
+    "weight": 5,
+    "tags": ["story_chain", "survival", "winter"],
+    "storyChainId": "harsh_winter",
+    "seasonalBonus": { "autumn": 1.8, "winter": 2.0 }
+  },
+  {
+    "id": "young_love_saga_start",
+    "title": "First Love's Stirring",
+    "text": "Young adult {wolf.name} feels the first stirrings of romantic attraction toward another pack member. Their inexperience with courtship leads to awkward but endearing attempts at connection.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 1.5 },
+        { "field": "wolf.age", "op": "<=", "value": 3.0 },
+        { "field": "wolf.role", "op": "!=", "value": "pup" },
+        { "field": "pack.season", "op": "in", "value": ["spring", "summer"] }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "courtship_attempt",
+        "daysDelay": 3
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} experiences their first romantic feelings, beginning a journey of the heart."
+      }
+    ],
+    "weight": 7,
+    "tags": ["story_chain", "romance", "youth"],
+    "storyChainId": "young_love",
+    "seasonalBonus": { "spring": 1.5, "summer": 1.3 }
+  },
+  {
+    "id": "mentor_legacy_start",
+    "title": "Choosing a Successor",
+    "text": "Aging {wolf.name} realizes they must begin passing on their specialized knowledge to a younger pack member. The choice of apprentice will shape the pack's future capabilities.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 5.0 },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["healer", "hunter", "beta"]
+        },
+        { "field": "wolf.xp", "op": ">=", "value": 80 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "apprentice_selection",
+        "daysDelay": 5
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.trainability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} begins the important process of choosing and training their successor."
+      }
+    ],
+    "weight": 4,
+    "tags": ["story_chain", "mentorship", "legacy"],
+    "storyChainId": "mentor_legacy"
+  },
+  {
+    "id": "natural_disaster_start",
+    "title": "Earth's Warning Tremors",
+    "text": "The ground beneath the pack's territory shakes with minor tremors, and {wolf.name} senses something catastrophic approaching. The pack must prepare for a natural disaster.",
+    "condition": {
+      "all": [
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        {
+          "field": "pack.territory.biome",
+          "op": "in",
+          "value": ["mountain", "forest"]
+        },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "healer"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "disaster_preparation",
+        "daysDelay": 3
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} senses approaching danger and begins preparations for a potential disaster."
+      }
+    ],
+    "weight": 3,
+    "tags": ["story_chain", "disaster", "preparation"],
+    "storyChainId": "natural_disaster"
+  }
+]

@@ -1,0 +1,503 @@
+[
+  {
+    "id": "spring_territory_expansion",
+    "title": "Spring Territory Expansion",
+    "text": "With the melting snow revealing new paths, {wolf.name} scouts potential territory expansion. The pack could claim richer hunting grounds, but it may attract rival attention.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "spring" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        },
+        { "field": "pack.food", "op": ">", "value": 3 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered promising new hunting grounds, but the expansion brings new risks."
+      }
+    ],
+    "weight": 6,
+    "tags": ["spring", "territory", "exploration"],
+    "seasonalBonus": { "spring": 2.0 }
+  },
+  {
+    "id": "spring_birth_preparation",
+    "title": "Den Preparation",
+    "text": "As spring brings the promise of new life, {wolf.name} works tirelessly to prepare the den for potential pups. The careful arrangements will help ensure the safety of newborns.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "spring" },
+        { "field": "wolf.sex", "op": "==", "value": "female" },
+        { "field": "wolf.age", "op": ">=", "value": 1.5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.fertility",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 3 },
+      {
+        "type": "log",
+        "text": "{wolf.name} has prepared a safe, comfortable den for the pack's future."
+      }
+    ],
+    "weight": 7,
+    "tags": ["spring", "preparation", "family"],
+    "seasonalBonus": { "spring": 1.8 }
+  },
+  {
+    "id": "spring_herb_bloom",
+    "title": "Medicinal Herb Blooming",
+    "text": "Spring's arrival brings a burst of medicinal plants to life. {wolf.name} discovers a patch of rare healing herbs that could be vital for the pack's health through the coming seasons.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "spring" },
+        { "field": "wolf.role", "op": "in", "value": ["healer", "beta"] },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": 4 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 15 },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered valuable medicinal herbs blooming in the spring warmth."
+      }
+    ],
+    "weight": 5,
+    "tags": ["spring", "healing", "discovery"],
+    "seasonalBonus": { "spring": 2.2 }
+  },
+  {
+    "id": "spring_young_dispersal",
+    "title": "Young Wolf's Journey",
+    "text": "Spring stirs the wanderlust in young {wolf.name}. The urge to explore beyond pack borders grows strong, but leaving would mean abandoning family and facing the dangers alone.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "spring" },
+        { "field": "wolf.age", "op": ">=", "value": 1.0 },
+        { "field": "wolf.age", "op": "<=", "value": 2.5 },
+        { "field": "wolf.role", "op": "!=", "value": "alpha" }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "dispersal_decision",
+        "daysDelay": 7
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} feels the spring calling, torn between adventure and loyalty to the pack."
+      }
+    ],
+    "weight": 4,
+    "tags": ["spring", "dispersal", "youth"],
+    "seasonalBonus": { "spring": 1.5 }
+  },
+  {
+    "id": "summer_abundance_feast",
+    "title": "Summer Abundance",
+    "text": "The warm summer months bring an abundance of prey. {wolf.name} leads the pack in a successful hunt that yields more food than they've seen in moons, filling bellies and lifting spirits.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "summer" },
+        { "field": "wolf.role", "op": "in", "value": ["hunter", "alpha"] },
+        { "field": "wolf.stats.strength", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 6 },
+      { "type": "adjust_approval", "delta": 8 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 20 },
+      {
+        "type": "log",
+        "text": "{wolf.name} led a magnificent hunt that brought abundance to the entire pack."
+      }
+    ],
+    "weight": 8,
+    "tags": ["summer", "hunting", "abundance"],
+    "seasonalBonus": { "summer": 1.8 }
+  },
+  {
+    "id": "summer_heat_exhaustion",
+    "title": "Scorching Heat",
+    "text": "The intense summer heat takes its toll on {wolf.name}. Finding shade becomes crucial as the pack seeks cooler resting spots during the day, conserving energy for evening hunts.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "summer" },
+        { "field": "wolf.stats.health", "op": ">", "value": 30 },
+        {
+          "field": "pack.territory.biome",
+          "op": "in",
+          "value": ["desert", "forest"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -8
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.speed",
+        "delta": -1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} struggles with the intense summer heat, moving more slowly to conserve energy."
+      }
+    ],
+    "weight": 6,
+    "tags": ["summer", "weather", "challenge"],
+    "seasonalBonus": { "summer": 1.4 }
+  },
+  {
+    "id": "summer_pup_training",
+    "title": "Summer Training Camp",
+    "text": "The long summer days provide perfect opportunities for training. {wolf.name} dedicates extra time to teaching the pups essential survival skills, their patience and wisdom shining through.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "summer" },
+        { "field": "wolf.role", "op": "in", "value": ["beta", "hunter"] },
+        {
+          "field": "pack.wolves.filter(w => w.role === 'pup').length",
+          "op": ">",
+          "value": 0
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.trainability",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "log",
+        "text": "{wolf.name} spent the summer days teaching valuable skills to the pack's young ones."
+      }
+    ],
+    "weight": 7,
+    "tags": ["summer", "training", "mentorship"],
+    "seasonalBonus": { "summer": 1.9 }
+  },
+  {
+    "id": "summer_thunderstorm",
+    "title": "Summer Storm",
+    "text": "A violent thunderstorm erupts across the territory. {wolf.name} helps guide the pack to shelter, but the lightning and rain create chaos, testing everyone's courage and unity.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "summer" },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -1 },
+      { "type": "adjust_approval", "delta": 3 },
+      {
+        "type": "log",
+        "text": "{wolf.name} showed remarkable courage during the fierce summer storm, helping keep the pack safe."
+      }
+    ],
+    "weight": 4,
+    "tags": ["summer", "weather", "courage"],
+    "seasonalBonus": { "summer": 1.3 }
+  },
+  {
+    "id": "autumn_migration_tracking",
+    "title": "Following the Herds",
+    "text": "As autumn arrives, the great herds begin their migration. {wolf.name} leads tracking parties to follow the prey movements, ensuring the pack can capitalize on this seasonal bounty.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "autumn" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["hunter", "alpha", "beta"]
+        },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 5 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 18 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} successfully tracked the autumn migration, securing abundant food for the pack."
+      }
+    ],
+    "weight": 8,
+    "tags": ["autumn", "hunting", "migration"],
+    "seasonalBonus": { "autumn": 2.1 }
+  },
+  {
+    "id": "autumn_territory_defense",
+    "title": "Autumn Territory Wars",
+    "text": "Rival packs grow desperate as winter approaches, leading to increased territorial conflicts. {wolf.name} faces a challenge from intruders seeking to claim the pack's resources.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "autumn" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        },
+        { "field": "pack.food", "op": ">", "value": 4 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -12
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 4
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} fought bravely to defend the pack's territory from desperate autumn raiders."
+      }
+    ],
+    "weight": 6,
+    "tags": ["autumn", "conflict", "territory"],
+    "seasonalBonus": { "autumn": 1.7 }
+  },
+  {
+    "id": "autumn_food_caching",
+    "title": "Winter Preparation",
+    "text": "With winter's approach, {wolf.name} leads the pack in caching food stores in secret locations. This careful preparation could mean the difference between survival and starvation in the harsh months ahead.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "autumn" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        { "field": "pack.food", "op": ">", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -3 },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "winter_cache_discovery",
+        "daysDelay": 45
+      },
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "log",
+        "text": "{wolf.name} wisely prepared winter caches that will help the pack survive the cold months."
+      }
+    ],
+    "weight": 7,
+    "tags": ["autumn", "preparation", "survival"],
+    "seasonalBonus": { "autumn": 1.9 }
+  },
+  {
+    "id": "autumn_elder_wisdom",
+    "title": "Elder's Autumn Tales",
+    "text": "As the nights grow longer, elder {wolf.name} shares stories of past winters and survival wisdom with the younger pack members, passing down crucial knowledge for the trials ahead.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "autumn" },
+        { "field": "wolf.age", "op": ">=", "value": 5.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 4 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "wisdom_teaching_bonus",
+        "daysDelay": 15
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} shared invaluable wisdom with the pack, preparing them for winter's challenges."
+      }
+    ],
+    "weight": 5,
+    "tags": ["autumn", "wisdom", "elder"],
+    "seasonalBonus": { "autumn": 1.6 }
+  },
+  {
+    "id": "winter_blizzard_survival",
+    "title": "Blizzard's Fury",
+    "text": "A fierce blizzard engulfs the territory, trapping the pack in their den. {wolf.name} must help ration the remaining food and keep morale high as the storm rages for days.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "pack.food", "op": ">", "value": 1 },
+        { "field": "wolf.role", "op": "in", "value": ["alpha", "beta"] }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "log",
+        "text": "{wolf.name} showed strong leadership during the devastating blizzard, keeping the pack united."
+      }
+    ],
+    "weight": 7,
+    "tags": ["winter", "weather", "leadership"],
+    "seasonalBonus": { "winter": 2.0 }
+  },
+  {
+    "id": "winter_ice_fishing",
+    "title": "Desperate Measures",
+    "text": "With prey scarce, {wolf.name} attempts the dangerous task of fishing through thin ice. The risk is enormous, but the pack's survival may depend on finding alternative food sources.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "pack.food", "op": "<=", "value": 2 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 7 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -15
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 3 },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "log",
+        "text": "{wolf.name} risked their life ice fishing, bringing precious food to the starving pack."
+      }
+    ],
+    "weight": 4,
+    "tags": ["winter", "desperation", "risk"],
+    "seasonalBonus": { "winter": 1.8 }
+  },
+  {
+    "id": "winter_pack_huddle",
+    "title": "Warmth in Unity",
+    "text": "The bitter winter cold forces the pack closer together. {wolf.name} organizes sleeping arrangements that maximize body heat sharing, strengthening bonds while fighting the freezing temperatures.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} brought the pack together, finding warmth and comfort in unity during the harsh winter."
+      }
+    ],
+    "weight": 8,
+    "tags": ["winter", "bonding", "survival"],
+    "seasonalBonus": { "winter": 1.9 }
+  },
+  {
+    "id": "winter_aurora_omen",
+    "title": "Northern Lights Prophecy",
+    "text": "The aurora borealis dances across the winter sky as {wolf.name} watches in wonder. The elders speak of these lights as omens of change, and something stirs in the wolf's spirit.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        {
+          "field": "pack.territory.biome",
+          "op": "in",
+          "value": ["tundra", "mountain"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 5
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "aurora_vision",
+        "daysDelay": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} witnessed the dancing lights and felt a stirring of ancient wisdom."
+      }
+    ],
+    "weight": 3,
+    "tags": ["winter", "mystical", "omen"],
+    "seasonalBonus": { "winter": 1.2 }
+  }
+]

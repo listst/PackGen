@@ -34,6 +34,10 @@ export class EventEngine {
     this.eventTemplates = templates;
   }
 
+  addEvents(templates: EventTemplate[]): void {
+    this.eventTemplates.push(...templates);
+  }
+
   loadMoonEvents(events: MoonEvent[]): void {
     this.moonEvents = events;
   }
@@ -581,10 +585,46 @@ export class EventEngine {
     return result;
   }
 
-  selectRandomEvent(candidates: EventTemplate[]): EventTemplate | null {
+  selectRandomEvent(
+    candidates: EventTemplate[],
+    pack?: Pack
+  ): EventTemplate | null {
     if (candidates.length === 0) return null;
 
-    const weights = candidates.map((t) => t.weight ?? 1);
+    const weights = candidates.map((template) => {
+      let baseWeight = template.weight ?? 1;
+
+      if (pack) {
+        // Apply seasonal bonuses
+        const seasonalBonus = template.seasonalBonus?.[pack.season];
+        if (seasonalBonus) {
+          baseWeight *= seasonalBonus;
+        }
+
+        // Apply biome bonuses
+        const biome = pack.territory?.biome;
+        if (biome) {
+          const biomeBonus = template.biomeBonus?.[biome];
+          if (biomeBonus) {
+            baseWeight *= biomeBonus;
+          }
+        }
+
+        // Filter out biome-specific events that don't match current biome
+        if (
+          template.tags?.includes('biome_specific') &&
+          template.requiredBiome
+        ) {
+          const requiredBiome = template.requiredBiome;
+          if (pack.territory?.biome !== requiredBiome) {
+            baseWeight = 0;
+          }
+        }
+      }
+
+      return baseWeight;
+    });
+
     return random.weightedChoice(candidates, weights);
   }
 
@@ -597,7 +637,7 @@ export class EventEngine {
         return candidates.length > 0 || template.allowFallback;
       });
 
-      const selectedTemplate = this.selectRandomEvent(availableTemplates);
+      const selectedTemplate = this.selectRandomEvent(availableTemplates, pack);
       if (!selectedTemplate) continue;
 
       let candidates = this.findCandidateWolves(selectedTemplate, pack);

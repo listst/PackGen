@@ -221,5 +221,110 @@
       }
     ],
     "tags": ["leadership", "judgment", "proving"]
+  },
+  {
+    "id": "dispersal_decision",
+    "title": "The Wanderer's Choice",
+    "text": "Young {wolf.name} must decide whether to leave the pack and seek their fortune elsewhere, or remain with the family that raised them.",
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "dispersal_outcome",
+        "daysDelay": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} contemplates leaving the pack to forge their own path in the wilderness."
+      }
+    ],
+    "tags": ["dispersal", "youth", "decision"]
+  },
+  {
+    "id": "winter_cache_discovery",
+    "title": "Winter Cache Found",
+    "text": "The pack discovers the food cache {wolf.name} prepared during autumn. These supplies will help them survive the harsh winter months.",
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 5 },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "log",
+        "text": "The winter food cache prepared by {wolf.name} was discovered, providing crucial sustenance."
+      }
+    ],
+    "tags": ["winter", "preparation", "food"]
+  },
+  {
+    "id": "wisdom_teaching_bonus",
+    "title": "Lessons Bear Fruit",
+    "text": "The wisdom shared by {wolf.name} has taken root in the younger pack members, improving their abilities and decision-making.",
+    "actions": [
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "log",
+        "text": "The teachings of {wolf.name} have made the younger wolves wiser and more capable."
+      }
+    ],
+    "tags": ["wisdom", "teaching", "improvement"]
+  },
+  {
+    "id": "aurora_vision",
+    "title": "Aurora's Prophecy Unfolds",
+    "text": "The visions {wolf.name} received during the aurora begin to manifest, providing guidance for upcoming challenges.",
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 8
+      },
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "log",
+        "text": "The aurora's prophecy seen by {wolf.name} provides mystical guidance for the pack's future."
+      }
+    ],
+    "tags": ["prophecy", "vision", "guidance"]
+  },
+  {
+    "id": "rival_pack_encounter",
+    "title": "The Rival Pack Arrives",
+    "text": "The strange pack {wolf.name} detected has entered the territory. Their intentions remain unclear, but tensions are rising rapidly.",
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 2
+      },
+      { "type": "adjust_approval", "delta": -5 },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "territorial_confrontation",
+        "daysDelay": 4
+      },
+      {
+        "type": "log",
+        "text": "The rival pack has arrived in the territory, creating a dangerous situation for all."
+      }
+    ],
+    "tags": ["rival_pack", "confrontation", "territory"]
+  },
+  {
+    "id": "illness_investigation",
+    "title": "The Source of Sickness",
+    "text": "Healer {wolf.name}'s investigation reveals the mysterious illness may be connected to contaminated water sources in the territory.",
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -2 },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "water_purification",
+        "daysDelay": 5
+      },
+      {
+        "type": "log",
+        "text": "Healer {wolf.name} discovered the illness source and begins treating the contaminated water supply."
+      }
+    ],
+    "tags": ["illness", "investigation", "healing"]
   }
 ]

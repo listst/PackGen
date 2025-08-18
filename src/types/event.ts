@@ -69,6 +69,10 @@ export interface EventTemplate {
   weight?: number | undefined; // selection weight
   tags?: string[] | undefined; // e.g. ["hunting","birth","prophecy"]
   allowFallback?: boolean | undefined; // whether to allow fallback candidate selection
+  seasonalBonus?: Partial<Record<import('./pack').Season, number>> | undefined; // seasonal weight modifiers
+  biomeBonus?: Partial<Record<string, number>> | undefined; // biome weight modifiers
+  requiredBiome?: string | undefined; // required biome for biome-specific events
+  storyChainId?: string | undefined; // story chain identifier for connected events
 }
 
 export interface EventResult {

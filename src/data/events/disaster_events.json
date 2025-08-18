@@ -1,0 +1,395 @@
+[
+  {
+    "id": "wildfire_approach",
+    "title": "Wall of Flames",
+    "text": "A massive wildfire roars toward the pack's territory, driven by howling winds. {wolf.name} must help lead the evacuation as smoke fills the air and flames consume the forest.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "forest" },
+        { "field": "pack.season", "op": "in", "value": ["summer", "autumn"] },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -20
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -3
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "log",
+        "text": "{wolf.name} heroically led the pack to safety as wildfire devastated their territory."
+      }
+    ],
+    "weight": 2,
+    "tags": ["disaster", "fire", "evacuation"],
+    "biomeBonus": { "forest": 2.0 },
+    "seasonalBonus": { "summer": 1.8, "autumn": 1.5 }
+  },
+  {
+    "id": "flood_devastation",
+    "title": "The Great Deluge",
+    "text": "Torrential rains cause rivers to overflow, flooding the pack's territory. {wolf.name} struggles to keep the pack together as rushing waters threaten to sweep them away.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "in", "value": ["spring", "summer"] },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -15
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -2 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.herbAbundance",
+        "delta": -1
+      },
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "log",
+        "text": "{wolf.name} courageously guided the pack through devastating floods to higher ground."
+      }
+    ],
+    "weight": 3,
+    "tags": ["disaster", "flood", "rescue"],
+    "seasonalBonus": { "spring": 1.6, "summer": 1.4 }
+  },
+  {
+    "id": "earthquake_terror",
+    "title": "When the Earth Shakes",
+    "text": "The ground convulses violently as a powerful earthquake strikes. {wolf.name} watches in terror as familiar landmarks crumble and the pack's world transforms in moments.",
+    "condition": {
+      "all": [
+        {
+          "field": "pack.territory.biome",
+          "op": "in",
+          "value": ["mountain", "forest"]
+        },
+        { "field": "wolf.stats.health", "op": ">", "value": 30 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -25
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -2
+      },
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "log",
+        "text": "{wolf.name} helped the pack survive a devastating earthquake that changed the landscape forever."
+      }
+    ],
+    "weight": 1,
+    "tags": ["disaster", "earthquake", "survival"],
+    "biomeBonus": { "mountain": 2.5, "forest": 1.3 }
+  },
+  {
+    "id": "tornado_destruction",
+    "title": "The Twisting Wind",
+    "text": "A massive tornado tears across the territory with devastating force. {wolf.name} seeks shelter as the funnel cloud destroys everything in its path, reshaping the landscape.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "in", "value": ["spring", "summer"] },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter", "omega"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -18
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -3 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -1
+      },
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "log",
+        "text": "{wolf.name} survived the tornado's fury and helped assess the devastating aftermath."
+      }
+    ],
+    "weight": 2,
+    "tags": ["disaster", "tornado", "destruction"],
+    "seasonalBonus": { "spring": 1.7, "summer": 1.4 }
+  },
+  {
+    "id": "volcanic_eruption",
+    "title": "Mountain's Rage",
+    "text": "The nearby volcano awakens with thunderous roars and rivers of molten rock. {wolf.name} watches in awe and terror as ash darkens the sky and the mountain's fury transforms the world.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "mountain" },
+        { "field": "wolf.stats.health", "op": ">", "value": 40 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -30
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -4
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 3
+      },
+      { "type": "adjust_approval", "delta": 12 },
+      {
+        "type": "log",
+        "text": "{wolf.name} led the pack's escape from the volcanic eruption, saving countless lives."
+      }
+    ],
+    "weight": 1,
+    "tags": ["disaster", "volcano", "heroic"],
+    "biomeBonus": { "mountain": 3.0 }
+  },
+  {
+    "id": "blizzard_trap",
+    "title": "Trapped by White Death",
+    "text": "A sudden, violent blizzard traps the pack in their den for days. {wolf.name} must ration food and maintain morale as the storm rages with unprecedented fury outside.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "pack.food", "op": ">", "value": 2 },
+        { "field": "wolf.role", "op": "in", "value": ["alpha", "beta"] }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -3 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "log",
+        "text": "{wolf.name} kept the pack alive and united during days trapped by a murderous blizzard."
+      }
+    ],
+    "weight": 4,
+    "tags": ["disaster", "blizzard", "leadership"],
+    "seasonalBonus": { "winter": 2.2 },
+    "biomeBonus": { "tundra": 1.8, "mountain": 1.5 }
+  },
+  {
+    "id": "drought_crisis",
+    "title": "The Dying Springs",
+    "text": "A severe drought dries up water sources across the territory. {wolf.name} must lead expeditions to find distant water while managing increasingly desperate pack dynamics.",
+    "condition": {
+      "all": [
+        { "field": "pack.season", "op": "in", "value": ["summer", "autumn"] },
+        {
+          "field": "pack.territory.biome",
+          "op": "in",
+          "value": ["desert", "forest"]
+        },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -12
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -1 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.herbAbundance",
+        "delta": -2
+      },
+      { "type": "adjust_approval", "delta": 7 },
+      {
+        "type": "log",
+        "text": "{wolf.name} found precious water sources during the devastating drought, saving the pack."
+      }
+    ],
+    "weight": 3,
+    "tags": ["disaster", "drought", "water"],
+    "biomeBonus": { "desert": 2.0, "forest": 1.4 },
+    "seasonalBonus": { "summer": 1.9, "autumn": 1.6 }
+  },
+  {
+    "id": "disease_outbreak",
+    "title": "Plague Among Prey",
+    "text": "A mysterious disease devastates the local prey population, leaving rotting carcasses throughout the territory. {wolf.name} must prevent the pack from consuming tainted meat.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["healer", "alpha", "beta"]
+        },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "pack.food", "op": "<=", "value": 4 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -2
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 9 },
+      {
+        "type": "log",
+        "text": "{wolf.name}'s wisdom prevented the pack from consuming diseased prey, avoiding disaster."
+      }
+    ],
+    "weight": 3,
+    "tags": ["disaster", "disease", "wisdom"],
+    "seasonalBonus": { "summer": 1.5, "autumn": 1.7 }
+  },
+  {
+    "id": "human_encroachment",
+    "title": "The Metal Beasts Arrive",
+    "text": "Human machinery roars into the territory, clear-cutting forests and building roads. {wolf.name} witnesses the destruction of their ancestral lands by these strange, powerful intruders.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "forest" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        },
+        { "field": "pack.packApproval", "op": ">", "value": 40 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": -3
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 2
+      },
+      { "type": "adjust_approval", "delta": -5 },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "human_conflict_escalation",
+        "daysDelay": 14
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} witnessed humans destroying the territory, forcing difficult decisions ahead."
+      }
+    ],
+    "weight": 2,
+    "tags": ["disaster", "human", "territory_loss"],
+    "biomeBonus": { "forest": 1.8 }
+  },
+  {
+    "id": "meteor_impact",
+    "title": "Star Falls to Earth",
+    "text": "A brilliant fireball streaks across the sky before crashing into the distant mountains with a thunderous explosion. {wolf.name} feels the ground shake as this celestial visitor transforms the landscape.",
+    "condition": {
+      "all": [
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["healer", "alpha", "elder"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 8
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "celestial_omen",
+        "daysDelay": 7
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} witnessed a star fall from the heavens, an omen of great changes to come."
+      }
+    ],
+    "weight": 1,
+    "tags": ["disaster", "celestial", "mystical"],
+    "biomeBonus": { "mountain": 1.5, "tundra": 1.3 }
+  }
+]

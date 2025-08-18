@@ -1,0 +1,441 @@
+[
+  {
+    "id": "naming_ceremony",
+    "title": "The Naming Ritual",
+    "text": "The pack gathers under the full moon as young {wolf.name} receives their adult name in an ancient ceremony. The chosen name reflects their character and the pack's hopes for their future.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.age", "op": ">=", "value": 0.9 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 4 }
+      ]
+    },
+    "actions": [
+      { "type": "change_role", "target": "wolf", "role": "omega" },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} received their adult name in a sacred ceremony, joining the pack as a full member."
+      }
+    ],
+    "weight": 6,
+    "tags": ["ceremony", "coming_of_age", "tradition"]
+  },
+  {
+    "id": "ancestor_honoring",
+    "title": "Honoring the Fallen",
+    "text": "Elder {wolf.name} leads the pack in a solemn ceremony to honor their ancestors. Stories are shared, and the spirits of departed pack members are invited to guide the living.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["elder", "alpha", "healer"]
+        },
+        { "field": "wolf.age", "op": ">=", "value": 4.0 },
+        { "field": "pack.prophecyPower", "op": ">=", "value": 3 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 4
+      },
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "ancestral_blessing",
+        "daysDelay": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} conducted a powerful ceremony honoring the ancestors, strengthening spiritual bonds."
+      }
+    ],
+    "weight": 4,
+    "tags": ["ceremony", "ancestors", "spiritual"]
+  },
+  {
+    "id": "seasonal_celebration",
+    "title": "Festival of Seasons",
+    "text": "The pack celebrates the changing of seasons with traditional songs and ritual dances. {wolf.name} leads the festivities, helping to maintain the ancient customs passed down through generations.",
+    "condition": {
+      "all": [
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 6 },
+        { "field": "pack.packApproval", "op": ">", "value": 50 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} led a joyous seasonal celebration that strengthened pack bonds and traditions."
+      }
+    ],
+    "weight": 7,
+    "tags": ["ceremony", "celebration", "tradition"],
+    "seasonalBonus": {
+      "spring": 1.5,
+      "summer": 1.3,
+      "autumn": 1.6,
+      "winter": 1.4
+    }
+  },
+  {
+    "id": "mating_ritual",
+    "title": "Bonds of the Heart",
+    "text": "Under the witness of the pack, {wolf.name} participates in the sacred mating ritual, formally establishing their bond with their chosen partner according to ancient pack traditions.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 1.5 },
+        { "field": "wolf.role", "op": "!=", "value": "pup" },
+        { "field": "pack.season", "op": "in", "value": ["spring", "summer"] },
+        { "field": "wolf.mateId", "op": "!=", "value": null }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.fertility",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 7 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 2
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "blessed_union",
+        "daysDelay": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} was blessed in the sacred mating ritual, strengthening their bond for life."
+      }
+    ],
+    "weight": 5,
+    "tags": ["ceremony", "mating", "blessing"],
+    "seasonalBonus": { "spring": 1.8, "summer": 1.5 }
+  },
+  {
+    "id": "wisdom_circle",
+    "title": "Circle of Elders",
+    "text": "The pack forms a wisdom circle as {wolf.name} shares crucial knowledge and life lessons. This sacred gathering allows the passing of wisdom from old to young, preserving pack culture.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 4.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        {
+          "field": "pack.wolves.filter(w => w.age < 2.0).length",
+          "op": ">=",
+          "value": 2
+        }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.trainability",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "wisdom_transmission",
+        "daysDelay": 7
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} shared invaluable wisdom in the sacred circle, teaching the next generation."
+      }
+    ],
+    "weight": 5,
+    "tags": ["ceremony", "wisdom", "teaching"]
+  },
+  {
+    "id": "hunt_blessing",
+    "title": "Blessing the Hunt",
+    "text": "Before a crucial hunt, {wolf.name} performs the ancient ritual to ask the spirits for success and safety. The ceremony honors the prey that will give their lives for the pack's survival.",
+    "condition": {
+      "all": [
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["healer", "alpha", "hunter"]
+        },
+        { "field": "pack.food", "op": "<=", "value": 3 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 3
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 2
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "blessed_hunt",
+        "daysDelay": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} blessed the upcoming hunt, invoking spiritual protection for the hunters."
+      }
+    ],
+    "weight": 6,
+    "tags": ["ceremony", "hunting", "blessing"]
+  },
+  {
+    "id": "territory_claiming",
+    "title": "Sacred Boundary Marking",
+    "text": "The pack performs the ancient territory claiming ritual as {wolf.name} leads them in marking the boundaries with ceremonial scent marks and symbolic offerings to the land spirits.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "in", "value": ["alpha", "beta"] },
+        { "field": "pack.territory.foodRichness", "op": ">=", "value": 4 },
+        { "field": "pack.packApproval", "op": ">", "value": 60 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": -1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 4
+      },
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "log",
+        "text": "{wolf.name} led the sacred territory claiming ritual, strengthening the pack's bond to the land."
+      }
+    ],
+    "weight": 4,
+    "tags": ["ceremony", "territory", "claiming"]
+  },
+  {
+    "id": "moon_howling",
+    "title": "Song to the Silver Moon",
+    "text": "Under the full moon, {wolf.name} initiates the traditional howling ceremony. The pack's voices rise in harmony, carrying their hopes and prayers across the night-shrouded landscape.",
+    "condition": {
+      "all": [
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 5 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 3 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 9 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 3
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} led the moon howling ceremony, uniting the pack's voices in ancient harmony."
+      }
+    ],
+    "weight": 8,
+    "tags": ["ceremony", "moon", "howling"]
+  },
+  {
+    "id": "healer_initiation",
+    "title": "The Healer's Calling",
+    "text": "Young {wolf.name} shows natural aptitude for healing and spiritual matters. The pack prepares for their formal initiation into the sacred role of pack healer and spiritual guide.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 1.0 },
+        { "field": "wolf.age", "op": "<=", "value": 3.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "wolf.role", "op": "!=", "value": "healer" },
+        { "field": "pack.herbs", "op": ">=", "value": 3 }
+      ]
+    },
+    "actions": [
+      { "type": "change_role", "target": "wolf", "role": "healer" },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 4
+      },
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "log",
+        "text": "{wolf.name} was formally initiated as the pack's healer in a sacred ceremony of great significance."
+      }
+    ],
+    "weight": 3,
+    "tags": ["ceremony", "healer", "initiation"]
+  },
+  {
+    "id": "story_telling_night",
+    "title": "Tales by the Starlight",
+    "text": "Elder {wolf.name} gathers the pack for an evening of storytelling, sharing legendary tales of heroic wolves, ancient wisdom, and the history that shaped their bloodline.",
+    "condition": {
+      "all": [
+        { "field": "wolf.age", "op": ">=", "value": 3.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        {
+          "field": "pack.wolves.filter(w => w.age < 2.0).length",
+          "op": ">=",
+          "value": 1
+        }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 7 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "cultural_preservation",
+        "daysDelay": 10
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} preserved pack culture by sharing ancient stories and legends with the young."
+      }
+    ],
+    "weight": 7,
+    "tags": ["ceremony", "stories", "culture"]
+  },
+  {
+    "id": "leadership_challenge_ritual",
+    "title": "The Challenge of Leadership",
+    "text": "Following ancient tradition, {wolf.name} formally challenges the current alpha's leadership. The ritual combat will determine who has the strength and wisdom to guide the pack.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "beta" },
+        { "field": "wolf.age", "op": ">=", "value": 2.0 },
+        { "field": "pack.packApproval", "op": "<", "value": 40 },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 7 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "leadership_combat",
+        "daysDelay": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} issued a formal leadership challenge according to ancient pack law."
+      }
+    ],
+    "weight": 2,
+    "tags": ["ceremony", "leadership", "challenge"]
+  },
+  {
+    "id": "spirit_guide_vision",
+    "title": "Vision of the Spirit Guide",
+    "text": "During meditation, {wolf.name} receives a vision of their personal spirit guide - an ancestral wolf who will provide guidance in times of great need. This rare spiritual gift honors the receiver.",
+    "condition": {
+      "all": [
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 8 },
+        { "field": "pack.prophecyPower", "op": ">=", "value": 8 },
+        { "field": "wolf.age", "op": ">=", "value": 2.0 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 5
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "spirit_guidance",
+        "daysDelay": 21
+      },
+      { "type": "adjust_approval", "delta": 12 },
+      {
+        "type": "log",
+        "text": "{wolf.name} received a vision of their spirit guide, a blessing of the highest spiritual significance."
+      }
+    ],
+    "weight": 1,
+    "tags": ["ceremony", "spiritual", "vision"]
+  }
+]

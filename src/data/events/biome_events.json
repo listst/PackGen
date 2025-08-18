@@ -1,0 +1,411 @@
+[
+  {
+    "id": "forest_ancient_tree",
+    "title": "The Ancient Oak",
+    "text": "Deep in the forest, {wolf.name} discovers a massive ancient oak with hollow roots that could serve as an excellent den site. The tree seems to whisper with the wisdom of ages past.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "forest" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 3
+      },
+      { "type": "adjust_approval", "delta": 4 },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered an ancient oak that will serve as a sacred gathering place for the pack."
+      }
+    ],
+    "weight": 5,
+    "tags": ["forest", "discovery", "mystical"],
+    "biomeBonus": { "forest": 2.0 }
+  },
+  {
+    "id": "forest_dense_undergrowth",
+    "title": "Lost in the Thicket",
+    "text": "The dense forest undergrowth proves treacherous as {wolf.name} becomes separated from the pack during a hunt. Fighting through thorns and brambles, they must find their way back before nightfall.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "forest" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["hunter", "omega", "beta"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -10
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} fought through dense undergrowth and emerged wiser but wounded."
+      }
+    ],
+    "weight": 6,
+    "tags": ["forest", "challenge", "navigation"],
+    "biomeBonus": { "forest": 1.8 }
+  },
+  {
+    "id": "forest_bear_encounter",
+    "title": "Forest Guardian",
+    "text": "While hunting, {wolf.name} encounters a massive brown bear protecting its cubs. The confrontation tests every instinct as the wolf must decide whether to fight, flee, or attempt peaceful coexistence.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "forest" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["hunter", "alpha", "beta"]
+        },
+        { "field": "wolf.stats.health", "op": ">", "value": 50 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -20
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 5
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} survived a terrifying encounter with a forest bear, earning great respect."
+      }
+    ],
+    "weight": 3,
+    "tags": ["forest", "danger", "courage"],
+    "biomeBonus": { "forest": 1.5 }
+  },
+  {
+    "id": "mountain_avalanche_danger",
+    "title": "Mountain's Wrath",
+    "text": "A distant rumble echoes through the peaks as {wolf.name} realizes an avalanche is bearing down on their location. Quick thinking and faster paws are the only hope for survival.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "mountain" },
+        { "field": "pack.season", "op": "in", "value": ["winter", "spring"] },
+        { "field": "wolf.stats.speed", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -15
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.speed",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 7 },
+      {
+        "type": "log",
+        "text": "{wolf.name} outran a deadly avalanche, their speed and wit saving their life."
+      }
+    ],
+    "weight": 4,
+    "tags": ["mountain", "disaster", "speed"],
+    "biomeBonus": { "mountain": 2.2 }
+  },
+  {
+    "id": "mountain_eagle_nest",
+    "title": "Sky Predator's Domain",
+    "text": "High on a mountain ledge, {wolf.name} discovers a golden eagle's nest filled with eggs. The magnificent bird circles overhead, torn between protecting its clutch and respecting the wolf's presence.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "mountain" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 2
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} found eagle eggs high in the peaks, gaining both sustenance and respect from the sky spirits."
+      }
+    ],
+    "weight": 5,
+    "tags": ["mountain", "discovery", "spiritual"],
+    "biomeBonus": { "mountain": 1.9 }
+  },
+  {
+    "id": "mountain_thin_air",
+    "title": "Breathing the Sky",
+    "text": "At extreme altitude, {wolf.name} struggles with the thin mountain air. Each breath becomes precious as they push forward, their determination tested by the realm of clouds.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "mountain" },
+        { "field": "wolf.stats.health", "op": ">", "value": 40 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -8
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.strength",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} pushed through the thin mountain air, their body growing stronger from the challenge."
+      }
+    ],
+    "weight": 7,
+    "tags": ["mountain", "endurance", "challenge"],
+    "biomeBonus": { "mountain": 1.6 }
+  },
+  {
+    "id": "tundra_aurora_hunt",
+    "title": "Hunting Under Dancing Lights",
+    "text": "The aurora borealis illuminates the tundra as {wolf.name} stalks caribou across the endless expanse. The ethereal light seems to guide their steps in this mystical hunt.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "tundra" },
+        { "field": "pack.season", "op": "in", "value": ["winter", "autumn"] },
+        { "field": "wolf.role", "op": "in", "value": ["hunter", "alpha"] }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 4 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 25 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 4
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} hunted under the dancing lights, blessed by the spirits of the frozen north."
+      }
+    ],
+    "weight": 6,
+    "tags": ["tundra", "hunting", "mystical"],
+    "biomeBonus": { "tundra": 2.1 }
+  },
+  {
+    "id": "tundra_white_out",
+    "title": "Lost in White",
+    "text": "A sudden whiteout engulfs {wolf.name} in the vast tundra. With no landmarks visible and wind erasing all scent trails, they must rely on ancient instincts to find their way home.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "tundra" },
+        { "field": "pack.season", "op": "==", "value": "winter" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -12
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 4 },
+      {
+        "type": "log",
+        "text": "{wolf.name} survived being lost in a tundra whiteout, their instincts proving true."
+      }
+    ],
+    "weight": 7,
+    "tags": ["tundra", "survival", "navigation"],
+    "biomeBonus": { "tundra": 1.8 }
+  },
+  {
+    "id": "tundra_polar_bear",
+    "title": "King of the Ice",
+    "text": "On the edge of the frozen sea, {wolf.name} encounters the mighty polar bear, lord of the arctic realm. This meeting of predators becomes a test of respect and territorial understanding.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "tundra" },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 8 },
+        { "field": "wolf.stats.health", "op": ">", "value": 60 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -25
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 8
+      },
+      {
+        "type": "log",
+        "text": "{wolf.name} faced the polar bear and lived, earning the respect of all arctic predators."
+      }
+    ],
+    "weight": 2,
+    "tags": ["tundra", "legendary", "courage"],
+    "biomeBonus": { "tundra": 1.3 }
+  },
+  {
+    "id": "desert_oasis_discovery",
+    "title": "Life in the Wasteland",
+    "text": "After days of travel across burning sands, {wolf.name} discovers a hidden oasis. The precious water source could change the pack's fortunes in this harsh desert realm.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "desert" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        { "field": "pack.food", "op": "<=", "value": 3 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": 2
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 3 },
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "log",
+        "text": "{wolf.name} discovered a life-saving oasis, transforming the pack's desert survival prospects."
+      }
+    ],
+    "weight": 4,
+    "tags": ["desert", "discovery", "survival"],
+    "biomeBonus": { "desert": 2.5 }
+  },
+  {
+    "id": "desert_sandstorm",
+    "title": "Wall of Sand",
+    "text": "A massive sandstorm approaches like a living wall of fury. {wolf.name} must quickly find shelter and guide the pack to safety before they're consumed by the desert's rage.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "desert" },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -10
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "log",
+        "text": "{wolf.name} led the pack to safety through a devastating sandstorm."
+      }
+    ],
+    "weight": 6,
+    "tags": ["desert", "weather", "leadership"],
+    "biomeBonus": { "desert": 1.7 }
+  },
+  {
+    "id": "desert_cactus_water",
+    "title": "Desert's Secret",
+    "text": "In desperate need of water, {wolf.name} learns to extract precious moisture from desert cacti. This dangerous technique could save lives but risks painful injuries.",
+    "condition": {
+      "all": [
+        { "field": "pack.territory.biome", "op": "==", "value": "desert" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "pack.herbs", "op": "<=", "value": 2 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -5
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": 2 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 15 },
+      {
+        "type": "log",
+        "text": "{wolf.name} learned to extract life-giving moisture from desert plants despite painful thorns."
+      }
+    ],
+    "weight": 5,
+    "tags": ["desert", "innovation", "survival"],
+    "biomeBonus": { "desert": 2.0 }
+  }
+]

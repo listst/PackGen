@@ -1,0 +1,600 @@
+[
+  {
+    "id": "alpha_diplomatic_meeting",
+    "title": "Diplomatic Summit",
+    "text": "Alpha {wolf.name} receives an unexpected visit from a neighboring pack's alpha. This rare diplomatic meeting could forge alliances or spark conflicts depending on how it's handled.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "pack.packApproval", "op": ">=", "value": 40 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 4 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": -1
+      },
+      { "type": "adjust_approval", "delta": 8 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 20 },
+      {
+        "type": "log",
+        "text": "Alpha {wolf.name} successfully negotiated with a rival pack, reducing territorial tensions."
+      }
+    ],
+    "weight": 4,
+    "tags": ["alpha", "diplomacy", "politics"]
+  },
+  {
+    "id": "alpha_pack_discipline",
+    "title": "Maintaining Order",
+    "text": "Tensions rise within the pack as minor disputes threaten to escalate. Alpha {wolf.name} must restore order through decisive leadership while maintaining pack unity.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "pack.packApproval", "op": "<", "value": 50 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 12 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "Alpha {wolf.name} restored peace within the pack through firm but fair leadership."
+      }
+    ],
+    "weight": 6,
+    "tags": ["alpha", "leadership", "discipline"]
+  },
+  {
+    "id": "alpha_territory_expansion",
+    "title": "Expanding the Realm",
+    "text": "Alpha {wolf.name} surveys potential new territory for pack expansion. The decision to claim new lands will require careful consideration of resources, risks, and the pack's readiness.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "pack.food", "op": ">", "value": 5 },
+        { "field": "pack.packApproval", "op": ">", "value": 60 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.foodRichness",
+        "delta": 2
+      },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "territory.dangerLevel",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "log",
+        "text": "Alpha {wolf.name} successfully expanded the pack's territory, claiming new hunting grounds."
+      }
+    ],
+    "weight": 5,
+    "tags": ["alpha", "territory", "expansion"]
+  },
+  {
+    "id": "beta_succession_preparation",
+    "title": "Heir Apparent",
+    "text": "Beta {wolf.name} begins preparing for potential alpha succession, studying the pack's needs and building relationships with key members. Leadership may come sooner than expected.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "beta" },
+        { "field": "wolf.age", "op": ">=", "value": 2.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 4 },
+      {
+        "type": "log",
+        "text": "Beta {wolf.name} gained valuable leadership experience and earned greater respect."
+      }
+    ],
+    "weight": 6,
+    "tags": ["beta", "succession", "leadership"]
+  },
+  {
+    "id": "beta_mediation_crisis",
+    "title": "The Mediator",
+    "text": "When a serious conflict erupts between pack members, Beta {wolf.name} steps in to mediate. Their diplomatic skills will be crucial in preventing the pack from fracturing.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "beta" },
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 6 },
+        { "field": "pack.packApproval", "op": "<", "value": 60 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 18 },
+      {
+        "type": "log",
+        "text": "Beta {wolf.name} successfully mediated a pack conflict, preventing serious division."
+      }
+    ],
+    "weight": 7,
+    "tags": ["beta", "mediation", "social"]
+  },
+  {
+    "id": "beta_administrative_duties",
+    "title": "Managing the Pack",
+    "text": "Beta {wolf.name} takes charge of organizing daily pack activities while the alpha is away. Their administrative skills are put to the test as they coordinate hunts, patrols, and territory management.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "beta" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "patrolReputation",
+        "delta": 3
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 6 },
+      {
+        "type": "log",
+        "text": "Beta {wolf.name} efficiently managed pack operations, proving their administrative capabilities."
+      }
+    ],
+    "weight": 8,
+    "tags": ["beta", "administration", "management"]
+  },
+  {
+    "id": "hunter_legendary_prey",
+    "title": "The Great Hunt",
+    "text": "Hunter {wolf.name} tracks signs of legendary prey - a massive elk that has evaded hunters for seasons. Taking down this beast would bring great honor and abundant food to the pack.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "hunter" },
+        { "field": "wolf.stats.strength", "op": ">=", "value": 7 },
+        { "field": "wolf.stats.speed", "op": ">=", "value": 6 },
+        { "field": "wolf.xp", "op": ">=", "value": 50 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 8 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 30 },
+      { "type": "adjust_approval", "delta": 12 },
+      {
+        "type": "log",
+        "text": "Hunter {wolf.name} successfully brought down the legendary elk, becoming a pack hero."
+      }
+    ],
+    "weight": 3,
+    "tags": ["hunter", "legendary", "achievement"]
+  },
+  {
+    "id": "hunter_tracking_mastery",
+    "title": "Master Tracker",
+    "text": "Hunter {wolf.name} discovers an incredibly faint trail that others missed completely. Their tracking expertise leads to a successful hunt that showcases years of honed skills.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "hunter" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        { "field": "wolf.age", "op": ">=", "value": 2.5 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 4 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 20 },
+      {
+        "type": "log",
+        "text": "Hunter {wolf.name}'s masterful tracking skills secured food when others found nothing."
+      }
+    ],
+    "weight": 7,
+    "tags": ["hunter", "tracking", "expertise"]
+  },
+  {
+    "id": "hunter_dangerous_quarry",
+    "title": "Perilous Pursuit",
+    "text": "Hunter {wolf.name} pursues dangerous prey into treacherous terrain. The hunt tests not only their skill but their courage as they risk injury for the pack's benefit.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "hunter" },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 6 },
+        { "field": "wolf.stats.health", "op": ">", "value": 50 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -15
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 5 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "Hunter {wolf.name} risked their safety to bring down dangerous prey for the pack."
+      }
+    ],
+    "weight": 6,
+    "tags": ["hunter", "danger", "courage"]
+  },
+  {
+    "id": "healer_miraculous_cure",
+    "title": "Divine Intervention",
+    "text": "Healer {wolf.name} attempts a desperate treatment using rare herbs and ancient knowledge. Their patient hovers between life and death as spiritual forces seem to guide their paws.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "healer" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 },
+        { "field": "pack.herbs", "op": ">=", "value": 3 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -2 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 25 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 3
+      },
+      { "type": "adjust_approval", "delta": 10 },
+      {
+        "type": "log",
+        "text": "Healer {wolf.name} worked a miracle, saving a life through skill and spiritual guidance."
+      }
+    ],
+    "weight": 4,
+    "tags": ["healer", "miracle", "spiritual"]
+  },
+  {
+    "id": "healer_herb_expedition",
+    "title": "Sacred Medicine Hunt",
+    "text": "Healer {wolf.name} ventures into dangerous territory seeking rare medicinal plants. The journey tests their knowledge as they identify healing herbs from poisonous lookalikes.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "healer" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 },
+        { "field": "pack.herbs", "op": "<=", "value": 2 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": 5 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 18 },
+      {
+        "type": "log",
+        "text": "Healer {wolf.name} returned from their expedition with precious medicinal plants."
+      }
+    ],
+    "weight": 6,
+    "tags": ["healer", "expedition", "herbs"]
+  },
+  {
+    "id": "healer_prophetic_vision",
+    "title": "Visions in the Smoke",
+    "text": "While preparing medicines, Healer {wolf.name} experiences powerful visions in the rising smoke. The images may foretell future events or reveal hidden truths about the pack's destiny.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "healer" },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 8 },
+        { "field": "pack.prophecyPower", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 5
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "prophetic_warning",
+        "daysDelay": 14
+      },
+      {
+        "type": "log",
+        "text": "Healer {wolf.name} received visions that may guide the pack's future decisions."
+      }
+    ],
+    "weight": 3,
+    "tags": ["healer", "prophecy", "mystical"]
+  },
+  {
+    "id": "omega_pack_harmony",
+    "title": "The Peacekeeper",
+    "text": "When tensions run high, Omega {wolf.name} uses their unique position to defuse conflicts through humor and wisdom. Their gentle nature helps maintain pack cohesion during difficult times.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "omega" },
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 7 },
+        { "field": "pack.packApproval", "op": "<", "value": 50 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      {
+        "type": "log",
+        "text": "Omega {wolf.name} restored harmony to the pack through their gentle wisdom and humor."
+      }
+    ],
+    "weight": 7,
+    "tags": ["omega", "harmony", "social"]
+  },
+  {
+    "id": "omega_hidden_strength",
+    "title": "Unexpected Courage",
+    "text": "In a moment of crisis, Omega {wolf.name} surprises everyone by showing remarkable courage. Their unexpected bravery saves the day and earns them newfound respect.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "omega" },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 5 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 2
+      },
+      { "type": "adjust_approval", "delta": 12 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 20 },
+      {
+        "type": "log",
+        "text": "Omega {wolf.name} displayed unexpected courage, earning the pack's deep respect and admiration."
+      }
+    ],
+    "weight": 4,
+    "tags": ["omega", "courage", "respect"]
+  },
+  {
+    "id": "omega_wisdom_keeper",
+    "title": "Keeper of Stories",
+    "text": "Omega {wolf.name} shares ancient pack stories and wisdom with the younger members. Their tales preserve important traditions and teach valuable life lessons to the next generation.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "omega" },
+        { "field": "wolf.age", "op": ">=", "value": 3.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 5 },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "wisdom_teaching",
+        "daysDelay": 10
+      },
+      {
+        "type": "log",
+        "text": "Omega {wolf.name} shared valuable stories, preserving pack wisdom for future generations."
+      }
+    ],
+    "weight": 6,
+    "tags": ["omega", "wisdom", "teaching"]
+  },
+  {
+    "id": "pup_first_hunt_lesson",
+    "title": "Learning the Hunt",
+    "text": "Pup {wolf.name} participates in their first real hunting lesson, watching carefully as experienced hunters demonstrate techniques. Their eagerness to learn shines through despite their inexperience.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.age", "op": ">=", "value": 0.5 },
+        { "field": "wolf.age", "op": "<=", "value": 1.0 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.speed",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 10 },
+      {
+        "type": "log",
+        "text": "Pup {wolf.name} took their first hunting lesson, showing great promise and enthusiasm."
+      }
+    ],
+    "weight": 8,
+    "tags": ["pup", "learning", "hunting"]
+  },
+  {
+    "id": "pup_exploration_adventure",
+    "title": "Curious Explorer",
+    "text": "Pup {wolf.name}'s curiosity leads them to explore beyond the den, discovering interesting scents, sounds, and sights. Their adventure teaches them about the wider world but also about danger.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.age", "op": ">=", "value": 0.3 },
+        { "field": "wolf.traits.bravery", "op": ">=", "value": 4 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.intelligence",
+        "delta": 1
+      },
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.bravery",
+        "delta": 1
+      },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 8 },
+      {
+        "type": "log",
+        "text": "Pup {wolf.name}'s adventurous exploration taught them valuable lessons about the world."
+      }
+    ],
+    "weight": 9,
+    "tags": ["pup", "exploration", "learning"]
+  },
+  {
+    "id": "pup_social_bonding",
+    "title": "Making Friends",
+    "text": "Pup {wolf.name} forms strong bonds with their littermates and other pack members. Their natural friendliness and playful nature endear them to the entire pack.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.traits.sociability", "op": ">=", "value": 6 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "traits.sociability",
+        "delta": 1
+      },
+      { "type": "adjust_approval", "delta": 3 },
+      { "type": "modify_stat", "target": "wolf", "stat": "xp", "delta": 5 },
+      {
+        "type": "log",
+        "text": "Pup {wolf.name} charmed the entire pack with their friendly and playful nature."
+      }
+    ],
+    "weight": 8,
+    "tags": ["pup", "social", "bonding"]
+  },
+  {
+    "id": "elder_wisdom_sharing",
+    "title": "Elder's Council",
+    "text": "Elder {wolf.name} calls the pack together to share crucial wisdom from their long life. Their stories of past challenges and victories provide invaluable guidance for future decisions.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "elder" },
+        { "field": "wolf.age", "op": ">=", "value": 6.0 },
+        { "field": "wolf.stats.intelligence", "op": ">=", "value": 7 }
+      ]
+    },
+    "actions": [
+      { "type": "adjust_approval", "delta": 8 },
+      {
+        "type": "modify_stat",
+        "target": "pack",
+        "stat": "prophecyPower",
+        "delta": 3
+      },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "elder_blessing",
+        "daysDelay": 5
+      },
+      {
+        "type": "log",
+        "text": "Elder {wolf.name}'s wisdom provided invaluable guidance that will help the pack for moons to come."
+      }
+    ],
+    "weight": 5,
+    "tags": ["elder", "wisdom", "guidance"]
+  },
+  {
+    "id": "elder_final_journey",
+    "title": "The Last Hunt",
+    "text": "Elder {wolf.name}, sensing their time is near, insists on one final contribution to the pack. Their determination to help despite their frailty touches every heart.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "elder" },
+        { "field": "wolf.age", "op": ">=", "value": 7.0 },
+        { "field": "wolf.stats.health", "op": "<", "value": 40 }
+      ]
+    },
+    "actions": [
+      {
+        "type": "modify_stat",
+        "target": "wolf",
+        "stat": "stats.health",
+        "delta": -10
+      },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
+      { "type": "adjust_approval", "delta": 15 },
+      {
+        "type": "schedule_consequence",
+        "consequenceId": "elder_legacy",
+        "daysDelay": 7
+      },
+      {
+        "type": "log",
+        "text": "Elder {wolf.name}'s final act of service will be remembered forever by the grateful pack."
+      }
+    ],
+    "weight": 3,
+    "tags": ["elder", "sacrifice", "legacy"]
+  }
+]
