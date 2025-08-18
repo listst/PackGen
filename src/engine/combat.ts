@@ -1,5 +1,5 @@
 import type { Wolf } from '../types/wolf';
-import type { Pack } from '../types/pack';
+import type { Pack, GameConfig } from '../types/pack';
 import type { BattleResult } from '../types/territory';
 import { getCombatScore, isAlive, random } from '../types/utils';
 
@@ -22,27 +22,43 @@ export interface CombatResult {
 }
 
 export class CombatEngine {
+  private config: GameConfig;
+
+  constructor(config: GameConfig) {
+    this.config = config;
+  }
+
+  updateConfig(newConfig: GameConfig): void {
+    this.config = newConfig;
+  }
+
   resolveCombat(
     attackers: Wolf[],
     defenders: Wolf[],
     options: CombatOptions = {}
   ): CombatResult {
     const {
-      damageMultiplier = 5,
-      highRiskThreshold = 20,
-      highRiskDamageBonus = 10,
+      damageMultiplier = this.config.combatSystem.damageMultiplier,
+      highRiskThreshold = this.config.combatSystem.highRiskThreshold,
+      highRiskDamageBonus = this.config.combatSystem.highRiskDamageBonus,
     } = options;
 
     // Calculate combat scores with RNG
     const attackerScores = attackers.map((wolf) => {
       const baseScore = getCombatScore(wolf);
-      const rngModifier = random.nextFloat(-5, 5);
+      const rngModifier = random.nextFloat(
+        this.config.combatSystem.rngVarianceRange.min,
+        this.config.combatSystem.rngVarianceRange.max
+      );
       return baseScore + rngModifier;
     });
 
     const defenderScores = defenders.map((wolf) => {
       const baseScore = getCombatScore(wolf);
-      const rngModifier = random.nextFloat(-5, 5);
+      const rngModifier = random.nextFloat(
+        this.config.combatSystem.rngVarianceRange.min,
+        this.config.combatSystem.rngVarianceRange.max
+      );
       return baseScore + rngModifier;
     });
 
@@ -128,7 +144,7 @@ export class CombatEngine {
       wolf.stats.health -= damage;
 
       // Check for death
-      if (wolf.stats.health <= 0) {
+      if (wolf.stats.health <= this.config.combatSystem.mortalityThreshold) {
         wolf._dead = true;
         casualties.push(wolf.id);
       }
@@ -168,7 +184,7 @@ export class CombatEngine {
     return {
       winner: result.winner,
       attackerDamage:
-        result.attackerCasualties.length > 0 ? result.scoreDifference * 0.5 : 0, // some damage to winner too
+        result.attackerCasualties.length > 0 ? result.scoreDifference * this.config.combatSystem.winnerDamageMultiplier : 0, // some damage to winner too
       defenderDamage: result.loserDamage,
       loserDamage: result.loserDamage,
       casualties: result.casualties,
@@ -199,7 +215,7 @@ export class CombatEngine {
     // Limit defender count to make raids more feasible
     const maxDefenders = Math.min(
       availableDefenders.length,
-      raiders.length + 2
+      raiders.length + this.config.combatSystem.maxDefenderMultiplier
     );
     const defenders = availableDefenders.slice(0, maxDefenders);
 
@@ -207,7 +223,10 @@ export class CombatEngine {
 
     let resourcesStolen = 0;
     if (combat.winner === 'attacker' && raidObjective === 'resources') {
-      resourcesStolen = Math.min(defendingPack.herbs, random.nextInt(1, 3));
+      resourcesStolen = Math.min(defendingPack.herbs, random.nextInt(
+        this.config.combatSystem.resourceTheftRange.min,
+        this.config.combatSystem.resourceTheftRange.max
+      ));
       defendingPack.herbs = Math.max(0, defendingPack.herbs - resourcesStolen);
     }
 
@@ -238,8 +257,8 @@ export class CombatEngine {
     let modifier = 1.0;
 
     // Health modifiers
-    if (wolf.stats.health < 30) {
-      modifier *= 0.7; // Severely wounded
+    if (wolf.stats.health < this.config.combatSystem.lowHealthPenaltyThreshold) {
+      modifier *= this.config.combatSystem.lowHealthPenaltyMultiplier; // Severely wounded
     } else if (wolf.stats.health < 60) {
       modifier *= 0.85; // Injured
     }
@@ -274,5 +293,4 @@ export class CombatEngine {
   }
 }
 
-// Export singleton instance
-export const combatEngine = new CombatEngine();
+// Note: Singleton instance will be created in simulation.ts with proper config

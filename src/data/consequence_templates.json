@@ -1,0 +1,136 @@
+[
+  {
+    "id": "hunting_trial",
+    "title": "Leadership Trial Results",
+    "text": "The hunting trial has concluded. {wolf.name}'s performance has determined their fate as pack leader.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "wolf.stats.health", "op": ">", "value": 30 }
+      ]
+    },
+    "actions": [
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 8 },
+      { "type": "adjust_approval", "delta": 20 },
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 2 },
+      { "type": "log", "text": "{wolf.name} succeeded in the hunting trial and proved their leadership!" }
+    ],
+    "tags": ["leadership", "trial", "success"]
+  },
+  {
+    "id": "territory_battle",
+    "title": "Territory Battle Outcome",
+    "text": "The battle for territory has ended. {wolf.name} and the pack have defended their hunting grounds.",
+    "actions": [
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -15 },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 6 },
+      { "type": "adjust_approval", "delta": 12 },
+      { "type": "log", "text": "The pack successfully defended their territory but suffered injuries in the battle" }
+    ],
+    "tags": ["battle", "territory", "defense"]
+  },
+  {
+    "id": "diplomatic_outcome",
+    "title": "Diplomatic Resolution",
+    "text": "The diplomatic negotiations have concluded. {wolf.name}'s peaceful approach has yielded results.",
+    "actions": [
+      { "type": "adjust_approval", "delta": 8 },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
+      { "type": "log", "text": "Diplomatic negotiations secured a peaceful resolution to the territory dispute" }
+    ],
+    "tags": ["diplomacy", "peace", "territory"]
+  },
+  {
+    "id": "night_ambush_result",
+    "title": "Night Ambush Results",
+    "text": "The night ambush has been executed. {wolf.name} led the pack in a daring strike against the intruders.",
+    "actions": [
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -8 },
+      { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 10 },
+      { "type": "adjust_approval", "delta": 15 },
+      { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 1 },
+      { "type": "log", "text": "The night ambush was successful! The pack gained territory and {wolf.name} showed great courage" }
+    ],
+    "tags": ["ambush", "stealth", "victory"]
+  },
+  {
+    "id": "stranger_wisdom",
+    "title": "Ancient Wisdom",
+    "text": "The mysterious stranger shared ancient knowledge with {wolf.name} before departing into the wilderness.",
+    "actions": [
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.intelligence", "delta": 2 },
+      { "type": "modify_stat", "target": "wolf", "stat": "traits.trainability", "delta": 1 },
+      { "type": "adjust_approval", "delta": 5 },
+      { "type": "log", "text": "{wolf.name} gained valuable wisdom from the mysterious stranger" }
+    ],
+    "tags": ["wisdom", "stranger", "learning"]
+  },
+  {
+    "id": "stranger_trial",
+    "title": "Stranger's Trial",
+    "text": "The mysterious stranger has completed their trial. {wolf.name} must decide their fate.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" }
+      ]
+    },
+    "actions": [
+      { "type": "spawn_wolf", "count": 1, "wolfTemplate": {
+        "name": "Proven",
+        "age": 4.5,
+        "role": "hunter",
+        "stats": { "health": 90, "strength": 8, "speed": 7, "intelligence": 7 },
+        "traits": { "bravery": 9, "sociability": 6, "trainability": 7, "fertility": 4 }
+      }},
+      { "type": "adjust_approval", "delta": 12 },
+      { "type": "log", "text": "The stranger proved their worth and earned a place in the pack as a skilled hunter" }
+    ],
+    "tags": ["stranger", "trial", "recruitment"]
+  },
+  {
+    "id": "post_hunt_exhaustion",
+    "title": "Post-Celebration Exhaustion",
+    "text": "The pack is feeling the effects of their energetic celebration. {wolf.name} notices the wolves are tired but happy.",
+    "actions": [
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -5 },
+      { "type": "log", "text": "The pack is tired from their celebration but their spirits remain high" }
+    ],
+    "tags": ["celebration", "exhaustion", "recovery"]
+  },
+  {
+    "id": "enhanced_bonding",
+    "title": "Strengthened Bonds",
+    "text": "The bonding ceremonies have had a lasting effect on pack relationships. {wolf.name} sees stronger connections forming.",
+    "actions": [
+      { "type": "adjust_approval", "delta": 5 },
+      { "type": "log", "text": "The bonding ceremonies have strengthened relationships throughout the pack" }
+    ],
+    "tags": ["bonding", "relationships", "ceremony"]
+  },
+  {
+    "id": "training_benefits",
+    "title": "Training Game Benefits",
+    "text": "The competitive training games have improved the pack's overall fitness and skills. {wolf.name} notes the improvement.",
+    "actions": [
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.speed", "delta": 1 },
+      { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
+      { "type": "log", "text": "The training games have improved {wolf.name}'s physical capabilities" }
+    ],
+    "tags": ["training", "improvement", "fitness"]
+  },
+  {
+    "id": "prove_leadership",
+    "title": "Leadership Proving Period",
+    "text": "The month-long proving period has ended. Alpha {wolf.name} must now face the pack's judgment on their conditional leadership.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" }
+      ]
+    },
+    "actions": [
+      { "type": "schedule_consequence", "consequenceId": "leadership_final_judgment", "daysDelay": 1 },
+      { "type": "log", "text": "The proving period for {wolf.name}'s leadership has ended. The pack prepares to render final judgment." }
+    ],
+    "tags": ["leadership", "judgment", "proving"]
+  }
+]

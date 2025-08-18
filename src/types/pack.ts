@@ -1,9 +1,100 @@
 import type { Wolf, MatingPair } from './wolf';
-import type { EventResult, Prophecy, StoryEvent } from './event';
+import type { 
+  EventResult, 
+  Prophecy, 
+  StoryEvent, 
+  DecisionResult, 
+  ScheduledConsequence, 
+  DecisionEvent
+} from './event';
 import type { Territory } from './territory';
 import type { PatrolAssignment, PatrolResult } from './patrol';
 
 export type Season = 'spring' | 'summer' | 'autumn' | 'winter';
+
+// Subsystem configuration interfaces
+export interface CombatConfig {
+  damageMultiplier: number;
+  highRiskThreshold: number;
+  highRiskDamageBonus: number;
+  rngVarianceRange: { min: number; max: number };
+  mortalityThreshold: number;
+  winnerDamageMultiplier: number;
+  maxDefenderMultiplier: number;
+  resourceTheftRange: { min: number; max: number };
+  lowHealthPenaltyThreshold: number;
+  lowHealthPenaltyMultiplier: number;
+}
+
+export interface HealerConfig {
+  herbsPerTend: number;
+  healHpRange: { min: number; max: number };
+  baseSuccessRate: number;
+  intelligenceBonus: number;
+  failureHealerDamage: number;
+  failurePatientDamage: number;
+  maxTendsPerDay: number;
+  prophecyPowerThreshold: number;
+  crystalPoolVisitPower: number;
+  lowHealthRefusalThreshold: number;
+}
+
+export interface RelationshipConfig {
+  stageRequirements: {
+    acquainted: { minDays: number; minBond: number };
+    friends: { minDays: number; minBond: number };
+    attracted: { minDays: number; minBond: number };
+    courting: { minDays: number; minBond: number };
+    mates: { minDays: number; minBond: number };
+  };
+  bondDecayInterval: number; // days between bond decay
+  bondDecayAmount: number;
+  bondDecayMinimum: number;
+}
+
+export interface PatrolTemplateConfig {
+  huntingPatrol: {
+    successWeight: number;
+    majorSuccessWeight: number;
+    failureWeight: number;
+    disasterWeight: number;
+    rewards: {
+      success: { food: number; xp: number };
+      majorSuccess: { food: number; xp: number; reputation: number };
+      failure: { food: number };
+    };
+  };
+  borderPatrol: {
+    successWeight: number;
+    majorSuccessWeight: number;
+    failureWeight: number;
+    disasterWeight: number;
+    rewards: {
+      success: { reputation: number; xp: number };
+      majorSuccess: { reputation: number; xp: number };
+    };
+  };
+  trainingPatrol: {
+    successWeight: number;
+    majorSuccessWeight: number;
+    failureWeight: number;
+    disasterWeight: number;
+    rewards: {
+      success: { xp: number };
+      majorSuccess: { xp: number };
+    };
+  };
+  herbGathering: {
+    successWeight: number;
+    majorSuccessWeight: number;
+    failureWeight: number;
+    disasterWeight: number;
+    rewards: {
+      success: { herbs: number; xp: number };
+      majorSuccess: { herbs: number; xp: number };
+    };
+  };
+}
 
 export interface Pack {
   name: string;
@@ -23,6 +114,12 @@ export interface Pack {
   patrolHistory?: PatrolResult[];
   patrolReputation?: number; // affects patrol success rates
   food?: number; // food stores from hunting
+  // Decision and consequence system
+  pendingDecisions?: DecisionEvent[]; // decisions awaiting player choice
+  decisionHistory?: DecisionResult[]; // completed decisions
+  scheduledConsequences?: ScheduledConsequence[]; // delayed consequences
+  packApproval?: number; // pack approval rating (0-100), affects stability
+  lastMoonEventDay?: number; // tracking monthly moon events
 }
 
 export interface PackState extends Pack {
@@ -45,6 +142,11 @@ export interface GameConfig {
   healerHerbsPerTend: number;
   healHpRange: { min: number; max: number };
   healerBaseSuccessRate: number;
+  // Subsystem configurations
+  combatSystem: CombatConfig;
+  healerSystem: HealerConfig;
+  relationshipSystem: RelationshipConfig;
+  patrolTemplates: PatrolTemplateConfig;
   matingSystem: {
     courtshipDuration: number; // minimum days before mating
     bondDecayRate: number; // daily bond strength decay
@@ -54,6 +156,12 @@ export interface GameConfig {
     inbreedingPrevention: boolean; // prevent family member mating
     alphaApprovalRequired: boolean; // alpha must approve new pairs
     relationshipProgressionRate: number; // multiplier for relationship progression speed
+    seasonalBreedingProbabilities: {
+      spring: number;
+      summer: number;
+      autumn: number;
+      winter: number;
+    };
   };
   seasonalModifiers: {
     spring: {
@@ -72,5 +180,12 @@ export interface GameConfig {
     patrolCooldownDays: number;
     baseSuccessRate: number;
     reputationImpact: number;
+  };
+  decisionSystem: {
+    moonEventFrequencyDays: number; // how often moon events occur
+    decisionTimeoutDays: number; // default timeout for player decisions
+    approvalDecayRate: number; // daily approval decay if approval < 50
+    maxPendingDecisions: number; // max simultaneous pending decisions
+    consequenceDelayRange: { min: number; max: number }; // days for consequences
   };
 }

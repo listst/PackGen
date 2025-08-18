@@ -1,5 +1,5 @@
 import type { Wolf } from '../types/wolf';
-import type { Pack } from '../types/pack';
+import type { Pack, GameConfig } from '../types/pack';
 import type { Prophecy } from '../types/event';
 import { isAlive, getWolvesByRole, random, generateId } from '../types/utils';
 
@@ -20,36 +20,16 @@ export interface ProphecyResult {
   objectives: string[];
 }
 
-export interface HealerConfig {
-  herbsPerTend: number;
-  healHpRange: { min: number; max: number };
-  baseSuccessRate: number;
-  intelligenceBonus: number;
-  failureHealerDamage: number;
-  failurePatientDamage: number;
-  maxTendsPerDay: number;
-  prophecyPowerThreshold: number;
-  crystalPoolVisitPower: number;
-}
-
-export const DEFAULT_HEALER_CONFIG: HealerConfig = {
-  herbsPerTend: 1,
-  healHpRange: { min: 15, max: 25 },
-  baseSuccessRate: 0.9,
-  intelligenceBonus: 0.01,
-  failureHealerDamage: 2,
-  failurePatientDamage: 5,
-  maxTendsPerDay: 5,
-  prophecyPowerThreshold: 5,
-  crystalPoolVisitPower: 1,
-};
-
 export class HealerEngine {
-  private config: HealerConfig;
+  private config: GameConfig;
   private dailyTends: Map<string, number> = new Map();
 
-  constructor(config: HealerConfig = DEFAULT_HEALER_CONFIG) {
+  constructor(config: GameConfig) {
     this.config = config;
+  }
+
+  updateConfig(newConfig: GameConfig): void {
+    this.config = newConfig;
   }
 
   // Check if a healer can tend to patients
@@ -59,18 +39,18 @@ export class HealerEngine {
     }
 
     // Check if healer has enough health
-    if (healer.stats.health <= 20) {
+    if (healer.stats.health <= this.config.healerSystem.lowHealthRefusalThreshold) {
       return false;
     }
 
     // Check daily tend limit
     const dailyTends = this.dailyTends.get(healer.id) ?? 0;
-    if (dailyTends >= this.config.maxTendsPerDay) {
+    if (dailyTends >= this.config.healerSystem.maxTendsPerDay) {
       return false;
     }
 
     // Check if pack has herbs
-    return pack.herbs >= this.config.herbsPerTend;
+    return pack.herbs >= this.config.healerSystem.herbsPerTend;
   }
 
   // Get wolves that need healing
@@ -91,14 +71,14 @@ export class HealerEngine {
     // Calculate success rate
     const successRate = Math.min(
       0.99,
-      this.config.baseSuccessRate +
-        healer.stats.intelligence * this.config.intelligenceBonus
+      this.config.healerSystem.baseSuccessRate +
+        healer.stats.intelligence * this.config.healerSystem.intelligenceBonus
     );
 
     const success = random.next() < successRate;
 
     // Use herbs
-    pack.herbs -= this.config.herbsPerTend;
+    pack.herbs -= this.config.healerSystem.herbsPerTend;
 
     // Track daily tends
     const currentTends = this.dailyTends.get(healer.id) ?? 0;
@@ -111,8 +91,8 @@ export class HealerEngine {
     if (success) {
       // Successful healing
       hpHealed = random.nextInt(
-        this.config.healHpRange.min,
-        this.config.healHpRange.max
+        this.config.healerSystem.healHpRange.min,
+        this.config.healerSystem.healHpRange.max
       );
 
       patient.stats.health = Math.min(100, patient.stats.health + hpHealed);
@@ -127,8 +107,8 @@ export class HealerEngine {
       );
     } else {
       // Failed healing
-      healerDamage = this.config.failureHealerDamage;
-      patientDamage = this.config.failurePatientDamage;
+      healerDamage = this.config.healerSystem.failureHealerDamage;
+      patientDamage = this.config.healerSystem.failurePatientDamage;
 
       healer.stats.health = Math.max(0, healer.stats.health - healerDamage);
       patient.stats.health = Math.max(0, patient.stats.health - patientDamage);
@@ -143,7 +123,7 @@ export class HealerEngine {
       patientId: patient.id,
       success,
       hpHealed,
-      herbsUsed: this.config.herbsPerTend,
+      herbsUsed: this.config.healerSystem.herbsPerTend,
     };
 
     if (healerDamage > 0) {
@@ -163,8 +143,8 @@ export class HealerEngine {
     const healLimit =
       maxHeals ??
       Math.min(
-        this.config.maxTendsPerDay,
-        Math.floor(pack.herbs / this.config.herbsPerTend),
+        this.config.healerSystem.maxTendsPerDay,
+        Math.floor(pack.herbs / this.config.healerSystem.herbsPerTend),
         wolvesNeedingHealing.length
       );
 
@@ -205,10 +185,10 @@ export class HealerEngine {
     }
 
     // Increase prophecy power
-    pack.prophecyPower += this.config.crystalPoolVisitPower;
+    pack.prophecyPower += this.config.healerSystem.crystalPoolVisitPower;
 
     // Check if powerful enough to generate prophecy
-    if (pack.prophecyPower >= this.config.prophecyPowerThreshold) {
+    if (pack.prophecyPower >= this.config.healerSystem.prophecyPowerThreshold) {
       return this.generateProphecy(healer, pack);
     }
 
@@ -278,7 +258,7 @@ export class HealerEngine {
     // Consume prophecy power
     pack.prophecyPower = Math.max(
       0,
-      pack.prophecyPower - this.config.prophecyPowerThreshold
+      pack.prophecyPower - this.config.healerSystem.prophecyPowerThreshold
     );
 
     pack.logs.push(
@@ -382,7 +362,7 @@ export class HealerEngine {
     canProphecy: boolean;
   } {
     const dailyTends = this.dailyTends.get(healer.id) ?? 0;
-    const remainingTends = Math.max(0, this.config.maxTendsPerDay - dailyTends);
+    const remainingTends = Math.max(0, this.config.healerSystem.maxTendsPerDay - dailyTends);
     const patientsNeedingHealing = this.getWolvesNeedingHealing(pack);
 
     return {
@@ -390,7 +370,7 @@ export class HealerEngine {
       remainingTends,
       totalPatients: patientsNeedingHealing.length,
       prophecyPower: pack.prophecyPower,
-      canProphecy: pack.prophecyPower >= this.config.prophecyPowerThreshold,
+      canProphecy: pack.prophecyPower >= this.config.healerSystem.prophecyPowerThreshold,
     };
   }
 
@@ -435,5 +415,7 @@ export class HealerEngine {
   }
 }
 
-// Export singleton instance
-export const healerEngine = new HealerEngine();
+// Note: Singleton instance created in simulation.ts with proper config
+// Temporary export for UI compatibility - should be refactored to use simulationEngine.getHealerEngine()
+import { DEFAULT_CONFIG } from './simulation';
+export const healerEngine = new HealerEngine(DEFAULT_CONFIG);

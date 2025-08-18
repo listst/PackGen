@@ -7,3 +7,4 @@ export { TerritoryPanel } from './TerritoryPanel';
 export { GeneticsViewer } from './GeneticsViewer';
 export { SaveLoadPanel } from './SaveLoadPanel';
 export { PatrolPanel } from './PatrolPanel';
+export { DecisionModal } from './DecisionModal';

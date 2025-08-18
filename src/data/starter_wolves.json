@@ -60,36 +60,6 @@
     "meta": "Ember is the alpha's mate: swift and sharp-minded, she tends the pack with quiet strength and is rumored to be favored by the Crystal Pool."
   },
   {
-    "id": "w003",
-    "name": "Stone",
-    "sex": "male",
-    "age": 5,
-    "role": "beta",
-    "appearance": {
-      "furColor": "silver",
-      "pattern": "striped",
-      "eyeColor": "yellow",
-      "scars": ["leg scar"]
-    },
-    "stats": {
-      "health": 85,
-      "strength": 9,
-      "speed": 6,
-      "intelligence": 6
-    },
-    "traits": {
-      "bravery": 8,
-      "sociability": 5,
-      "trainability": 6,
-      "fertility": 4
-    },
-    "xp": 10,
-    "level": 0,
-    "mateId": null,
-    "bonds": {},
-    "meta": "Stone is the stalwart beta: a veteran hunter and the alpha's right paw — quiet, firm, and steady."
-  },
-  {
     "id": "w004",
     "name": "Bram",
     "sex": "male",

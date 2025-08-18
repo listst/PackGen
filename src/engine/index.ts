@@ -5,13 +5,14 @@ export {
   SimulationEngine,
   DEFAULT_CONFIG,
 } from './simulation';
-export { combatEngine, CombatEngine } from './combat';
+export { CombatEngine } from './combat';
 export {
   trainingEngine,
   TrainingEngine,
   DEFAULT_TRAINING_CONFIG,
 } from './training';
-export { healerEngine, HealerEngine, DEFAULT_HEALER_CONFIG } from './healer';
+export { HealerEngine, healerEngine } from './healer';
+export { wolfGenerator, WolfGenerator, DEFAULT_GENERATOR_CONFIG } from './wolfGenerator';
 
 // Re-export types for convenience
 export type { Wolf } from '../types/wolf';

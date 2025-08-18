@@ -27,14 +27,7 @@ export interface CompatibilityScore {
 export class MatingSystem {
   private config: GameConfig;
 
-  // Relationship stage thresholds and requirements
-  private readonly STAGE_REQUIREMENTS = {
-    acquainted: { minDays: 3, minBond: 10 },
-    friends: { minDays: 7, minBond: 30 },
-    attracted: { minDays: 14, minBond: 50 },
-    courting: { minDays: 7, minBond: 70 },
-    mates: { minDays: 14, minBond: 80 },
-  };
+  // Relationship stage thresholds and requirements are now in config
 
   constructor(config: GameConfig) {
     this.config = config;
@@ -80,10 +73,9 @@ export class MatingSystem {
 
     if (targetStage === 'strangers') return true; // Can always become strangers
 
-    const requirements =
-      this.STAGE_REQUIREMENTS[
-        targetStage as keyof typeof this.STAGE_REQUIREMENTS
-      ];
+    const requirements = this.config.relationshipSystem.stageRequirements[
+      targetStage as keyof typeof this.config.relationshipSystem.stageRequirements
+    ];
     if (!requirements) return false;
 
     return (
@@ -566,7 +558,7 @@ export class MatingSystem {
 
     if (female.pregnant) return false;
 
-    // Check breeding season restriction
+    // Check breeding season restriction (now disabled for year-round breeding)
     if (
       this.config.matingSystem.breedingSeasonOnly &&
       !this.isSpring(pack.season)

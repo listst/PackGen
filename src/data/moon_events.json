@@ -1,0 +1,608 @@
+[
+  {
+    "id": "leadership_challenge",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "leadership",
+    "title": "Challenge to Leadership",
+    "text": "Under the full moon, a pack member approaches Alpha {wolf.name} with serious concerns. Some wolves have been quietly questioning the alpha's recent decisions, and tensions are rising throughout the pack. How should the alpha respond?",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "pack.packApproval", "op": "<", "value": 60 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "assert_dominance",
+        "text": "Advise the alpha to assert dominance and show strong leadership",
+        "description": "Display authority but risk alienating some pack members",
+        "actions": [
+          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
+          { "type": "adjust_approval", "delta": -5 },
+          { "type": "log", "text": "{wolf.name} asserted dominance, but some wolves seem unhappy" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "listen_concerns",
+        "text": "Encourage the alpha to listen and address concerns diplomatically",
+        "description": "Build trust and unity but may appear less decisive",
+        "actions": [
+          { "type": "adjust_approval", "delta": 10 },
+          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
+          { "type": "log", "text": "{wolf.name} listened to the pack's concerns and earned their respect" }
+        ],
+        "weight": 4
+      },
+      {
+        "id": "prove_worth",
+        "text": "Suggest the alpha prove their worth through a dangerous hunting trial",
+        "description": "High risk, high reward - could strengthen or doom leadership",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "hunting_trial", "daysDelay": 3 },
+          { "type": "log", "text": "{wolf.name} proposed a hunting trial to prove their leadership" }
+        ],
+        "weight": 2
+      }
+    ],
+    "weight": 8,
+    "tags": ["leadership", "alpha", "challenge"],
+    "timeoutDays": 5,
+    "defaultChoiceId": "listen_concerns",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "autumn": 1.5,
+      "winter": 1.2
+    }
+  },
+  {
+    "id": "coming_of_age",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "ceremony",
+    "title": "Coming of Age Ceremony",
+    "text": "The full moon shines bright as young {wolf.name} reaches maturity. The pack gathers to witness their transition from pup to adult. The alpha seeks guidance on how this milestone should be celebrated and what path the young wolf should take.",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "pup" },
+        { "field": "wolf.age", "op": ">=", "value": 1.0 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "hunter_path",
+        "text": "Recommend they follow the path of a hunter",
+        "description": "Focus on developing hunting skills and pack provision",
+        "actions": [
+          { "type": "change_role", "target": "wolf", "role": "hunter" },
+          { "type": "modify_stat", "target": "wolf", "stat": "stats.speed", "delta": 2 },
+          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
+          { "type": "adjust_approval", "delta": 5 },
+          { "type": "log", "text": "{wolf.name} has become a hunter and gained the pack's approval" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "beta_path",
+        "text": "Suggest they be groomed as a future pack leader",
+        "description": "Develop leadership qualities and political acumen",
+        "actions": [
+          { "type": "change_role", "target": "wolf", "role": "beta" },
+          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 2 },
+          { "type": "modify_stat", "target": "wolf", "stat": "stats.intelligence", "delta": 1 },
+          { "type": "adjust_approval", "delta": 8 },
+          { "type": "log", "text": "{wolf.name} has become a beta and shows great promise as a leader" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "omega_path",
+        "text": "Advise letting them find their own place naturally",
+        "description": "Allow natural development without imposing expectations",
+        "actions": [
+          { "type": "change_role", "target": "wolf", "role": "omega" },
+          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
+          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": 5 },
+          { "type": "adjust_approval", "delta": 3 },
+          { "type": "log", "text": "{wolf.name} found their place in the pack as an omega" }
+        ],
+        "weight": 3
+      }
+    ],
+    "weight": 10,
+    "tags": ["ceremony", "coming_of_age", "pup"],
+    "timeoutDays": 7,
+    "defaultChoiceId": "hunter_path",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "spring": 1.3,
+      "summer": 1.1
+    }
+  },
+  {
+    "id": "territory_dispute",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "crisis",
+    "title": "Territory Boundary Dispute",
+    "text": "Rival wolves have been spotted near the pack's territory boundaries. {wolf.name} brings urgent news that they've crossed into the pack's hunting grounds and are threatening the food sources. How should the alpha respond to this incursion?",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "in", "value": ["alpha", "beta", "hunter"] },
+        { "field": "pack.food", "op": "<", "value": 8 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "aggressive_response",
+        "text": "Counsel the alpha to attack immediately and drive them out",
+        "description": "Risk casualties but protect territory decisively",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "territory_battle", "daysDelay": 1 },
+          { "type": "adjust_approval", "delta": 5 },
+          { "type": "log", "text": "The pack prepares for battle to defend their territory" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "diplomatic_approach",
+        "text": "Advise sending diplomatic envoys to negotiate boundaries",
+        "description": "Seek peaceful resolution but risk appearing weak",
+        "actions": [
+          { "type": "adjust_approval", "delta": -3 },
+          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 3 },
+          { "type": "schedule_consequence", "consequenceId": "diplomatic_outcome", "daysDelay": 5 },
+          { "type": "log", "text": "Diplomatic envoys were sent to negotiate with the rival pack" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "strategic_retreat",
+        "text": "Recommend avoiding the area and finding new hunting grounds",
+        "description": "Prevent conflict but sacrifice valuable territory",
+        "actions": [
+          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+          { "type": "adjust_approval", "delta": -8 },
+          { "type": "log", "text": "The pack retreated to avoid conflict, but lost hunting grounds" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "night_ambush",
+        "text": "Suggest a dangerous night ambush to surprise the rivals",
+        "description": "Extremely risky strategy with potential for great success or disaster",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "night_ambush_result", "daysDelay": 2 },
+          { "type": "log", "text": "The pack plans a daring night ambush against the intruders" }
+        ],
+        "weight": 2
+      }
+    ],
+    "weight": 9,
+    "tags": ["crisis", "territory", "conflict"],
+    "timeoutDays": 3,
+    "defaultChoiceId": "diplomatic_approach",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "autumn": 1.4,
+      "winter": 1.2
+    }
+  },
+  {
+    "id": "mysterious_stranger",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "opportunity",
+    "title": "The Mysterious Stranger",
+    "text": "A lone wolf appears at the edge of the territory under the moonlight. Pack scouts report to Alpha {wolf.name} that this stranger seems different - older, wiser, with scars that tell many stories. They request an audience with the alpha. How should the pack respond?",
+    "condition": {
+      "all": [
+        { "field": "wolf.role", "op": "==", "value": "alpha" },
+        { "field": "pack.wolves.length", "op": "<", "value": 12 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "welcome_stranger",
+        "text": "Recommend welcoming the stranger into the pack",
+        "description": "Gain a valuable pack member but risk disrupting pack dynamics",
+        "actions": [
+          { "type": "spawn_wolf", "count": 1, "wolfTemplate": {
+            "name": "Wanderer",
+            "age": 4.0,
+            "role": "omega",
+            "stats": { "health": 85, "strength": 7, "speed": 6, "intelligence": 8 },
+            "traits": { "bravery": 8, "sociability": 4, "trainability": 6, "fertility": 3 }
+          }},
+          { "type": "adjust_approval", "delta": 8 },
+          { "type": "log", "text": "The mysterious stranger joined the pack, bringing wisdom and experience" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "seek_knowledge",
+        "text": "Suggest asking for their wisdom before they continue on",
+        "description": "Learn valuable knowledge without long-term commitment",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "stranger_wisdom", "daysDelay": 1 },
+          { "type": "adjust_approval", "delta": 2 },
+          { "type": "log", "text": "The stranger shared ancient wisdom before departing" }
+        ],
+        "weight": 4
+      },
+      {
+        "id": "turn_away",
+        "text": "Advise politely turning them away from the territory",
+        "description": "Maintain pack stability but miss potential benefits",
+        "actions": [
+          { "type": "adjust_approval", "delta": -2 },
+          { "type": "log", "text": "The stranger was turned away and disappeared into the night" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "test_loyalty",
+        "text": "Propose testing their worthiness through pack trials",
+        "description": "Determine their true intentions and abilities through challenges",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "stranger_trial", "daysDelay": 7 },
+          { "type": "log", "text": "The stranger accepted the challenge to prove their worth" }
+        ],
+        "weight": 3
+      }
+    ],
+    "weight": 6,
+    "tags": ["opportunity", "recruitment", "stranger"],
+    "timeoutDays": 5,
+    "defaultChoiceId": "seek_knowledge",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "spring": 1.1,
+      "autumn": 1.3
+    }
+  },
+  {
+    "id": "pack_celebration",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "pack_wide",
+    "title": "Moonlight Celebration",
+    "text": "The pack has been through many hardships recently, and morale is dangerously low. Pack member {wolf.name} approaches the alpha with a suggestion to host a celebration under the full moon to strengthen bonds and lift spirits. What kind of celebration should the alpha organize?",
+    "condition": {
+      "all": [
+        { "field": "pack.packApproval", "op": "<", "value": 40 },
+        { "field": "pack.wolves.length", "op": ">=", "value": 4 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "great_hunt",
+        "text": "Recommend organizing a great hunt followed by a feast",
+        "description": "Boost morale and gather food, but demands significant energy",
+        "actions": [
+          { "type": "adjust_approval", "delta": 15 },
+          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 5 },
+          { "type": "schedule_consequence", "consequenceId": "post_hunt_exhaustion", "daysDelay": 2 },
+          { "type": "log", "text": "The pack enjoyed a successful hunt and feast under the full moon" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "storytelling_night",
+        "text": "Suggest gathering for stories and howling beneath the stars",
+        "description": "Strengthen bonds without demanding physical exertion",
+        "actions": [
+          { "type": "adjust_approval", "delta": 12 },
+          { "type": "log", "text": "The pack shared stories and songs under the moonlight, strengthening their bonds" }
+        ],
+        "weight": 4
+      },
+      {
+        "id": "mating_ceremony",
+        "text": "Advise holding bonding ceremonies for courting pairs",
+        "description": "Strengthen pair bonds and encourage future reproduction",
+        "actions": [
+          { "type": "adjust_approval", "delta": 8 },
+          { "type": "schedule_consequence", "consequenceId": "enhanced_bonding", "daysDelay": 5 },
+          { "type": "log", "text": "Bonding ceremonies were held, strengthening relationships in the pack" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "training_games",
+        "text": "Propose organizing training games and competitions",
+        "description": "Improve pack skills while boosting morale through friendly competition",
+        "actions": [
+          { "type": "adjust_approval", "delta": 10 },
+          { "type": "schedule_consequence", "consequenceId": "training_benefits", "daysDelay": 3 },
+          { "type": "log", "text": "The pack enjoyed training games that improved both morale and skills" }
+        ],
+        "weight": 3
+      }
+    ],
+    "weight": 7,
+    "tags": ["pack_wide", "celebration", "morale"],
+    "timeoutDays": 4,
+    "defaultChoiceId": "storytelling_night",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "summer": 1.2,
+      "autumn": 1.4
+    }
+  },
+  {
+    "id": "food_shortage_crisis",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "crisis",
+    "title": "Starvation Looms",
+    "text": "The pack's food stores are dangerously low and winter approaches. {wolf.name} reports that prey is scarce and rival packs control the best hunting grounds. Alpha must make a desperate decision to save the pack from starvation.",
+    "condition": {
+      "all": [
+        { "field": "pack.food", "op": "<=", "value": 2 },
+        { "field": "pack.season", "op": "in", "value": ["autumn", "winter"] }
+      ]
+    },
+    "choices": [
+      {
+        "id": "desperate_raid",
+        "text": "Raid another pack's food cache in a dangerous operation",
+        "description": "High risk of casualties but could secure vital food supplies",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "food_raid_outcome", "daysDelay": 2 },
+          { "type": "adjust_approval", "delta": -5 },
+          { "type": "log", "text": "The pack prepares for a desperate raid on rival territory" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "exile_weak",
+        "text": "Exile the weakest members to preserve resources for the strong",
+        "description": "Cruel but ensures core pack survival through winter",
+        "actions": [
+          { "type": "remove_wolf", "targetSelector": "lowest_health" },
+          { "type": "adjust_approval", "delta": -20 },
+          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
+          { "type": "log", "text": "The weakest were cast out to preserve the pack's survival, creating deep resentment" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "hunt_dangerous_prey",
+        "text": "Risk hunting the large predators in the deep forest",
+        "description": "Dangerous but could provide massive food reserves",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "dangerous_hunt_outcome", "daysDelay": 1 },
+          { "type": "log", "text": "The pack ventures into dangerous territory to hunt large predators" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "seek_human_territory",
+        "text": "Venture near human settlements to scavenge livestock",
+        "description": "Risk human retaliation but access to abundant food",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "human_encounter", "daysDelay": 3 },
+          { "type": "log", "text": "Desperation drives the pack toward the dangerous realm of humans" }
+        ],
+        "weight": 2
+      }
+    ],
+    "weight": 8,
+    "tags": ["crisis", "starvation", "survival"],
+    "timeoutDays": 2,
+    "defaultChoiceId": "hunt_dangerous_prey",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "autumn": 1.3,
+      "winter": 1.8
+    }
+  },
+  {
+    "id": "betrayal_discovery",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "crisis",
+    "title": "Treachery Revealed",
+    "text": "Under the pale moonlight, {wolf.name} discovers that Beta is secretly meeting with rival pack members, sharing information about the pack's weaknesses and territory. This betrayal cuts deep into the heart of pack loyalty. How should Alpha respond to this devastating discovery?",
+    "condition": {
+      "all": [
+        { "field": "pack.wolves.length", "op": ">=", "value": 5 },
+        { "field": "pack.packApproval", "op": "<", "value": 30 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "public_execution",
+        "text": "Execute the traitor publicly to send a message",
+        "description": "Restore order through fear but may breed resentment",
+        "actions": [
+          { "type": "kill_wolf", "targetSelector": "beta" },
+          { "type": "adjust_approval", "delta": 10 },
+          { "type": "schedule_consequence", "consequenceId": "execution_aftermath", "daysDelay": 7 },
+          { "type": "log", "text": "The traitor was executed before the pack. Order is restored, but at what cost?" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "trial_by_combat",
+        "text": "Challenge the traitor to ritual combat for their crimes",
+        "description": "Honor the old ways but risk alpha defeat",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "betrayal_combat", "daysDelay": 1 },
+          { "type": "log", "text": "Ancient pack law demands trial by combat for such treachery" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "exile_traitor",
+        "text": "Banish the traitor but spare their life",
+        "description": "Show mercy but risk them joining enemies",
+        "actions": [
+          { "type": "remove_wolf", "targetSelector": "beta" },
+          { "type": "adjust_approval", "delta": -5 },
+          { "type": "create_rival_pack", "packName": "Exile's Revenge", "strength": 6 },
+          { "type": "log", "text": "The traitor was banished, but may return with enemies seeking vengeance" }
+        ],
+        "weight": 4
+      },
+      {
+        "id": "turn_spy",
+        "text": "Force them to become a double agent against the rivals",
+        "description": "Dangerous gamble that could backfire spectacularly",
+        "actions": [
+          { "type": "adjust_approval", "delta": -10 },
+          { "type": "schedule_consequence", "consequenceId": "double_agent_result", "daysDelay": 14 },
+          { "type": "log", "text": "The traitor now serves the pack as an unwilling spy among their former allies" }
+        ],
+        "weight": 2
+      }
+    ],
+    "weight": 2,
+    "tags": ["betrayal", "crisis", "loyalty"],
+    "timeoutDays": 3,
+    "defaultChoiceId": "exile_traitor",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "winter": 1.4,
+      "autumn": 1.2
+    }
+  },
+  {
+    "id": "disease_outbreak",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "crisis",
+    "title": "The Sickness Spreads",
+    "text": "A mysterious illness has struck the pack. Several wolves are showing symptoms of weakness, coughing, and loss of appetite. {wolf.name} fears it may spread to the entire pack if not contained. The alpha must decide how to handle this growing crisis.",
+    "condition": {
+      "all": [
+        { "field": "pack.wolves.length", "op": ">=", "value": 4 },
+        { "field": "pack.herbs", "op": "<", "value": 3 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "quarantine_sick",
+        "text": "Isolate the sick wolves from the healthy pack members",
+        "description": "Prevent spread but abandon sick wolves to their fate",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "quarantine_outcome", "daysDelay": 5 },
+          { "type": "adjust_approval", "delta": -10 },
+          { "type": "log", "text": "The sick were isolated from the pack to prevent the disease from spreading" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "seek_rare_herbs",
+        "text": "Send dangerous expeditions to find rare healing herbs",
+        "description": "Risk lives of healthy wolves to save the sick",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "herb_expedition", "daysDelay": 4 },
+          { "type": "log", "text": "Brave volunteers venture into dangerous territory seeking miracle cures" }
+        ],
+        "weight": 4
+      },
+      {
+        "id": "shamanic_ritual",
+        "text": "Perform ancient healing rituals under the full moon",
+        "description": "Trust in old pack traditions and spiritual healing",
+        "actions": [
+          { "type": "schedule_consequence", "consequenceId": "healing_ritual", "daysDelay": 1 },
+          { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -1 },
+          { "type": "log", "text": "The pack performs ancient healing rituals, calling upon ancestral spirits" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "accept_losses",
+        "text": "Accept that some wolves will die and focus on pack survival",
+        "description": "Harsh pragmatism that prioritizes the strong",
+        "actions": [
+          { "type": "kill_wolf", "targetSelector": "weakest" },
+          { "type": "adjust_approval", "delta": -15 },
+          { "type": "log", "text": "The pack coldly accepted the loss of the weak, hardening their hearts for survival" }
+        ],
+        "weight": 2
+      }
+    ],
+    "weight": 7,
+    "tags": ["crisis", "disease", "survival"],
+    "timeoutDays": 3,
+    "defaultChoiceId": "seek_rare_herbs",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "winter": 1.5,
+      "spring": 1.1
+    }
+  },
+  {
+    "id": "beta_succession",
+    "type": "decision",
+    "eventType": "moon_event",
+    "category": "leadership",
+    "title": "Choosing a New Beta",
+    "text": "With the recent loss of the pack's beta, the alpha must choose a new second-in-command. The pack looks to their leader for guidance in selecting who will help guide them through the challenges ahead. Who should be elevated to the position of beta?",
+    "condition": {
+      "all": [
+        { "field": "pack.wolves.length", "op": ">=", "value": 3 }
+      ]
+    },
+    "choices": [
+      {
+        "id": "promote_hunter",
+        "text": "Promote the most experienced hunter to beta",
+        "description": "Choose leadership based on hunting prowess and experience",
+        "actions": [
+          { "type": "promote_role", "targetSelector": "best_hunter", "newRole": "beta" },
+          { "type": "adjust_approval", "delta": 8 },
+          { "type": "log", "text": "The pack's best hunter was promoted to beta, earning respect for their skills" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "promote_eldest",
+        "text": "Elevate the eldest pack member to beta",
+        "description": "Honor age and wisdom in choosing the new beta",
+        "actions": [
+          { "type": "promote_role", "targetSelector": "eldest_non_alpha", "newRole": "beta" },
+          { "type": "adjust_approval", "delta": 5 },
+          { "type": "log", "text": "The eldest pack member was chosen as beta, bringing wisdom to leadership" }
+        ],
+        "weight": 2
+      },
+      {
+        "id": "promote_strongest",
+        "text": "Select the strongest wolf as the new beta",
+        "description": "Choose based on physical strength and combat ability",
+        "actions": [
+          { "type": "promote_role", "targetSelector": "strongest_non_alpha", "newRole": "beta" },
+          { "type": "adjust_approval", "delta": 6 },
+          { "type": "log", "text": "The strongest pack member became beta, inspiring confidence through power" }
+        ],
+        "weight": 3
+      },
+      {
+        "id": "promote_intelligent",
+        "text": "Choose the most intelligent wolf for beta",
+        "description": "Value wisdom and strategic thinking in leadership",
+        "actions": [
+          { "type": "promote_role", "targetSelector": "smartest_non_alpha", "newRole": "beta" },
+          { "type": "adjust_approval", "delta": 7 },
+          { "type": "log", "text": "The wisest pack member was made beta, bringing intelligence to leadership" }
+        ],
+        "weight": 3
+      }
+    ],
+    "weight": 10,
+    "tags": ["succession", "leadership", "beta"],
+    "timeoutDays": 3,
+    "defaultChoiceId": "promote_hunter",
+    "isPlayerChoice": true,
+    "seasonalBonus": {
+      "winter": 1.2,
+      "autumn": 1.1
+    }
+  }
+]

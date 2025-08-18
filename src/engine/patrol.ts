@@ -27,6 +27,11 @@ export class PatrolEngine {
   }
 
   private loadDefaultPatrols(): void {
+    const huntingConfig = this.config.patrolTemplates.huntingPatrol;
+    const borderConfig = this.config.patrolTemplates.borderPatrol;
+    const trainingConfig = this.config.patrolTemplates.trainingPatrol;
+    const herbConfig = this.config.patrolTemplates.herbGathering;
+
     this.patrolTemplates = [
       {
         id: 'hunting_patrol',
@@ -37,52 +42,52 @@ export class PatrolEngine {
         outcomes: [
           {
             outcome: 'success',
-            weight: 50,
+            weight: huntingConfig.successWeight,
             title: 'Successful Hunt',
             description: 'The patrol brought back plenty of prey',
             rewards: [
               {
                 type: 'food',
-                amount: 3,
+                amount: huntingConfig.rewards.success.food,
                 description: 'Fresh prey for the pack',
               },
               {
                 type: 'experience',
-                amount: 10,
+                amount: huntingConfig.rewards.success.xp,
                 description: 'Hunting experience gained',
               },
             ],
           },
           {
             outcome: 'major_success',
-            weight: 15,
+            weight: huntingConfig.majorSuccessWeight,
             title: 'Exceptional Hunt',
             description:
               'The patrol found a large herd and brought back abundant prey',
             rewards: [
-              { type: 'food', amount: 6, description: 'Abundant prey haul' },
+              { type: 'food', amount: huntingConfig.rewards.majorSuccess.food, description: 'Abundant prey haul' },
               {
                 type: 'experience',
-                amount: 20,
+                amount: huntingConfig.rewards.majorSuccess.xp,
                 description: 'Exceptional hunting experience',
               },
               {
                 type: 'reputation',
-                amount: 5,
+                amount: huntingConfig.rewards.majorSuccess.reputation,
                 description: 'Pack reputation improved',
               },
             ],
           },
           {
             outcome: 'failure',
-            weight: 25,
+            weight: huntingConfig.failureWeight,
             title: 'Poor Hunt',
             description: 'The patrol found little prey',
-            rewards: [{ type: 'food', amount: 1, description: 'Meager catch' }],
+            rewards: [{ type: 'food', amount: huntingConfig.rewards.failure.food, description: 'Meager catch' }],
           },
           {
             outcome: 'disaster',
-            weight: 10,
+            weight: huntingConfig.disasterWeight,
             title: 'Dangerous Encounter',
             description: 'The patrol encountered dangerous prey or predators',
             consequences: [
@@ -104,39 +109,44 @@ export class PatrolEngine {
         outcomes: [
           {
             outcome: 'success',
-            weight: 60,
+            weight: borderConfig.successWeight,
             title: 'Secure Borders',
             description:
               'The patrol maintained territorial boundaries without incident',
             rewards: [
               {
-                type: 'territory',
-                amount: 1,
+                type: 'reputation',
+                amount: borderConfig.rewards.success.reputation,
                 description: 'Territory secured',
               },
               {
                 type: 'experience',
-                amount: 5,
+                amount: borderConfig.rewards.success.xp,
                 description: 'Patrol experience gained',
               },
             ],
           },
           {
-            outcome: 'event',
-            weight: 20,
+            outcome: 'major_success',
+            weight: borderConfig.majorSuccessWeight,
             title: 'Rival Pack Encounter',
             description: 'The patrol encountered wolves from a rival pack',
             rewards: [
               {
+                type: 'reputation',
+                amount: borderConfig.rewards.majorSuccess.reputation,
+                description: 'Gained reputation from successful confrontation',
+              },
+              {
                 type: 'experience',
-                amount: 15,
-                description: 'Valuable intel gathered',
+                amount: borderConfig.rewards.majorSuccess.xp,
+                description: 'Valuable intel and experience gathered',
               },
             ],
           },
           {
             outcome: 'failure',
-            weight: 15,
+            weight: borderConfig.failureWeight,
             title: 'Border Intrusion',
             description: 'The patrol found evidence of trespassers',
             consequences: [
@@ -149,7 +159,7 @@ export class PatrolEngine {
           },
           {
             outcome: 'disaster',
-            weight: 5,
+            weight: borderConfig.disasterWeight,
             title: 'Border Conflict',
             description: 'The patrol was attacked by rival wolves',
             consequences: [
@@ -175,26 +185,26 @@ export class PatrolEngine {
         outcomes: [
           {
             outcome: 'success',
-            weight: 70,
+            weight: trainingConfig.successWeight,
             title: 'Good Training',
             description: 'The apprentices learned valuable skills',
             rewards: [
               {
                 type: 'experience',
-                amount: 25,
+                amount: trainingConfig.rewards.success.xp,
                 description: 'Training experience for apprentices',
               },
             ],
           },
           {
             outcome: 'major_success',
-            weight: 20,
+            weight: trainingConfig.majorSuccessWeight,
             title: 'Exceptional Training',
             description: 'The apprentices excelled in their training',
             rewards: [
               {
                 type: 'experience',
-                amount: 40,
+                amount: trainingConfig.rewards.majorSuccess.xp,
                 description: 'Exceptional training progress',
               },
               {
@@ -206,7 +216,7 @@ export class PatrolEngine {
           },
           {
             outcome: 'failure',
-            weight: 10,
+            weight: trainingConfig.failureWeight,
             title: 'Poor Training',
             description: 'The training session did not go well',
             rewards: [
@@ -229,37 +239,37 @@ export class PatrolEngine {
         outcomes: [
           {
             outcome: 'success',
-            weight: 60,
+            weight: herbConfig.successWeight,
             title: 'Herbs Found',
             description: 'The patrol discovered useful medicinal plants',
             rewards: [
               {
                 type: 'herbs',
-                amount: 3,
+                amount: herbConfig.rewards.success.herbs,
                 description: 'Fresh medicinal herbs collected',
               },
               {
                 type: 'experience',
-                amount: 8,
+                amount: herbConfig.rewards.success.xp,
                 description: 'Herb gathering knowledge gained',
               },
             ],
           },
           {
             outcome: 'major_success',
-            weight: 15,
+            weight: herbConfig.majorSuccessWeight,
             title: 'Rare Herb Discovery',
             description:
               'The patrol found a patch of rare and powerful healing herbs',
             rewards: [
               {
                 type: 'herbs',
-                amount: 6,
+                amount: herbConfig.rewards.majorSuccess.herbs,
                 description: 'Rare medicinal herbs discovered',
               },
               {
                 type: 'experience',
-                amount: 15,
+                amount: herbConfig.rewards.majorSuccess.xp,
                 description: 'Valuable herb lore learned',
               },
               {
@@ -271,7 +281,7 @@ export class PatrolEngine {
           },
           {
             outcome: 'failure',
-            weight: 20,
+            weight: herbConfig.failureWeight,
             title: 'Few Herbs Found',
             description: 'The patrol searched but found only common plants',
             rewards: [

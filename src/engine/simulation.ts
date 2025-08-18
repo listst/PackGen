@@ -1,9 +1,8 @@
 import type { Wolf } from '../types/wolf';
 import type { Pack, GameConfig } from '../types/pack';
-import type { EventResult } from '../types/event';
+import type { EventResult, EventTemplate } from '../types/event';
 import {
   getCurrentSeason,
-  isSpring,
   isAlive,
   isPup,
   random,
@@ -13,6 +12,8 @@ import {
 import { eventEngine } from './eventEngine';
 import { MatingSystem } from './mating';
 import { PatrolEngine } from './patrol';
+import { CombatEngine } from './combat';
+import { HealerEngine } from './healer';
 
 // Default game configuration
 export const DEFAULT_CONFIG: GameConfig = {
@@ -26,15 +27,101 @@ export const DEFAULT_CONFIG: GameConfig = {
   healerHerbsPerTend: 1,
   healHpRange: { min: 15, max: 25 },
   healerBaseSuccessRate: 0.9,
+  // Subsystem configurations
+  combatSystem: {
+    damageMultiplier: 5,
+    highRiskThreshold: 20,
+    highRiskDamageBonus: 10,
+    rngVarianceRange: { min: -5, max: 5 },
+    mortalityThreshold: 0,
+    winnerDamageMultiplier: 0.5,
+    maxDefenderMultiplier: 2,
+    resourceTheftRange: { min: 1, max: 3 },
+    lowHealthPenaltyThreshold: 30,
+    lowHealthPenaltyMultiplier: 0.7,
+  },
+  healerSystem: {
+    herbsPerTend: 1,
+    healHpRange: { min: 15, max: 25 },
+    baseSuccessRate: 0.9,
+    intelligenceBonus: 0.01,
+    failureHealerDamage: 2,
+    failurePatientDamage: 5,
+    maxTendsPerDay: 5,
+    prophecyPowerThreshold: 5,
+    crystalPoolVisitPower: 1,
+    lowHealthRefusalThreshold: 20,
+  },
+  relationshipSystem: {
+    stageRequirements: {
+      acquainted: { minDays: 3, minBond: 10 },
+      friends: { minDays: 7, minBond: 30 },
+      attracted: { minDays: 14, minBond: 50 },
+      courting: { minDays: 7, minBond: 70 },
+      mates: { minDays: 14, minBond: 80 },
+    },
+    bondDecayInterval: 10,
+    bondDecayAmount: 1,
+    bondDecayMinimum: -100,
+  },
+  patrolTemplates: {
+    huntingPatrol: {
+      successWeight: 50,
+      majorSuccessWeight: 15,
+      failureWeight: 25,
+      disasterWeight: 10,
+      rewards: {
+        success: { food: 3, xp: 10 },
+        majorSuccess: { food: 6, xp: 20, reputation: 5 },
+        failure: { food: 1 },
+      },
+    },
+    borderPatrol: {
+      successWeight: 60,
+      majorSuccessWeight: 20,
+      failureWeight: 15,
+      disasterWeight: 5,
+      rewards: {
+        success: { reputation: 3, xp: 8 },
+        majorSuccess: { reputation: 6, xp: 15 },
+      },
+    },
+    trainingPatrol: {
+      successWeight: 70,
+      majorSuccessWeight: 20,
+      failureWeight: 8,
+      disasterWeight: 2,
+      rewards: {
+        success: { xp: 15 },
+        majorSuccess: { xp: 25 },
+      },
+    },
+    herbGathering: {
+      successWeight: 55,
+      majorSuccessWeight: 25,
+      failureWeight: 15,
+      disasterWeight: 5,
+      rewards: {
+        success: { herbs: 2, xp: 5 },
+        majorSuccess: { herbs: 4, xp: 10 },
+      },
+    },
+  },
   matingSystem: {
     courtshipDuration: 14, // minimum days before mating
     bondDecayRate: 0.2, // slower daily bond strength decay
     minBreedingBond: 80, // higher minimum bond strength to breed (mates stage)
     maxLittersPerYear: 1, // breeding limit per female
-    breedingSeasonOnly: true, // spring-only breeding
+    breedingSeasonOnly: false, // allow year-round breeding with seasonal probabilities
     inbreedingPrevention: true, // prevent family member mating
     alphaApprovalRequired: false, // alpha must approve new pairs
     relationshipProgressionRate: 0.5, // slower relationship progression
+    seasonalBreedingProbabilities: {
+      spring: 0.6, // 60% chance in spring
+      summer: 0.5, // 50% chance in summer
+      autumn: 0.4, // 40% chance in fall
+      winter: 0.3, // 30% chance in winter
+    },
   },
   seasonalModifiers: {
     spring: { birthWindow: true, huntSuccess: 1.0, courtshipBonus: 1.5 },
@@ -50,23 +137,36 @@ export const DEFAULT_CONFIG: GameConfig = {
     baseSuccessRate: 0.7,
     reputationImpact: 0.3,
   },
+  decisionSystem: {
+    moonEventFrequencyDays: 30, // moon event every 30 days
+    decisionTimeoutDays: 7, // player has 7 days to decide
+    approvalDecayRate: 0.1, // daily approval decay if below 50
+    maxPendingDecisions: 3, // max 3 pending decisions at once
+    consequenceDelayRange: { min: 7, max: 30 }, // consequences delayed 7-30 days
+  },
 };
 
 export class SimulationEngine {
   private config: GameConfig;
   private matingSystem: MatingSystem;
   private patrolEngine: PatrolEngine;
+  private combatEngine: CombatEngine;
+  private healerEngine: HealerEngine;
 
   constructor(config: GameConfig = DEFAULT_CONFIG) {
     this.config = config;
     this.matingSystem = new MatingSystem(config);
     this.patrolEngine = new PatrolEngine(config);
+    this.combatEngine = new CombatEngine(config);
+    this.healerEngine = new HealerEngine(config);
   }
 
   updateConfig(newConfig: Partial<GameConfig>): void {
     this.config = { ...this.config, ...newConfig };
     this.matingSystem = new MatingSystem(this.config);
     this.patrolEngine.updateConfig(this.config);
+    this.combatEngine.updateConfig(this.config);
+    this.healerEngine.updateConfig(this.config);
   }
 
   // Main simulation tick - advances one day
@@ -95,6 +195,9 @@ export class SimulationEngine {
 
     // Process scheduled patrols
     this.processPatrols(pack);
+
+    // Process decision system
+    this.processDecisionSystem(pack);
 
     // Run daily events
     const eventCount = random.nextInt(
@@ -168,24 +271,15 @@ export class SimulationEngine {
       const daysSincePregnancy = pack.day - (wolf.pregnancyDay ?? 0);
 
       if (daysSincePregnancy >= this.config.gestationDays) {
-        // Only give birth in spring (enforced restriction)
-        if (isSpring(pack.season)) {
-          this.giveBirth(wolf, pack);
-        } else {
-          // Miscarriage if not in spring season (enforces spring-only births)
-          pack.logs.push(
-            `Day ${pack.day}: ${wolf.name} lost her litter due to harsh conditions.`
-          );
-        }
+        // Allow births in any season
+        this.giveBirth(wolf, pack);
         wolf.pregnant = false;
         delete wolf.pregnancyDay;
       }
     });
 
-    // New mating system - only process breeding in spring
-    if (isSpring(pack.season)) {
-      this.processBreeding(pack);
-    }
+    // Process breeding year-round with seasonal probabilities
+    this.processBreeding(pack);
   }
 
   private giveBirth(mother: Wolf, pack: Pack): void {
@@ -337,13 +431,15 @@ export class SimulationEngine {
         return;
       }
 
-      // Breeding chance based on bond strength and fertility
+      // Breeding chance based on bond strength, fertility, and season
       const bondModifier = pair.bondStrength / 100; // 0-1 multiplier
       const fertilityModifier =
         (female.traits.fertility + male.traits.fertility) / 20; // 0-1 multiplier
-      const baseChance = 0.3; // 30% base chance per season
-
-      const pregnancyChance = baseChance * bondModifier * fertilityModifier;
+      
+      // Get seasonal breeding probability
+      const seasonalProbability = this.config.matingSystem.seasonalBreedingProbabilities[pack.season];
+      
+      const pregnancyChance = seasonalProbability * bondModifier * fertilityModifier;
 
       if (random.next() < pregnancyChance) {
         female.pregnant = true;
@@ -460,14 +556,17 @@ export class SimulationEngine {
   }
 
   private decayBonds(pack: Pack): void {
-    // Every 10 days, bonds decay by 1
-    if (pack.day % 10 === 0) {
+    // Bond decay based on configuration
+    if (pack.day % this.config.relationshipSystem.bondDecayInterval === 0) {
       pack.wolves.forEach((wolf) => {
         if (wolf.bonds) {
           Object.keys(wolf.bonds).forEach((otherId) => {
             const bondValue = wolf.bonds![otherId];
             if (typeof bondValue === 'number') {
-              wolf.bonds![otherId] = Math.max(-100, bondValue - 1);
+              wolf.bonds![otherId] = Math.max(
+                this.config.relationshipSystem.bondDecayMinimum,
+                bondValue - this.config.relationshipSystem.bondDecayAmount
+              );
             }
           });
         }
@@ -489,8 +588,64 @@ export class SimulationEngine {
   }
 
   private cleanupDeadWolves(pack: Pack): void {
+    // Check for alpha and beta deaths before cleanup
+    const deadWolves = pack.wolves.filter((wolf) => wolf._dead);
+    
+    deadWolves.forEach((deadWolf) => {
+      if (deadWolf.role === 'alpha') {
+        this.handleAlphaDeath(pack, deadWolf);
+      } else if (deadWolf.role === 'beta') {
+        this.handleBetaDeath(pack, deadWolf);
+      }
+    });
+    
     // Remove dead wolves from pack
     pack.wolves = pack.wolves.filter((wolf) => !wolf._dead);
+  }
+  
+  private handleAlphaDeath(pack: Pack, deadAlpha: Wolf): void {
+    pack.logs.push(`Day ${pack.day}: Alpha ${deadAlpha.name} has died. The pack mourns their leader.`);
+    
+    // Find beta to promote to alpha
+    const beta = getAliveWolves(pack).find((w) => w.role === 'beta');
+    
+    if (beta) {
+      beta.role = 'alpha';
+      pack.logs.push(`Day ${pack.day}: Beta ${beta.name} has become the new alpha.`);
+      
+      // Trigger beta succession event
+      this.triggerBetaSuccessionEvent(pack);
+    } else {
+      // No beta available - pack crisis
+      pack.logs.push(`Day ${pack.day}: With no beta to succeed, the pack faces a leadership crisis!`);
+      // Could add pack dissolution or emergency alpha election here
+    }
+  }
+  
+  private handleBetaDeath(pack: Pack, deadBeta: Wolf): void {
+    pack.logs.push(`Day ${pack.day}: Beta ${deadBeta.name} has died.`);
+    
+    // Trigger beta succession event if there's still an alpha
+    const alpha = getAliveWolves(pack).find((w) => w.role === 'alpha');
+    if (alpha) {
+      this.triggerBetaSuccessionEvent(pack);
+    }
+  }
+  
+  private triggerBetaSuccessionEvent(pack: Pack): void {
+    // Check if we already have a beta succession event pending
+    const hasPendingSuccession = pack.pendingDecisions?.some(
+      (decision) => decision.id === 'beta_succession'
+    );
+    
+    if (!hasPendingSuccession && pack.pendingDecisions && pack.pendingDecisions.length < 3) {
+      // Create beta succession event
+      const successionEvent = eventEngine.createSuccessionEvent(pack);
+      if (successionEvent) {
+        pack.pendingDecisions.push(successionEvent);
+        pack.logs.push(`Day ${pack.day}: The alpha must choose a new beta for the pack.`);
+      }
+    }
   }
 
   private generatePupName(): string {
@@ -552,9 +707,92 @@ export class SimulationEngine {
     });
   }
 
-  // Public methods for patrol management
+  private processDecisionSystem(pack: Pack): void {
+    // Initialize decision system fields if needed
+    if (!pack.pendingDecisions) pack.pendingDecisions = [];
+    if (!pack.decisionHistory) pack.decisionHistory = [];
+    if (!pack.scheduledConsequences) pack.scheduledConsequences = [];
+    if (pack.packApproval === undefined) pack.packApproval = 50;
+    if (!pack.lastMoonEventDay) pack.lastMoonEventDay = 0;
+
+    // Process scheduled consequences
+    const consequenceResults = eventEngine.processScheduledConsequences(pack);
+    consequenceResults.forEach((result) => {
+      pack.logs.push(`Day ${pack.day}: ${result.text}`);
+    });
+
+    // Auto-resolve timed out decisions
+    const timedOutResults = eventEngine.autoResolveTimedOutDecisions(pack);
+    timedOutResults.forEach((result) => {
+      pack.logs.push(`Day ${pack.day}: Auto-resolved - ${result.text}`);
+    });
+
+    // Check for moon events
+    const moonEvent = eventEngine.checkForMoonEvent(pack);
+    if (moonEvent && pack.pendingDecisions.length < this.config.decisionSystem.maxPendingDecisions) {
+      // Find candidate wolves for this moon event
+      const tempTemplate: EventTemplate = {
+        id: moonEvent.id,
+        text: moonEvent.text,
+        condition: moonEvent.condition,
+        actions: [], // MoonEvents don't have actions, only choices do
+        title: moonEvent.title,
+        weight: moonEvent.weight,
+        tags: moonEvent.tags,
+        allowFallback: moonEvent.allowFallback,
+      };
+      const candidates = eventEngine.findCandidateWolves(tempTemplate, pack);
+      if (candidates.length > 0) {
+        const selectedWolf = random.choice(candidates);
+        let targetWolf: Wolf | undefined;
+
+        // Select target wolf if needed
+        const needsTarget = moonEvent.choices.some(choice =>
+          choice.actions.some(action =>
+            action.type === 'adjust_bond' ||
+            (action.type === 'modify_stat' && action.target === 'target')
+          )
+        );
+
+        if (needsTarget) {
+          const potentialTargets = pack.wolves.filter(
+            (w) => isAlive(w) && w.id !== selectedWolf.id
+          );
+          if (potentialTargets.length > 0) {
+            targetWolf = random.choice(potentialTargets);
+          }
+        }
+
+        // Create the decision event
+        eventEngine.createDecisionEvent(moonEvent, selectedWolf, pack, targetWolf);
+        pack.lastMoonEventDay = pack.day;
+
+        pack.logs.push(
+          `Day ${pack.day}: A moon event has occurred - ${moonEvent.title || 'A decision awaits'}!`
+        );
+      }
+    }
+
+    // Process pack approval decay
+    if (pack.packApproval < 50) {
+      pack.packApproval = Math.max(
+        0,
+        pack.packApproval - this.config.decisionSystem.approvalDecayRate
+      );
+    }
+  }
+
+  // Public methods for engine access
   getPatrolEngine(): PatrolEngine {
     return this.patrolEngine;
+  }
+
+  getCombatEngine(): CombatEngine {
+    return this.combatEngine;
+  }
+
+  getHealerEngine(): HealerEngine {
+    return this.healerEngine;
   }
 
   simulateMultipleDays(pack: Pack, days: number): EventResult[] {
