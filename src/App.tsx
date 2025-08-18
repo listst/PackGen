@@ -557,7 +557,7 @@ function App() {
         )}
 
         {activeTab === 'healer' && (
-          <HealerPanel pack={pack} onPackUpdate={setPack} />
+          <HealerPanel pack={pack} onPackUpdate={setPack} simulationEngine={simulationEngine} />
         )}
 
         {activeTab === 'territory' && (

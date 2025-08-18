@@ -11,7 +11,7 @@ export {
   TrainingEngine,
   DEFAULT_TRAINING_CONFIG,
 } from './training';
-export { HealerEngine, healerEngine } from './healer';
+export { HealerEngine } from './healer';
 export { wolfGenerator, WolfGenerator, DEFAULT_GENERATOR_CONFIG } from './wolfGenerator';
 
 // Re-export types for convenience

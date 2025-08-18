@@ -103,7 +103,6 @@
         "actions": [
           { "type": "change_role", "target": "wolf", "role": "omega" },
           { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": 5 },
           { "type": "adjust_approval", "delta": 3 },
           { "type": "log", "text": "{wolf.name} found their place in the pack as an omega" }
         ],

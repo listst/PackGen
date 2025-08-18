@@ -1,20 +1,22 @@
 import { useState } from 'react';
 import type { Pack } from '../../types/pack';
 import type { Wolf } from '../../types/wolf';
-import { healerEngine } from '../../engine/healer';
+import type { SimulationEngine } from '../../engine/simulation';
 import { getWolvesByRole, isAlive } from '../../types/utils';
 
 interface HealerPanelProps {
   pack: Pack;
   onPackUpdate: (pack: Pack) => void;
+  simulationEngine: SimulationEngine;
 }
 
-export function HealerPanel({ pack, onPackUpdate }: HealerPanelProps) {
+export function HealerPanel({ pack, onPackUpdate, simulationEngine }: HealerPanelProps) {
   const [selectedHealer, setSelectedHealer] = useState<Wolf | null>(null);
   const [selectedPatient, setSelectedPatient] = useState<Wolf | null>(null);
 
   const healers = getWolvesByRole(pack, 'healer').filter(isAlive);
   const activeHealer = selectedHealer || healers[0] || null;
+  const healerEngine = simulationEngine.getHealerEngine();
 
   const handleHealWolf = () => {
     if (!activeHealer || !selectedPatient) return;

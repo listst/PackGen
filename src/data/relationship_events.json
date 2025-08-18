@@ -42,12 +42,6 @@
     },
     "actions": [
       {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 3
-      },
-      {
         "type": "log",
         "text": "{wolf.name} and {target.name} successfully hunted together."
       }
@@ -70,12 +64,6 @@
       ]
     },
     "actions": [
-      {
-        "type": "modify_stat",
-        "target": "target",
-        "stat": "stats.health",
-        "delta": 5
-      },
       {
         "type": "log",
         "text": "{wolf.name} provided comfort to {target.name}."
@@ -264,12 +252,6 @@
     },
     "actions": [
       {
-        "type": "modify_stat",
-        "target": "target",
-        "stat": "stats.health",
-        "delta": 2
-      },
-      {
         "type": "log",
         "text": "{wolf.name} gently groomed {target.name}."
       }
@@ -292,18 +274,6 @@
       ]
     },
     "actions": [
-      {
-        "type": "modify_stat",
-        "target": "target",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": -2
-      },
       {
         "type": "log",
         "text": "{wolf.name} generously shared food with {target.name}."

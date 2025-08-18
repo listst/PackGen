@@ -19,12 +19,6 @@
     },
     "actions": [
       {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -52,12 +46,6 @@
       ]
     },
     "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
       {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
@@ -87,12 +75,6 @@
     },
     "actions": [
       {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -119,14 +101,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -153,14 +128,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -187,14 +155,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -221,14 +182,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -255,14 +209,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -289,14 +236,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -323,14 +263,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -357,14 +290,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -391,14 +317,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -425,14 +344,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -459,14 +371,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -493,14 +398,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -527,14 +425,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -561,14 +452,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -595,14 +479,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -629,14 +506,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -663,14 +533,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -697,14 +560,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -731,14 +587,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -765,14 +614,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -799,14 +641,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -833,14 +668,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -867,14 +695,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -901,14 +722,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -935,14 +749,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -969,14 +776,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -1003,14 +803,7 @@
         }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 5
-      },
-      {
+    "actions": [{
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }

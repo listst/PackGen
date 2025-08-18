@@ -99,14 +99,7 @@
         "type": "adjust_bond",
         "withWolfIdField": "mateId",
         "delta": 5
-      },
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 2
-      },
-      {
+      },{
         "type": "log",
         "text": "{wolf.name} and their mate grow closer together."
       }

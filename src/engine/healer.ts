@@ -416,6 +416,5 @@ export class HealerEngine {
 }
 
 // Note: Singleton instance created in simulation.ts with proper config
-// Temporary export for UI compatibility - should be refactored to use simulationEngine.getHealerEngine()
-import { DEFAULT_CONFIG } from './simulation';
-export const healerEngine = new HealerEngine(DEFAULT_CONFIG);
+// The healer engine is now managed by the simulation engine
+// Use simulationEngine.getHealerEngine() to access the healer functionality

@@ -9,14 +9,7 @@
         { "field": "stats.health", "op": ">", "value": 30 }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 8
-      },
-      { "type": "log", "text": "{wolf.name} brought food." }
+    "actions": [{ "type": "log", "text": "{wolf.name} brought food." }
     ],
     "weight": 8,
     "tags": ["hunting"]
@@ -184,14 +177,7 @@
     "condition": {
       "all": [{ "field": "stats.health", "op": "<", "value": 95 }]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 6
-      },
-      { "type": "log", "text": "{wolf.name} scavenged some food." }
+    "actions": [{ "type": "log", "text": "{wolf.name} scavenged some food." }
     ],
     "weight": 6,
     "tags": ["food"]
@@ -204,14 +190,7 @@
       "all": [{ "field": "traits.sociability", "op": ">", "value": 6 }]
     },
     "actions": [
-      { "type": "adjust_bond", "withWolfIdField": "target.id", "delta": 5 },
-      {
-        "type": "modify_stat",
-        "target": "wolf",
-        "stat": "stats.health",
-        "delta": 4
-      },
-      { "type": "log", "text": "{wolf.name} bonded with the pack." }
+      { "type": "adjust_bond", "withWolfIdField": "target.id", "delta": 5 },{ "type": "log", "text": "{wolf.name} bonded with the pack." }
     ],
     "weight": 6,
     "tags": ["social"],
@@ -227,14 +206,7 @@
         { "field": "stats.health", "op": ">", "value": 20 }
       ]
     },
-    "actions": [
-      {
-        "type": "modify_stat",
-        "target": "target",
-        "stat": "stats.health",
-        "delta": 15
-      },
-      {
+    "actions": [{
         "type": "modify_stat",
         "target": "wolf",
         "stat": "stats.health",
