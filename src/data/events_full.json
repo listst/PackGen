@@ -101,7 +101,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -128,7 +129,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -155,7 +157,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -182,7 +185,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -209,7 +213,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -236,7 +241,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -263,7 +269,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -290,7 +297,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -317,7 +325,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -344,7 +353,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -371,7 +381,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -398,7 +409,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -425,7 +437,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -452,7 +465,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -479,7 +493,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -506,7 +521,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -533,7 +549,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -560,7 +577,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -587,7 +605,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -614,7 +633,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -641,7 +661,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -668,7 +689,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -695,7 +717,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -722,7 +745,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -749,7 +773,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -776,7 +801,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }
@@ -803,7 +829,8 @@
         }
       ]
     },
-    "actions": [{
+    "actions": [
+      {
         "type": "log",
         "text": "{wolf.name} completed a hunt."
       }

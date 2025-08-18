@@ -8,7 +8,13 @@ import consequenceTemplates from './data/consequence_templates.json';
 import multiOutcomeConsequences from './data/multi_outcome_consequences.json';
 import type { Pack } from './types/pack';
 import type { Wolf } from './types/wolf';
-import type { EventTemplate, MoonEvent, ConsequenceTemplate, DecisionEvent, MultiOutcomeConsequence } from './types/event';
+import type {
+  EventTemplate,
+  MoonEvent,
+  ConsequenceTemplate,
+  DecisionEvent,
+  MultiOutcomeConsequence,
+} from './types/event';
 import {
   Roster,
   Profile,
@@ -39,7 +45,7 @@ function App() {
     // Generate random biome and starting pack
     const randomBiome = wolfGenerator.generateRandomBiome();
     const randomWolves = wolfGenerator.generateRandomPack(randomBiome);
-    
+
     const initialPack: Pack = {
       name: 'Moonhowl Pack',
       day: 1,
@@ -76,15 +82,21 @@ function App() {
     // Load events
     eventEngine.loadEvents(eventExamples as unknown as EventTemplate[]);
     eventEngine.loadMoonEvents(moonEvents as unknown as MoonEvent[]);
-    eventEngine.loadConsequenceTemplates(consequenceTemplates as unknown as ConsequenceTemplate[]);
-    eventEngine.loadMultiOutcomeConsequences(multiOutcomeConsequences as unknown as MultiOutcomeConsequence[]);
+    eventEngine.loadConsequenceTemplates(
+      consequenceTemplates as unknown as ConsequenceTemplate[]
+    );
+    eventEngine.loadMultiOutcomeConsequences(
+      multiOutcomeConsequences as unknown as MultiOutcomeConsequence[]
+    );
 
     return initialPack;
   });
 
   const [activeTab, setActiveTab] = useState<TabType>('overview');
   const [selectedWolf, setSelectedWolf] = useState<Wolf | null>(null);
-  const [activeDecision, setActiveDecision] = useState<DecisionEvent | null>(null);
+  const [activeDecision, setActiveDecision] = useState<DecisionEvent | null>(
+    null
+  );
 
   const simulateDay = () => {
     const newPack = { ...pack };
@@ -105,7 +117,11 @@ function App() {
     }
 
     // Check for new pending decisions
-    if (newPack.pendingDecisions && newPack.pendingDecisions.length > 0 && !activeDecision) {
+    if (
+      newPack.pendingDecisions &&
+      newPack.pendingDecisions.length > 0 &&
+      !activeDecision
+    ) {
       setActiveDecision(newPack.pendingDecisions[0] || null);
     }
 
@@ -129,7 +145,11 @@ function App() {
     }
 
     // Check for new pending decisions
-    if (newPack.pendingDecisions && newPack.pendingDecisions.length > 0 && !activeDecision) {
+    if (
+      newPack.pendingDecisions &&
+      newPack.pendingDecisions.length > 0 &&
+      !activeDecision
+    ) {
       setActiveDecision(newPack.pendingDecisions[0] || null);
     }
 
@@ -147,14 +167,15 @@ function App() {
 
     const newPack = { ...pack };
     eventEngine.resolveDecision(newPack, activeDecision.id, choiceId, true);
-    
+
     // Note: Actions in the choice already handle logging and stat changes
     // No need to add extra log entries here
-    
+
     // Check for next pending decision
-    const nextDecision = newPack.pendingDecisions && newPack.pendingDecisions.length > 0 
-      ? newPack.pendingDecisions[0] || null
-      : null;
+    const nextDecision =
+      newPack.pendingDecisions && newPack.pendingDecisions.length > 0
+        ? newPack.pendingDecisions[0] || null
+        : null;
 
     setActiveDecision(nextDecision);
     setPack(newPack);
@@ -186,10 +207,10 @@ function App() {
       count: pack.territory?.rivalPacks.length || 0,
     },
     { id: 'genetics' as TabType, label: '🧬 Genetics', count: breedingPairs },
-    { 
-      id: 'decisions' as TabType, 
-      label: '🌙 Decisions', 
-      count: pack.pendingDecisions?.length || 0 
+    {
+      id: 'decisions' as TabType,
+      label: '🌙 Decisions',
+      count: pack.pendingDecisions?.length || 0,
     },
     { id: 'saves' as TabType, label: '💾 Saves', count: null },
     { id: 'events' as TabType, label: '📜 Events', count: pack.logs.length },
@@ -360,26 +381,34 @@ function App() {
                     style={{ display: 'flex', justifyContent: 'space-between' }}
                   >
                     <span style={{ opacity: 0.8 }}>Pack Approval:</span>
-                    <span 
-                      style={{ 
+                    <span
+                      style={{
                         fontWeight: 'bold',
-                        color: (pack.packApproval || 50) >= 70 ? '#96ceb4' : 
-                               (pack.packApproval || 50) >= 30 ? '#ffeaa7' : '#fd79a8'
+                        color:
+                          (pack.packApproval || 50) >= 70
+                            ? '#96ceb4'
+                            : (pack.packApproval || 50) >= 30
+                              ? '#ffeaa7'
+                              : '#fd79a8',
                       }}
                     >
                       {pack.packApproval || 50}%
                     </span>
                   </div>
-                  {pack.pendingDecisions && pack.pendingDecisions.length > 0 && (
-                    <div
-                      style={{ display: 'flex', justifyContent: 'space-between' }}
-                    >
-                      <span style={{ opacity: 0.8 }}>Pending Decisions:</span>
-                      <span style={{ fontWeight: 'bold', color: '#4fc3f7' }}>
-                        {pack.pendingDecisions.length}
-                      </span>
-                    </div>
-                  )}
+                  {pack.pendingDecisions &&
+                    pack.pendingDecisions.length > 0 && (
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <span style={{ opacity: 0.8 }}>Pending Decisions:</span>
+                        <span style={{ fontWeight: 'bold', color: '#4fc3f7' }}>
+                          {pack.pendingDecisions.length}
+                        </span>
+                      </div>
+                    )}
                 </div>
 
                 <div
@@ -557,7 +586,11 @@ function App() {
         )}
 
         {activeTab === 'healer' && (
-          <HealerPanel pack={pack} onPackUpdate={setPack} simulationEngine={simulationEngine} />
+          <HealerPanel
+            pack={pack}
+            onPackUpdate={setPack}
+            simulationEngine={simulationEngine}
+          />
         )}
 
         {activeTab === 'territory' && (
@@ -570,10 +603,16 @@ function App() {
 
         {activeTab === 'decisions' && (
           <div>
-            <h2 style={{ margin: '0 0 20px 0', color: '#4fc3f7', fontSize: '1.4rem' }}>
+            <h2
+              style={{
+                margin: '0 0 20px 0',
+                color: '#4fc3f7',
+                fontSize: '1.4rem',
+              }}
+            >
               🌙 Pack Decisions
             </h2>
-            
+
             {pack.pendingDecisions && pack.pendingDecisions.length > 0 ? (
               <div style={{ marginBottom: '30px' }}>
                 <h3 style={{ margin: '0 0 15px 0', color: '#ffeaa7' }}>
@@ -592,17 +631,30 @@ function App() {
                     }}
                     onClick={() => setActiveDecision(decision)}
                   >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'start',
+                      }}
+                    >
                       <div>
                         <h4 style={{ margin: '0 0 8px 0', color: '#4fc3f7' }}>
                           {decision.title || 'Pack Decision'}
                         </h4>
-                        <p style={{ margin: '0 0 10px 0', opacity: 0.8, lineHeight: 1.4 }}>
+                        <p
+                          style={{
+                            margin: '0 0 10px 0',
+                            opacity: 0.8,
+                            lineHeight: 1.4,
+                          }}
+                        >
                           {decision.text}
                         </p>
                         <div style={{ fontSize: '12px', opacity: 0.6 }}>
                           {decision.choices.length} choices available
-                          {decision.timeoutDays && ` • ${decision.timeoutDays} days to decide`}
+                          {decision.timeoutDays &&
+                            ` • ${decision.timeoutDays} days to decide`}
                         </div>
                       </div>
                       <button
@@ -649,41 +701,60 @@ function App() {
                 <h3 style={{ margin: '0 0 15px 0', color: '#96ceb4' }}>
                   Recent Decisions ({pack.decisionHistory.slice(-5).length})
                 </h3>
-                {pack.decisionHistory.slice(-5).reverse().map((decision) => (
-                  <div
-                    key={decision.eventId + decision.day}
-                    style={{
-                      backgroundColor: '#1a1a1a',
-                      border: '1px solid #333',
-                      borderRadius: '8px',
-                      padding: '15px',
-                      marginBottom: '10px',
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
-                      <div>
-                        <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '5px' }}>
-                          Day {decision.day}: {decision.choiceText}
-                        </div>
-                        <div style={{ fontSize: '12px', opacity: 0.7 }}>
-                          {decision.isPlayerChoice ? 'Player Choice' : 'Auto-Resolved'}
-                        </div>
-                      </div>
+                {pack.decisionHistory
+                  .slice(-5)
+                  .reverse()
+                  .map((decision) => (
+                    <div
+                      key={decision.eventId + decision.day}
+                      style={{
+                        backgroundColor: '#1a1a1a',
+                        border: '1px solid #333',
+                        borderRadius: '8px',
+                        padding: '15px',
+                        marginBottom: '10px',
+                      }}
+                    >
                       <div
                         style={{
-                          backgroundColor: decision.isPlayerChoice ? '#4fc3f7' : '#666',
-                          color: '#1a1a1a',
-                          padding: '2px 8px',
-                          borderRadius: '10px',
-                          fontSize: '10px',
-                          fontWeight: 'bold',
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          alignItems: 'start',
                         }}
                       >
-                        {decision.isPlayerChoice ? 'CHOSEN' : 'AUTO'}
+                        <div>
+                          <div
+                            style={{
+                              fontSize: '14px',
+                              fontWeight: 'bold',
+                              marginBottom: '5px',
+                            }}
+                          >
+                            Day {decision.day}: {decision.choiceText}
+                          </div>
+                          <div style={{ fontSize: '12px', opacity: 0.7 }}>
+                            {decision.isPlayerChoice
+                              ? 'Player Choice'
+                              : 'Auto-Resolved'}
+                          </div>
+                        </div>
+                        <div
+                          style={{
+                            backgroundColor: decision.isPlayerChoice
+                              ? '#4fc3f7'
+                              : '#666',
+                            color: '#1a1a1a',
+                            padding: '2px 8px',
+                            borderRadius: '10px',
+                            fontSize: '10px',
+                            fontWeight: 'bold',
+                          }}
+                        >
+                          {decision.isPlayerChoice ? 'CHOSEN' : 'AUTO'}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             )}
           </div>

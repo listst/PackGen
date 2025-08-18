@@ -1,4 +1,4 @@
-import type { DecisionEvent } from '../../types/event';
+import type { DecisionEvent, MoonEvent } from '../../types/event';
 import type { Pack } from '../../types/pack';
 
 interface DecisionModalProps {
@@ -24,24 +24,29 @@ const categoryIcons: Record<string, string> = {
   pack_wide: '🐺',
 };
 
-export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionModalProps) {
+export function DecisionModal({
+  decision,
+  pack,
+  onChoice,
+  onClose,
+}: DecisionModalProps) {
   const isMoonEvent = 'category' in decision;
-  const moonEvent = isMoonEvent ? decision as any : null;
+  const moonEvent = isMoonEvent ? (decision as MoonEvent) : null;
   const category: string = moonEvent?.category || 'leadership';
-  
+
   // Filter choices based on conditions
-  const availableChoices = decision.choices.filter(choice => {
+  const availableChoices = decision.choices.filter((choice) => {
     if (!choice.condition) return true;
-    
+
     // This is a simplified condition check - in a full implementation,
     // you'd use the eventEngine.evaluateConditionGroup method
     // For now, we'll show all choices
     return true;
   });
 
-  const timeRemaining = decision.timeoutDays ? 
-    `${decision.timeoutDays} days to decide` : 
-    'No time limit';
+  const timeRemaining = decision.timeoutDays
+    ? `${decision.timeoutDays} days to decide`
+    : 'No time limit';
 
   return (
     <div
@@ -133,7 +138,7 @@ export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionMod
                 )}
               </div>
             </div>
-            
+
             <div
               style={{
                 fontSize: '12px',
@@ -193,19 +198,25 @@ export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionMod
           }}
         >
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#4fc3f7' }}>
-              {pack.wolves.filter(w => !w._dead && !w._dispersed).length}
+            <div
+              style={{ fontSize: '18px', fontWeight: 'bold', color: '#4fc3f7' }}
+            >
+              {pack.wolves.filter((w) => !w._dead && !w._dispersed).length}
             </div>
             <div style={{ fontSize: '12px', opacity: 0.7 }}>Wolves</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#96ceb4' }}>
+            <div
+              style={{ fontSize: '18px', fontWeight: 'bold', color: '#96ceb4' }}
+            >
               {pack.food || 0}
             </div>
             <div style={{ fontSize: '12px', opacity: 0.7 }}>Food</div>
           </div>
           <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: '18px', fontWeight: 'bold', color: '#ffeaa7' }}>
+            <div
+              style={{ fontSize: '18px', fontWeight: 'bold', color: '#ffeaa7' }}
+            >
               {pack.packApproval || 50}%
             </div>
             <div style={{ fontSize: '12px', opacity: 0.7 }}>Approval</div>
@@ -223,8 +234,10 @@ export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionMod
           >
             Choose Your Path
           </h3>
-          
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+
+          <div
+            style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}
+          >
             {availableChoices.map((choice, index) => (
               <button
                 key={choice.id}
@@ -244,7 +257,8 @@ export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionMod
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.backgroundColor = '#404040';
-                  e.currentTarget.style.borderColor = categoryColors[category] || '#404040';
+                  e.currentTarget.style.borderColor =
+                    categoryColors[category] || '#404040';
                   e.currentTarget.style.transform = 'translateY(-2px)';
                 }}
                 onMouseLeave={(e) => {
@@ -313,7 +327,8 @@ export function DecisionModal({ decision, pack, onChoice, onClose }: DecisionMod
               textAlign: 'center',
             }}
           >
-            ⏰ This decision will be made automatically if not chosen within {decision.timeoutDays} days
+            ⏰ This decision will be made automatically if not chosen within{' '}
+            {decision.timeoutDays} days
           </div>
         )}
       </div>

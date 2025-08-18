@@ -15,11 +15,29 @@
         },
         "probability": 0.3,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -3 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 12 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -3
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 12
+          },
           { "type": "adjust_approval", "delta": 20 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 1 },
-          { "type": "log", "text": "The pack achieved a crushing victory! {wolf.name}'s leadership in battle has inspired great confidence." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "The pack achieved a crushing victory! {wolf.name}'s leadership in battle has inspired great confidence."
+          }
         ],
         "tags": ["victory", "decisive", "leadership"]
       },
@@ -35,11 +53,24 @@
         },
         "probability": 0.25,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -20 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -20
+          },
           { "type": "kill_wolf", "targetSelector": "weakest" },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 8 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 8
+          },
           { "type": "adjust_approval", "delta": 5 },
-          { "type": "log", "text": "The territory was defended, but the pack mourns the loss of a brave warrior." }
+          {
+            "type": "log",
+            "text": "The territory was defended, but the pack mourns the loss of a brave warrior."
+          }
         ],
         "tags": ["victory", "pyrrhic", "casualty"]
       },
@@ -55,13 +86,35 @@
         },
         "probability": 0.2,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -25 },
-          { "type": "injure_wolf", "targetSelector": "random", "injury": "battle_wounds", "healingDays": 14 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -5 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -25
+          },
+          {
+            "type": "injure_wolf",
+            "targetSelector": "random",
+            "injury": "battle_wounds",
+            "healingDays": 14
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": -5
+          },
           { "type": "lose_territory", "amount": 3 },
           { "type": "adjust_approval", "delta": -15 },
-          { "type": "create_rival_pack", "packName": "Shadowfang Rivals", "strength": 8 },
-          { "type": "log", "text": "The pack suffered a crushing defeat. {wolf.name}'s leadership is now questioned by many." }
+          {
+            "type": "create_rival_pack",
+            "packName": "Shadowfang Rivals",
+            "strength": 8
+          },
+          {
+            "type": "log",
+            "text": "The pack suffered a crushing defeat. {wolf.name}'s leadership is now questioned by many."
+          }
         ],
         "tags": ["defeat", "costly", "territory_loss"]
       },
@@ -71,10 +124,23 @@
         "text": "Recognizing they were outmatched, Alpha {wolf.name} ordered a strategic retreat. The pack avoided casualties but lost face and some territory.",
         "probability": 0.15,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -8 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -8
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": -2
+          },
           { "type": "adjust_approval", "delta": -8 },
-          { "type": "log", "text": "The pack retreated to fight another day, but some question {wolf.name}'s courage." }
+          {
+            "type": "log",
+            "text": "The pack retreated to fight another day, but some question {wolf.name}'s courage."
+          }
         ],
         "tags": ["withdrawal", "strategic", "survival"]
       },
@@ -90,10 +156,22 @@
         },
         "probability": 0.1,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -30 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -30
+          },
           { "type": "adjust_approval", "delta": -25 },
-          { "type": "schedule_consequence", "consequenceId": "leadership_challenge_battle", "daysDelay": 3 },
-          { "type": "log", "text": "{wolf.name} was badly wounded in the failed battle. The pack's confidence is shattered and challengers emerge." }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "leadership_challenge_battle",
+            "daysDelay": 3
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} was badly wounded in the failed battle. The pack's confidence is shattered and challengers emerge."
+          }
         ],
         "tags": ["defeat", "leadership_crisis", "challenge"]
       }
@@ -116,11 +194,29 @@
         },
         "probability": 0.2,
         "actions": [
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 15 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 15
+          },
           { "type": "adjust_approval", "delta": 30 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 2 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 1 },
-          { "type": "log", "text": "{wolf.name}'s incredible hunting prowess has silenced all doubters! The pack has never been more united." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.strength",
+            "delta": 2
+          },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name}'s incredible hunting prowess has silenced all doubters! The pack has never been more united."
+          }
         ],
         "tags": ["hunting", "triumph", "leadership_proven"]
       },
@@ -136,10 +232,23 @@
         },
         "probability": 0.4,
         "actions": [
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 8 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 8
+          },
           { "type": "adjust_approval", "delta": 20 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
-          { "type": "log", "text": "{wolf.name} succeeded in the hunting trial and proved their leadership!" }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.strength",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} succeeded in the hunting trial and proved their leadership!"
+          }
         ],
         "tags": ["hunting", "success", "leadership_maintained"]
       },
@@ -155,11 +264,29 @@
         },
         "probability": 0.25,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -20 },
-          { "type": "injure_wolf", "targetSelector": "wolf", "injury": "hunting_wound", "healingDays": 10 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -20
+          },
+          {
+            "type": "injure_wolf",
+            "targetSelector": "wolf",
+            "injury": "hunting_wound",
+            "healingDays": 10
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 2
+          },
           { "type": "adjust_approval", "delta": -10 },
-          { "type": "log", "text": "{wolf.name} was injured during the hunting trial. Some pack members whisper about their declining abilities." }
+          {
+            "type": "log",
+            "text": "{wolf.name} was injured during the hunting trial. Some pack members whisper about their declining abilities."
+          }
         ],
         "tags": ["hunting", "injury", "leadership_questioned"]
       },
@@ -169,11 +296,28 @@
         "text": "Alpha {wolf.name} failed the hunting trial completely, returning empty-pawed and exhausted. The pack's faith in their leadership is severely shaken.",
         "probability": 0.15,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -15 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -15
+          },
           { "type": "adjust_approval", "delta": -20 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": -1 },
-          { "type": "schedule_consequence", "consequenceId": "leadership_challenge_trial", "daysDelay": 5 },
-          { "type": "log", "text": "{wolf.name} failed the hunting trial miserably. The pack's confidence is shattered and challengers emerge." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": -1
+          },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "leadership_challenge_trial",
+            "daysDelay": 5
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} failed the hunting trial miserably. The pack's confidence is shattered and challengers emerge."
+          }
         ],
         "tags": ["hunting", "failure", "leadership_crisis"]
       }
@@ -196,11 +340,29 @@
         },
         "probability": 0.15,
         "actions": [
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 15 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 15
+          },
           { "type": "adjust_approval", "delta": 25 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 2 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.intelligence", "delta": 1 },
-          { "type": "log", "text": "The perfect ambush has become pack legend! {wolf.name}'s tactical brilliance is unquestioned." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 2
+          },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.intelligence",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "The perfect ambush has become pack legend! {wolf.name}'s tactical brilliance is unquestioned."
+          }
         ],
         "tags": ["ambush", "perfect", "tactical_genius"]
       },
@@ -210,11 +372,29 @@
         "text": "The night ambush succeeded! Alpha {wolf.name} led the pack in a daring strike against the intruders, driving them off with minimal injuries.",
         "probability": 0.35,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -8 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 10 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -8
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 10
+          },
           { "type": "adjust_approval", "delta": 15 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 1 },
-          { "type": "log", "text": "The night ambush was successful! The pack gained territory and {wolf.name} showed great courage." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "The night ambush was successful! The pack gained territory and {wolf.name} showed great courage."
+          }
         ],
         "tags": ["ambush", "success", "courage"]
       },
@@ -224,11 +404,29 @@
         "text": "The rival wolves detected the ambush! Alpha {wolf.name} was forced to lead a chaotic battle in the darkness, resulting in injuries and confusion.",
         "probability": 0.3,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -20 },
-          { "type": "injure_wolf", "targetSelector": "random", "injury": "night_battle_wounds", "healingDays": 8 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 3 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -20
+          },
+          {
+            "type": "injure_wolf",
+            "targetSelector": "random",
+            "injury": "night_battle_wounds",
+            "healingDays": 8
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 3
+          },
           { "type": "adjust_approval", "delta": -5 },
-          { "type": "log", "text": "The ambush was discovered! {wolf.name} led a chaotic night battle with mixed results." }
+          {
+            "type": "log",
+            "text": "The ambush was discovered! {wolf.name} led a chaotic night battle with mixed results."
+          }
         ],
         "tags": ["ambush", "discovered", "chaos"]
       },
@@ -244,12 +442,29 @@
         },
         "probability": 0.2,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -30 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -30
+          },
           { "type": "kill_wolf", "targetSelector": "random" },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -3 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": -3
+          },
           { "type": "adjust_approval", "delta": -20 },
-          { "type": "create_rival_pack", "packName": "Nightstalker Rivals", "strength": 9 },
-          { "type": "log", "text": "The ambush was a trap! {wolf.name} led the pack to disaster - a pack member was killed and many question their judgment." }
+          {
+            "type": "create_rival_pack",
+            "packName": "Nightstalker Rivals",
+            "strength": 9
+          },
+          {
+            "type": "log",
+            "text": "The ambush was a trap! {wolf.name} led the pack to disaster - a pack member was killed and many question their judgment."
+          }
         ],
         "tags": ["ambush", "disaster", "trap", "death"]
       }
@@ -272,10 +487,23 @@
         },
         "probability": 0.4,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -15 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -15
+          },
           { "type": "adjust_approval", "delta": 25 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 2 },
-          { "type": "log", "text": "{wolf.name} proved their worth in combat! The pack's faith in their leadership is restored." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 2
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} proved their worth in combat! The pack's faith in their leadership is restored."
+          }
         ],
         "tags": ["leadership", "victory", "combat"]
       },
@@ -292,9 +520,17 @@
         "probability": 0.35,
         "actions": [
           { "type": "change_alpha", "newAlphaSelector": "strongest" },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -20 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -20
+          },
           { "type": "adjust_approval", "delta": -10 },
-          { "type": "log", "text": "{wolf.name} was defeated in combat and stepped down as alpha. A new leader has emerged." }
+          {
+            "type": "log",
+            "text": "{wolf.name} was defeated in combat and stepped down as alpha. A new leader has emerged."
+          }
         ],
         "tags": ["leadership", "defeat", "succession"]
       },
@@ -304,11 +540,28 @@
         "text": "The leadership challenge ended with both Alpha {wolf.name} and their challenger badly wounded. The pack intervened to stop the deadly combat, but tensions remain high.",
         "probability": 0.2,
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -25 },
-          { "type": "injure_wolf", "targetSelector": "random", "injury": "combat_wounds", "healingDays": 12 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -25
+          },
+          {
+            "type": "injure_wolf",
+            "targetSelector": "random",
+            "injury": "combat_wounds",
+            "healingDays": 12
+          },
           { "type": "adjust_approval", "delta": -15 },
-          { "type": "schedule_consequence", "consequenceId": "leadership_challenge_trial", "daysDelay": 7 },
-          { "type": "log", "text": "The brutal combat was stopped before either wolf died, but {wolf.name}'s leadership crisis continues." }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "leadership_challenge_trial",
+            "daysDelay": 7
+          },
+          {
+            "type": "log",
+            "text": "The brutal combat was stopped before either wolf died, but {wolf.name}'s leadership crisis continues."
+          }
         ],
         "tags": ["leadership", "stalemate", "ongoing_crisis"]
       },
@@ -326,10 +579,22 @@
         "actions": [
           { "type": "remove_wolf", "targetSelector": "lowest_health" },
           { "type": "remove_wolf", "targetSelector": "lowest_health" },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.health", "delta": -20 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.health",
+            "delta": -20
+          },
           { "type": "adjust_approval", "delta": -30 },
-          { "type": "create_rival_pack", "packName": "Broken Bond Exiles", "strength": 7 },
-          { "type": "log", "text": "The leadership crisis split the pack! Several wolves left with the challenger, creating a rival pack." }
+          {
+            "type": "create_rival_pack",
+            "packName": "Broken Bond Exiles",
+            "strength": 7
+          },
+          {
+            "type": "log",
+            "text": "The leadership crisis split the pack! Several wolves left with the challenger, creating a rival pack."
+          }
         ],
         "tags": ["leadership", "division", "exile", "catastrophe"]
       }
@@ -353,8 +618,16 @@
         "probability": 0.35,
         "actions": [
           { "type": "adjust_approval", "delta": 20 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "log", "text": "The pack trial vindicated {wolf.name}! Their leadership is stronger than ever after surviving this challenge." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "The pack trial vindicated {wolf.name}! Their leadership is stronger than ever after surviving this challenge."
+          }
         ],
         "tags": ["leadership", "vindication", "pack_support"]
       },
@@ -365,9 +638,21 @@
         "probability": 0.3,
         "actions": [
           { "type": "adjust_approval", "delta": 5 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "schedule_consequence", "consequenceId": "prove_leadership", "daysDelay": 30 },
-          { "type": "log", "text": "{wolf.name} retains leadership conditionally. They must prove their worth in the coming days." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "prove_leadership",
+            "daysDelay": 30
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} retains leadership conditionally. They must prove their worth in the coming days."
+          }
         ],
         "tags": ["leadership", "conditional", "probation"]
       },
@@ -385,8 +670,16 @@
         "actions": [
           { "type": "change_alpha", "newAlphaSelector": "beta" },
           { "type": "adjust_approval", "delta": 10 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 2 },
-          { "type": "log", "text": "{wolf.name} stepped down as alpha gracefully. The pack respects their wisdom and sacrifice." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 2
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} stepped down as alpha gracefully. The pack respects their wisdom and sacrifice."
+          }
         ],
         "tags": ["leadership", "abdication", "wisdom", "peaceful_transition"]
       },
@@ -405,7 +698,10 @@
           { "type": "remove_wolf", "targetSelector": "wolf" },
           { "type": "change_alpha", "newAlphaSelector": "beta" },
           { "type": "adjust_approval", "delta": 15 },
-          { "type": "log", "text": "{wolf.name} was exiled by pack trial. Though painful, the pack moves forward under new leadership." }
+          {
+            "type": "log",
+            "text": "{wolf.name} was exiled by pack trial. Though painful, the pack moves forward under new leadership."
+          }
         ],
         "tags": ["leadership", "exile", "banishment", "new_beginning"]
       }
@@ -429,9 +725,22 @@
         "probability": 0.4,
         "actions": [
           { "type": "adjust_approval", "delta": 25 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 2 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.bravery", "delta": 1 },
-          { "type": "log", "text": "{wolf.name}'s leadership has been confirmed! The pack's faith is stronger than ever." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 2
+          },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.bravery",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name}'s leadership has been confirmed! The pack's faith is stronger than ever."
+          }
         ],
         "tags": ["leadership", "confirmed", "triumph"]
       },
@@ -448,8 +757,16 @@
         "probability": 0.35,
         "actions": [
           { "type": "adjust_approval", "delta": 10 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "log", "text": "{wolf.name} maintains leadership, though some pack members remain skeptical." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} maintains leadership, though some pack members remain skeptical."
+          }
         ],
         "tags": ["leadership", "maintained", "cautious"]
       },
@@ -466,8 +783,15 @@
         "probability": 0.2,
         "actions": [
           { "type": "adjust_approval", "delta": -15 },
-          { "type": "schedule_consequence", "consequenceId": "leadership_challenge_battle", "daysDelay": 2 },
-          { "type": "log", "text": "{wolf.name} failed the proving period. A new challenger has emerged to contest their leadership!" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "leadership_challenge_battle",
+            "daysDelay": 2
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} failed the proving period. A new challenger has emerged to contest their leadership!"
+          }
         ],
         "tags": ["leadership", "challenge", "crisis_renewed"]
       },
@@ -485,8 +809,16 @@
         "actions": [
           { "type": "change_alpha", "newAlphaSelector": "beta" },
           { "type": "adjust_approval", "delta": 15 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "log", "text": "{wolf.name} stepped down gracefully after failing the proving period. The pack respects their self-awareness." }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} stepped down gracefully after failing the proving period. The pack respects their self-awareness."
+          }
         ],
         "tags": ["leadership", "resignation", "wisdom", "respect"]
       }

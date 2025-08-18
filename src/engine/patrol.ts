@@ -65,7 +65,11 @@ export class PatrolEngine {
             description:
               'The patrol found a large herd and brought back abundant prey',
             rewards: [
-              { type: 'food', amount: huntingConfig.rewards.majorSuccess.food, description: 'Abundant prey haul' },
+              {
+                type: 'food',
+                amount: huntingConfig.rewards.majorSuccess.food,
+                description: 'Abundant prey haul',
+              },
               {
                 type: 'experience',
                 amount: huntingConfig.rewards.majorSuccess.xp,
@@ -83,7 +87,13 @@ export class PatrolEngine {
             weight: huntingConfig.failureWeight,
             title: 'Poor Hunt',
             description: 'The patrol found little prey',
-            rewards: [{ type: 'food', amount: huntingConfig.rewards.failure.food, description: 'Meager catch' }],
+            rewards: [
+              {
+                type: 'food',
+                amount: huntingConfig.rewards.failure.food,
+                description: 'Meager catch',
+              },
+            ],
           },
           {
             outcome: 'disaster',

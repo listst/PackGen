@@ -161,7 +161,7 @@ export class SimulationEngine {
     this.combatEngine = new CombatEngine(config);
     this.healerEngine = new HealerEngine(config);
     // Initialize appearance generator with config
-    appearanceGenerator.setConfig(config);
+    appearanceGenerator.setConfig();
   }
 
   updateConfig(newConfig: Partial<GameConfig>): void {
@@ -169,7 +169,7 @@ export class SimulationEngine {
     this.matingSystem = new MatingSystem(this.config);
     this.patrolEngine.updateConfig(this.config);
     this.combatEngine.updateConfig(this.config);
-    appearanceGenerator.setConfig(this.config);
+    appearanceGenerator.setConfig();
     this.healerEngine.updateConfig(this.config);
   }
 
@@ -369,7 +369,10 @@ export class SimulationEngine {
       sex: random.choice(['male', 'female']),
       age: 0,
       role: 'pup',
-      appearance: appearanceGenerator.inheritAppearance(mother, father || undefined),
+      appearance: appearanceGenerator.inheritAppearance(
+        mother,
+        father || undefined
+      ),
       stats: {
         health: Math.max(
           50,
@@ -425,11 +428,13 @@ export class SimulationEngine {
       const bondModifier = pair.bondStrength / 100; // 0-1 multiplier
       const fertilityModifier =
         (female.traits.fertility + male.traits.fertility) / 20; // 0-1 multiplier
-      
+
       // Get seasonal breeding probability
-      const seasonalProbability = this.config.matingSystem.seasonalBreedingProbabilities[pack.season];
-      
-      const pregnancyChance = seasonalProbability * bondModifier * fertilityModifier;
+      const seasonalProbability =
+        this.config.matingSystem.seasonalBreedingProbabilities[pack.season];
+
+      const pregnancyChance =
+        seasonalProbability * bondModifier * fertilityModifier;
 
       if (random.next() < pregnancyChance) {
         female.pregnant = true;
@@ -580,7 +585,7 @@ export class SimulationEngine {
   private cleanupDeadWolves(pack: Pack): void {
     // Check for alpha and beta deaths before cleanup
     const deadWolves = pack.wolves.filter((wolf) => wolf._dead);
-    
+
     deadWolves.forEach((deadWolf) => {
       if (deadWolf.role === 'alpha') {
         this.handleAlphaDeath(pack, deadWolf);
@@ -588,52 +593,64 @@ export class SimulationEngine {
         this.handleBetaDeath(pack, deadWolf);
       }
     });
-    
+
     // Remove dead wolves from pack
     pack.wolves = pack.wolves.filter((wolf) => !wolf._dead);
   }
-  
+
   private handleAlphaDeath(pack: Pack, deadAlpha: Wolf): void {
-    pack.logs.push(`Day ${pack.day}: Alpha ${deadAlpha.name} has died. The pack mourns their leader.`);
-    
+    pack.logs.push(
+      `Day ${pack.day}: Alpha ${deadAlpha.name} has died. The pack mourns their leader.`
+    );
+
     // Find beta to promote to alpha
     const beta = getAliveWolves(pack).find((w) => w.role === 'beta');
-    
+
     if (beta) {
       beta.role = 'alpha';
-      pack.logs.push(`Day ${pack.day}: Beta ${beta.name} has become the new alpha.`);
-      
+      pack.logs.push(
+        `Day ${pack.day}: Beta ${beta.name} has become the new alpha.`
+      );
+
       // Trigger beta succession event
       this.triggerBetaSuccessionEvent(pack);
     } else {
       // No beta available - pack crisis
-      pack.logs.push(`Day ${pack.day}: With no beta to succeed, the pack faces a leadership crisis!`);
+      pack.logs.push(
+        `Day ${pack.day}: With no beta to succeed, the pack faces a leadership crisis!`
+      );
       // Could add pack dissolution or emergency alpha election here
     }
   }
-  
+
   private handleBetaDeath(pack: Pack, deadBeta: Wolf): void {
     pack.logs.push(`Day ${pack.day}: Beta ${deadBeta.name} has died.`);
-    
+
     // Trigger beta succession event if there's still an alpha
     const alpha = getAliveWolves(pack).find((w) => w.role === 'alpha');
     if (alpha) {
       this.triggerBetaSuccessionEvent(pack);
     }
   }
-  
+
   private triggerBetaSuccessionEvent(pack: Pack): void {
     // Check if we already have a beta succession event pending
     const hasPendingSuccession = pack.pendingDecisions?.some(
       (decision) => decision.id === 'beta_succession'
     );
-    
-    if (!hasPendingSuccession && pack.pendingDecisions && pack.pendingDecisions.length < 3) {
+
+    if (
+      !hasPendingSuccession &&
+      pack.pendingDecisions &&
+      pack.pendingDecisions.length < 3
+    ) {
       // Create beta succession event
       const successionEvent = eventEngine.createSuccessionEvent(pack);
       if (successionEvent) {
         pack.pendingDecisions.push(successionEvent);
-        pack.logs.push(`Day ${pack.day}: The alpha must choose a new beta for the pack.`);
+        pack.logs.push(
+          `Day ${pack.day}: The alpha must choose a new beta for the pack.`
+        );
       }
     }
   }
@@ -719,7 +736,11 @@ export class SimulationEngine {
 
     // Check for moon events
     const moonEvent = eventEngine.checkForMoonEvent(pack);
-    if (moonEvent && pack.pendingDecisions.length < this.config.decisionSystem.maxPendingDecisions) {
+    if (
+      moonEvent &&
+      pack.pendingDecisions.length <
+        this.config.decisionSystem.maxPendingDecisions
+    ) {
       // Find candidate wolves for this moon event
       const tempTemplate: EventTemplate = {
         id: moonEvent.id,
@@ -737,10 +758,11 @@ export class SimulationEngine {
         let targetWolf: Wolf | undefined;
 
         // Select target wolf if needed
-        const needsTarget = moonEvent.choices.some(choice =>
-          choice.actions.some(action =>
-            action.type === 'adjust_bond' ||
-            (action.type === 'modify_stat' && action.target === 'target')
+        const needsTarget = moonEvent.choices.some((choice) =>
+          choice.actions.some(
+            (action) =>
+              action.type === 'adjust_bond' ||
+              (action.type === 'modify_stat' && action.target === 'target')
           )
         );
 
@@ -754,7 +776,12 @@ export class SimulationEngine {
         }
 
         // Create the decision event
-        eventEngine.createDecisionEvent(moonEvent, selectedWolf, pack, targetWolf);
+        eventEngine.createDecisionEvent(
+          moonEvent,
+          selectedWolf,
+          pack,
+          targetWolf
+        );
         pack.lastMoonEventDay = pack.day;
 
         pack.logs.push(

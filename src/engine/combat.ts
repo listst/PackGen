@@ -184,7 +184,10 @@ export class CombatEngine {
     return {
       winner: result.winner,
       attackerDamage:
-        result.attackerCasualties.length > 0 ? result.scoreDifference * this.config.combatSystem.winnerDamageMultiplier : 0, // some damage to winner too
+        result.attackerCasualties.length > 0
+          ? result.scoreDifference *
+            this.config.combatSystem.winnerDamageMultiplier
+          : 0, // some damage to winner too
       defenderDamage: result.loserDamage,
       loserDamage: result.loserDamage,
       casualties: result.casualties,
@@ -223,10 +226,13 @@ export class CombatEngine {
 
     let resourcesStolen = 0;
     if (combat.winner === 'attacker' && raidObjective === 'resources') {
-      resourcesStolen = Math.min(defendingPack.herbs, random.nextInt(
-        this.config.combatSystem.resourceTheftRange.min,
-        this.config.combatSystem.resourceTheftRange.max
-      ));
+      resourcesStolen = Math.min(
+        defendingPack.herbs,
+        random.nextInt(
+          this.config.combatSystem.resourceTheftRange.min,
+          this.config.combatSystem.resourceTheftRange.max
+        )
+      );
       defendingPack.herbs = Math.max(0, defendingPack.herbs - resourcesStolen);
     }
 
@@ -257,7 +263,9 @@ export class CombatEngine {
     let modifier = 1.0;
 
     // Health modifiers
-    if (wolf.stats.health < this.config.combatSystem.lowHealthPenaltyThreshold) {
+    if (
+      wolf.stats.health < this.config.combatSystem.lowHealthPenaltyThreshold
+    ) {
       modifier *= this.config.combatSystem.lowHealthPenaltyMultiplier; // Severely wounded
     } else if (wolf.stats.health < 60) {
       modifier *= 0.85; // Injured

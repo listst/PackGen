@@ -10,7 +10,11 @@ interface HealerPanelProps {
   simulationEngine: SimulationEngine;
 }
 
-export function HealerPanel({ pack, onPackUpdate, simulationEngine }: HealerPanelProps) {
+export function HealerPanel({
+  pack,
+  onPackUpdate,
+  simulationEngine,
+}: HealerPanelProps) {
   const [selectedHealer, setSelectedHealer] = useState<Wolf | null>(null);
   const [selectedPatient, setSelectedPatient] = useState<Wolf | null>(null);
 

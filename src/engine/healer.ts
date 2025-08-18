@@ -39,7 +39,9 @@ export class HealerEngine {
     }
 
     // Check if healer has enough health
-    if (healer.stats.health <= this.config.healerSystem.lowHealthRefusalThreshold) {
+    if (
+      healer.stats.health <= this.config.healerSystem.lowHealthRefusalThreshold
+    ) {
       return false;
     }
 
@@ -362,7 +364,10 @@ export class HealerEngine {
     canProphecy: boolean;
   } {
     const dailyTends = this.dailyTends.get(healer.id) ?? 0;
-    const remainingTends = Math.max(0, this.config.healerSystem.maxTendsPerDay - dailyTends);
+    const remainingTends = Math.max(
+      0,
+      this.config.healerSystem.maxTendsPerDay - dailyTends
+    );
     const patientsNeedingHealing = this.getWolvesNeedingHealing(pack);
 
     return {
@@ -370,7 +375,8 @@ export class HealerEngine {
       remainingTends,
       totalPatients: patientsNeedingHealing.length,
       prophecyPower: pack.prophecyPower,
-      canProphecy: pack.prophecyPower >= this.config.healerSystem.prophecyPowerThreshold,
+      canProphecy:
+        pack.prophecyPower >= this.config.healerSystem.prophecyPowerThreshold,
     };
   }
 

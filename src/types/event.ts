@@ -42,9 +42,20 @@ export type Action =
   | { type: 'trigger_story'; storyId: string }
   | { type: 'schedule_consequence'; consequenceId: string; daysDelay: number }
   | { type: 'adjust_approval'; delta: number }
-  | { type: 'kill_wolf'; targetSelector?: 'wolf' | 'target' | 'random' | 'weakest' | 'beta' }
-  | { type: 'injure_wolf'; targetSelector?: 'wolf' | 'target' | 'random'; injury: string; healingDays: number }
-  | { type: 'change_alpha'; newAlphaSelector?: 'beta' | 'strongest' | 'most_approved' }
+  | {
+      type: 'kill_wolf';
+      targetSelector?: 'wolf' | 'target' | 'random' | 'weakest' | 'beta';
+    }
+  | {
+      type: 'injure_wolf';
+      targetSelector?: 'wolf' | 'target' | 'random';
+      injury: string;
+      healingDays: number;
+    }
+  | {
+      type: 'change_alpha';
+      newAlphaSelector?: 'beta' | 'strongest' | 'most_approved';
+    }
   | { type: 'create_rival_pack'; packName: string; strength: number }
   | { type: 'lose_territory'; amount: number }
   | { type: 'promote_role'; targetSelector: string; newRole: Role };

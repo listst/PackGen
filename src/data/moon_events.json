@@ -18,9 +18,17 @@
         "text": "Advise the alpha to assert dominance and show strong leadership",
         "description": "Display authority but risk alienating some pack members",
         "actions": [
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.strength",
+            "delta": 1
+          },
           { "type": "adjust_approval", "delta": -5 },
-          { "type": "log", "text": "{wolf.name} asserted dominance, but some wolves seem unhappy" }
+          {
+            "type": "log",
+            "text": "{wolf.name} asserted dominance, but some wolves seem unhappy"
+          }
         ],
         "weight": 3
       },
@@ -30,8 +38,16 @@
         "description": "Build trust and unity but may appear less decisive",
         "actions": [
           { "type": "adjust_approval", "delta": 10 },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
-          { "type": "log", "text": "{wolf.name} listened to the pack's concerns and earned their respect" }
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} listened to the pack's concerns and earned their respect"
+          }
         ],
         "weight": 4
       },
@@ -40,8 +56,15 @@
         "text": "Suggest the alpha prove their worth through a dangerous hunting trial",
         "description": "High risk, high reward - could strengthen or doom leadership",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "hunting_trial", "daysDelay": 3 },
-          { "type": "log", "text": "{wolf.name} proposed a hunting trial to prove their leadership" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "hunting_trial",
+            "daysDelay": 3
+          },
+          {
+            "type": "log",
+            "text": "{wolf.name} proposed a hunting trial to prove their leadership"
+          }
         ],
         "weight": 2
       }
@@ -76,10 +99,23 @@
         "description": "Focus on developing hunting skills and pack provision",
         "actions": [
           { "type": "change_role", "target": "wolf", "role": "hunter" },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.speed", "delta": 2 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.strength", "delta": 1 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.speed",
+            "delta": 2
+          },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.strength",
+            "delta": 1
+          },
           { "type": "adjust_approval", "delta": 5 },
-          { "type": "log", "text": "{wolf.name} has become a hunter and gained the pack's approval" }
+          {
+            "type": "log",
+            "text": "{wolf.name} has become a hunter and gained the pack's approval"
+          }
         ],
         "weight": 3
       },
@@ -89,10 +125,23 @@
         "description": "Develop leadership qualities and political acumen",
         "actions": [
           { "type": "change_role", "target": "wolf", "role": "beta" },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 2 },
-          { "type": "modify_stat", "target": "wolf", "stat": "stats.intelligence", "delta": 1 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 2
+          },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "stats.intelligence",
+            "delta": 1
+          },
           { "type": "adjust_approval", "delta": 8 },
-          { "type": "log", "text": "{wolf.name} has become a beta and shows great promise as a leader" }
+          {
+            "type": "log",
+            "text": "{wolf.name} has become a beta and shows great promise as a leader"
+          }
         ],
         "weight": 2
       },
@@ -102,9 +151,17 @@
         "description": "Allow natural development without imposing expectations",
         "actions": [
           { "type": "change_role", "target": "wolf", "role": "omega" },
-          { "type": "modify_stat", "target": "wolf", "stat": "traits.sociability", "delta": 1 },
+          {
+            "type": "modify_stat",
+            "target": "wolf",
+            "stat": "traits.sociability",
+            "delta": 1
+          },
           { "type": "adjust_approval", "delta": 3 },
-          { "type": "log", "text": "{wolf.name} found their place in the pack as an omega" }
+          {
+            "type": "log",
+            "text": "{wolf.name} found their place in the pack as an omega"
+          }
         ],
         "weight": 3
       }
@@ -128,7 +185,11 @@
     "text": "Rival wolves have been spotted near the pack's territory boundaries. {wolf.name} brings urgent news that they've crossed into the pack's hunting grounds and are threatening the food sources. How should the alpha respond to this incursion?",
     "condition": {
       "all": [
-        { "field": "wolf.role", "op": "in", "value": ["alpha", "beta", "hunter"] },
+        {
+          "field": "wolf.role",
+          "op": "in",
+          "value": ["alpha", "beta", "hunter"]
+        },
         { "field": "pack.food", "op": "<", "value": 8 }
       ]
     },
@@ -138,9 +199,16 @@
         "text": "Counsel the alpha to attack immediately and drive them out",
         "description": "Risk casualties but protect territory decisively",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "territory_battle", "daysDelay": 1 },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "territory_battle",
+            "daysDelay": 1
+          },
           { "type": "adjust_approval", "delta": 5 },
-          { "type": "log", "text": "The pack prepares for battle to defend their territory" }
+          {
+            "type": "log",
+            "text": "The pack prepares for battle to defend their territory"
+          }
         ],
         "weight": 3
       },
@@ -150,9 +218,21 @@
         "description": "Seek peaceful resolution but risk appearing weak",
         "actions": [
           { "type": "adjust_approval", "delta": -3 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 3 },
-          { "type": "schedule_consequence", "consequenceId": "diplomatic_outcome", "daysDelay": 5 },
-          { "type": "log", "text": "Diplomatic envoys were sent to negotiate with the rival pack" }
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 3
+          },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "diplomatic_outcome",
+            "daysDelay": 5
+          },
+          {
+            "type": "log",
+            "text": "Diplomatic envoys were sent to negotiate with the rival pack"
+          }
         ],
         "weight": 2
       },
@@ -161,9 +241,17 @@
         "text": "Recommend avoiding the area and finding new hunting grounds",
         "description": "Prevent conflict but sacrifice valuable territory",
         "actions": [
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": -2 },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": -2
+          },
           { "type": "adjust_approval", "delta": -8 },
-          { "type": "log", "text": "The pack retreated to avoid conflict, but lost hunting grounds" }
+          {
+            "type": "log",
+            "text": "The pack retreated to avoid conflict, but lost hunting grounds"
+          }
         ],
         "weight": 2
       },
@@ -172,8 +260,15 @@
         "text": "Suggest a dangerous night ambush to surprise the rivals",
         "description": "Extremely risky strategy with potential for great success or disaster",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "night_ambush_result", "daysDelay": 2 },
-          { "type": "log", "text": "The pack plans a daring night ambush against the intruders" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "night_ambush_result",
+            "daysDelay": 2
+          },
+          {
+            "type": "log",
+            "text": "The pack plans a daring night ambush against the intruders"
+          }
         ],
         "weight": 2
       }
@@ -207,15 +302,32 @@
         "text": "Recommend welcoming the stranger into the pack",
         "description": "Gain a valuable pack member but risk disrupting pack dynamics",
         "actions": [
-          { "type": "spawn_wolf", "count": 1, "wolfTemplate": {
-            "name": "Wanderer",
-            "age": 4.0,
-            "role": "omega",
-            "stats": { "health": 85, "strength": 7, "speed": 6, "intelligence": 8 },
-            "traits": { "bravery": 8, "sociability": 4, "trainability": 6, "fertility": 3 }
-          }},
+          {
+            "type": "spawn_wolf",
+            "count": 1,
+            "wolfTemplate": {
+              "name": "Wanderer",
+              "age": 4.0,
+              "role": "omega",
+              "stats": {
+                "health": 85,
+                "strength": 7,
+                "speed": 6,
+                "intelligence": 8
+              },
+              "traits": {
+                "bravery": 8,
+                "sociability": 4,
+                "trainability": 6,
+                "fertility": 3
+              }
+            }
+          },
           { "type": "adjust_approval", "delta": 8 },
-          { "type": "log", "text": "The mysterious stranger joined the pack, bringing wisdom and experience" }
+          {
+            "type": "log",
+            "text": "The mysterious stranger joined the pack, bringing wisdom and experience"
+          }
         ],
         "weight": 3
       },
@@ -224,9 +336,16 @@
         "text": "Suggest asking for their wisdom before they continue on",
         "description": "Learn valuable knowledge without long-term commitment",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "stranger_wisdom", "daysDelay": 1 },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "stranger_wisdom",
+            "daysDelay": 1
+          },
           { "type": "adjust_approval", "delta": 2 },
-          { "type": "log", "text": "The stranger shared ancient wisdom before departing" }
+          {
+            "type": "log",
+            "text": "The stranger shared ancient wisdom before departing"
+          }
         ],
         "weight": 4
       },
@@ -236,7 +355,10 @@
         "description": "Maintain pack stability but miss potential benefits",
         "actions": [
           { "type": "adjust_approval", "delta": -2 },
-          { "type": "log", "text": "The stranger was turned away and disappeared into the night" }
+          {
+            "type": "log",
+            "text": "The stranger was turned away and disappeared into the night"
+          }
         ],
         "weight": 2
       },
@@ -245,8 +367,15 @@
         "text": "Propose testing their worthiness through pack trials",
         "description": "Determine their true intentions and abilities through challenges",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "stranger_trial", "daysDelay": 7 },
-          { "type": "log", "text": "The stranger accepted the challenge to prove their worth" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "stranger_trial",
+            "daysDelay": 7
+          },
+          {
+            "type": "log",
+            "text": "The stranger accepted the challenge to prove their worth"
+          }
         ],
         "weight": 3
       }
@@ -281,9 +410,21 @@
         "description": "Boost morale and gather food, but demands significant energy",
         "actions": [
           { "type": "adjust_approval", "delta": 15 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 5 },
-          { "type": "schedule_consequence", "consequenceId": "post_hunt_exhaustion", "daysDelay": 2 },
-          { "type": "log", "text": "The pack enjoyed a successful hunt and feast under the full moon" }
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 5
+          },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "post_hunt_exhaustion",
+            "daysDelay": 2
+          },
+          {
+            "type": "log",
+            "text": "The pack enjoyed a successful hunt and feast under the full moon"
+          }
         ],
         "weight": 3
       },
@@ -293,7 +434,10 @@
         "description": "Strengthen bonds without demanding physical exertion",
         "actions": [
           { "type": "adjust_approval", "delta": 12 },
-          { "type": "log", "text": "The pack shared stories and songs under the moonlight, strengthening their bonds" }
+          {
+            "type": "log",
+            "text": "The pack shared stories and songs under the moonlight, strengthening their bonds"
+          }
         ],
         "weight": 4
       },
@@ -303,8 +447,15 @@
         "description": "Strengthen pair bonds and encourage future reproduction",
         "actions": [
           { "type": "adjust_approval", "delta": 8 },
-          { "type": "schedule_consequence", "consequenceId": "enhanced_bonding", "daysDelay": 5 },
-          { "type": "log", "text": "Bonding ceremonies were held, strengthening relationships in the pack" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "enhanced_bonding",
+            "daysDelay": 5
+          },
+          {
+            "type": "log",
+            "text": "Bonding ceremonies were held, strengthening relationships in the pack"
+          }
         ],
         "weight": 3
       },
@@ -314,8 +465,15 @@
         "description": "Improve pack skills while boosting morale through friendly competition",
         "actions": [
           { "type": "adjust_approval", "delta": 10 },
-          { "type": "schedule_consequence", "consequenceId": "training_benefits", "daysDelay": 3 },
-          { "type": "log", "text": "The pack enjoyed training games that improved both morale and skills" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "training_benefits",
+            "daysDelay": 3
+          },
+          {
+            "type": "log",
+            "text": "The pack enjoyed training games that improved both morale and skills"
+          }
         ],
         "weight": 3
       }
@@ -349,9 +507,16 @@
         "text": "Raid another pack's food cache in a dangerous operation",
         "description": "High risk of casualties but could secure vital food supplies",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "food_raid_outcome", "daysDelay": 2 },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "food_raid_outcome",
+            "daysDelay": 2
+          },
           { "type": "adjust_approval", "delta": -5 },
-          { "type": "log", "text": "The pack prepares for a desperate raid on rival territory" }
+          {
+            "type": "log",
+            "text": "The pack prepares for a desperate raid on rival territory"
+          }
         ],
         "weight": 3
       },
@@ -362,8 +527,16 @@
         "actions": [
           { "type": "remove_wolf", "targetSelector": "lowest_health" },
           { "type": "adjust_approval", "delta": -20 },
-          { "type": "modify_stat", "target": "pack", "stat": "food", "delta": 2 },
-          { "type": "log", "text": "The weakest were cast out to preserve the pack's survival, creating deep resentment" }
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "food",
+            "delta": 2
+          },
+          {
+            "type": "log",
+            "text": "The weakest were cast out to preserve the pack's survival, creating deep resentment"
+          }
         ],
         "weight": 2
       },
@@ -372,8 +545,15 @@
         "text": "Risk hunting the large predators in the deep forest",
         "description": "Dangerous but could provide massive food reserves",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "dangerous_hunt_outcome", "daysDelay": 1 },
-          { "type": "log", "text": "The pack ventures into dangerous territory to hunt large predators" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "dangerous_hunt_outcome",
+            "daysDelay": 1
+          },
+          {
+            "type": "log",
+            "text": "The pack ventures into dangerous territory to hunt large predators"
+          }
         ],
         "weight": 3
       },
@@ -382,8 +562,15 @@
         "text": "Venture near human settlements to scavenge livestock",
         "description": "Risk human retaliation but access to abundant food",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "human_encounter", "daysDelay": 3 },
-          { "type": "log", "text": "Desperation drives the pack toward the dangerous realm of humans" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "human_encounter",
+            "daysDelay": 3
+          },
+          {
+            "type": "log",
+            "text": "Desperation drives the pack toward the dangerous realm of humans"
+          }
         ],
         "weight": 2
       }
@@ -419,8 +606,15 @@
         "actions": [
           { "type": "kill_wolf", "targetSelector": "beta" },
           { "type": "adjust_approval", "delta": 10 },
-          { "type": "schedule_consequence", "consequenceId": "execution_aftermath", "daysDelay": 7 },
-          { "type": "log", "text": "The traitor was executed before the pack. Order is restored, but at what cost?" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "execution_aftermath",
+            "daysDelay": 7
+          },
+          {
+            "type": "log",
+            "text": "The traitor was executed before the pack. Order is restored, but at what cost?"
+          }
         ],
         "weight": 2
       },
@@ -429,8 +623,15 @@
         "text": "Challenge the traitor to ritual combat for their crimes",
         "description": "Honor the old ways but risk alpha defeat",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "betrayal_combat", "daysDelay": 1 },
-          { "type": "log", "text": "Ancient pack law demands trial by combat for such treachery" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "betrayal_combat",
+            "daysDelay": 1
+          },
+          {
+            "type": "log",
+            "text": "Ancient pack law demands trial by combat for such treachery"
+          }
         ],
         "weight": 3
       },
@@ -441,8 +642,15 @@
         "actions": [
           { "type": "remove_wolf", "targetSelector": "beta" },
           { "type": "adjust_approval", "delta": -5 },
-          { "type": "create_rival_pack", "packName": "Exile's Revenge", "strength": 6 },
-          { "type": "log", "text": "The traitor was banished, but may return with enemies seeking vengeance" }
+          {
+            "type": "create_rival_pack",
+            "packName": "Exile's Revenge",
+            "strength": 6
+          },
+          {
+            "type": "log",
+            "text": "The traitor was banished, but may return with enemies seeking vengeance"
+          }
         ],
         "weight": 4
       },
@@ -452,8 +660,15 @@
         "description": "Dangerous gamble that could backfire spectacularly",
         "actions": [
           { "type": "adjust_approval", "delta": -10 },
-          { "type": "schedule_consequence", "consequenceId": "double_agent_result", "daysDelay": 14 },
-          { "type": "log", "text": "The traitor now serves the pack as an unwilling spy among their former allies" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "double_agent_result",
+            "daysDelay": 14
+          },
+          {
+            "type": "log",
+            "text": "The traitor now serves the pack as an unwilling spy among their former allies"
+          }
         ],
         "weight": 2
       }
@@ -487,9 +702,16 @@
         "text": "Isolate the sick wolves from the healthy pack members",
         "description": "Prevent spread but abandon sick wolves to their fate",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "quarantine_outcome", "daysDelay": 5 },
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "quarantine_outcome",
+            "daysDelay": 5
+          },
           { "type": "adjust_approval", "delta": -10 },
-          { "type": "log", "text": "The sick were isolated from the pack to prevent the disease from spreading" }
+          {
+            "type": "log",
+            "text": "The sick were isolated from the pack to prevent the disease from spreading"
+          }
         ],
         "weight": 3
       },
@@ -498,8 +720,15 @@
         "text": "Send dangerous expeditions to find rare healing herbs",
         "description": "Risk lives of healthy wolves to save the sick",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "herb_expedition", "daysDelay": 4 },
-          { "type": "log", "text": "Brave volunteers venture into dangerous territory seeking miracle cures" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "herb_expedition",
+            "daysDelay": 4
+          },
+          {
+            "type": "log",
+            "text": "Brave volunteers venture into dangerous territory seeking miracle cures"
+          }
         ],
         "weight": 4
       },
@@ -508,9 +737,21 @@
         "text": "Perform ancient healing rituals under the full moon",
         "description": "Trust in old pack traditions and spiritual healing",
         "actions": [
-          { "type": "schedule_consequence", "consequenceId": "healing_ritual", "daysDelay": 1 },
-          { "type": "modify_stat", "target": "pack", "stat": "herbs", "delta": -1 },
-          { "type": "log", "text": "The pack performs ancient healing rituals, calling upon ancestral spirits" }
+          {
+            "type": "schedule_consequence",
+            "consequenceId": "healing_ritual",
+            "daysDelay": 1
+          },
+          {
+            "type": "modify_stat",
+            "target": "pack",
+            "stat": "herbs",
+            "delta": -1
+          },
+          {
+            "type": "log",
+            "text": "The pack performs ancient healing rituals, calling upon ancestral spirits"
+          }
         ],
         "weight": 3
       },
@@ -521,7 +762,10 @@
         "actions": [
           { "type": "kill_wolf", "targetSelector": "weakest" },
           { "type": "adjust_approval", "delta": -15 },
-          { "type": "log", "text": "The pack coldly accepted the loss of the weak, hardening their hearts for survival" }
+          {
+            "type": "log",
+            "text": "The pack coldly accepted the loss of the weak, hardening their hearts for survival"
+          }
         ],
         "weight": 2
       }
@@ -544,9 +788,7 @@
     "title": "Choosing a New Beta",
     "text": "With the recent loss of the pack's beta, the alpha must choose a new second-in-command. The pack looks to their leader for guidance in selecting who will help guide them through the challenges ahead. Who should be elevated to the position of beta?",
     "condition": {
-      "all": [
-        { "field": "pack.wolves.length", "op": ">=", "value": 3 }
-      ]
+      "all": [{ "field": "pack.wolves.length", "op": ">=", "value": 3 }]
     },
     "choices": [
       {
@@ -554,9 +796,16 @@
         "text": "Promote the most experienced hunter to beta",
         "description": "Choose leadership based on hunting prowess and experience",
         "actions": [
-          { "type": "promote_role", "targetSelector": "best_hunter", "newRole": "beta" },
+          {
+            "type": "promote_role",
+            "targetSelector": "best_hunter",
+            "newRole": "beta"
+          },
           { "type": "adjust_approval", "delta": 8 },
-          { "type": "log", "text": "The pack's best hunter was promoted to beta, earning respect for their skills" }
+          {
+            "type": "log",
+            "text": "The pack's best hunter was promoted to beta, earning respect for their skills"
+          }
         ],
         "weight": 3
       },
@@ -565,9 +814,16 @@
         "text": "Elevate the eldest pack member to beta",
         "description": "Honor age and wisdom in choosing the new beta",
         "actions": [
-          { "type": "promote_role", "targetSelector": "eldest_non_alpha", "newRole": "beta" },
+          {
+            "type": "promote_role",
+            "targetSelector": "eldest_non_alpha",
+            "newRole": "beta"
+          },
           { "type": "adjust_approval", "delta": 5 },
-          { "type": "log", "text": "The eldest pack member was chosen as beta, bringing wisdom to leadership" }
+          {
+            "type": "log",
+            "text": "The eldest pack member was chosen as beta, bringing wisdom to leadership"
+          }
         ],
         "weight": 2
       },
@@ -576,9 +832,16 @@
         "text": "Select the strongest wolf as the new beta",
         "description": "Choose based on physical strength and combat ability",
         "actions": [
-          { "type": "promote_role", "targetSelector": "strongest_non_alpha", "newRole": "beta" },
+          {
+            "type": "promote_role",
+            "targetSelector": "strongest_non_alpha",
+            "newRole": "beta"
+          },
           { "type": "adjust_approval", "delta": 6 },
-          { "type": "log", "text": "The strongest pack member became beta, inspiring confidence through power" }
+          {
+            "type": "log",
+            "text": "The strongest pack member became beta, inspiring confidence through power"
+          }
         ],
         "weight": 3
       },
@@ -587,9 +850,16 @@
         "text": "Choose the most intelligent wolf for beta",
         "description": "Value wisdom and strategic thinking in leadership",
         "actions": [
-          { "type": "promote_role", "targetSelector": "smartest_non_alpha", "newRole": "beta" },
+          {
+            "type": "promote_role",
+            "targetSelector": "smartest_non_alpha",
+            "newRole": "beta"
+          },
           { "type": "adjust_approval", "delta": 7 },
-          { "type": "log", "text": "The wisest pack member was made beta, bringing intelligence to leadership" }
+          {
+            "type": "log",
+            "text": "The wisest pack member was made beta, bringing intelligence to leadership"
+          }
         ],
         "weight": 3
       }

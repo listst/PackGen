@@ -4,7 +4,7 @@ export interface Appearance {
   pattern: string;
   eyeColor: string;
   scars: string[];
-  
+
   // Extended visual traits for enhanced appearance system
   baseColor?: string; // Primary base coat color
   markingColor?: string; // Secondary marking color

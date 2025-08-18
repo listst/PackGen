@@ -127,7 +127,14 @@ export function WolfCard({ wolf, onClick, className = '' }: WolfCardProps) {
           </div>
         </div>
 
-        <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            marginTop: '8px',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <div style={{ fontSize: '12px', opacity: 0.8 }}>
             <div>
               {wolf.appearance.furColor} {wolf.appearance.pattern}

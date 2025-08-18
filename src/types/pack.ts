@@ -1,11 +1,11 @@
 import type { Wolf, MatingPair } from './wolf';
-import type { 
-  EventResult, 
-  Prophecy, 
-  StoryEvent, 
-  DecisionResult, 
-  ScheduledConsequence, 
-  DecisionEvent
+import type {
+  EventResult,
+  Prophecy,
+  StoryEvent,
+  DecisionResult,
+  ScheduledConsequence,
+  DecisionEvent,
 } from './event';
 import type { Territory } from './territory';
 import type { PatrolAssignment, PatrolResult } from './patrol';

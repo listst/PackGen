@@ -73,9 +73,10 @@ export class MatingSystem {
 
     if (targetStage === 'strangers') return true; // Can always become strangers
 
-    const requirements = this.config.relationshipSystem.stageRequirements[
-      targetStage as keyof typeof this.config.relationshipSystem.stageRequirements
-    ];
+    const requirements =
+      this.config.relationshipSystem.stageRequirements[
+        targetStage as keyof typeof this.config.relationshipSystem.stageRequirements
+      ];
     if (!requirements) return false;
 
     return (

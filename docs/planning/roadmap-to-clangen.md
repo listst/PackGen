@@ -89,12 +89,12 @@ src / ui / components / PatrolPanel.tsx; // UI interface
 
 ```typescript
 // Key files implemented:
-src/types/event.ts          // DecisionEvent, MoonEvent, ConsequenceTemplate types
-src/engine/eventEngine.ts   // Extended with decision processing methods
-src/engine/simulation.ts    // Monthly moon event scheduling integration
-src/ui/components/DecisionModal.tsx  // Interactive decision interface
-src/data/moon_events.json   // 5 major moon event templates
-src/data/consequence_templates.json // 9 delayed consequence scenarios
+src / types / event.ts; // DecisionEvent, MoonEvent, ConsequenceTemplate types
+src / engine / eventEngine.ts; // Extended with decision processing methods
+src / engine / simulation.ts; // Monthly moon event scheduling integration
+src / ui / components / DecisionModal.tsx; // Interactive decision interface
+src / data / moon_events.json; // 5 major moon event templates
+src / data / consequence_templates.json; // 9 delayed consequence scenarios
 ```
 
 **Gameplay Features:**
@@ -149,14 +149,14 @@ src/data/consequence_templates.json // 9 delayed consequence scenarios
 
 ```typescript
 // Successfully implemented:
-src/engine/appearance.ts        // Advanced appearance generation and genetics engine
-src/ui/components/WolfPortrait.tsx  // Interactive visual wolf portraits
-src/types/wolf.ts              // Enhanced Appearance interface with 10+ traits
+src / engine / appearance.ts; // Advanced appearance generation and genetics engine
+src / ui / components / WolfPortrait.tsx; // Interactive visual wolf portraits
+src / types / wolf.ts; // Enhanced Appearance interface with 10+ traits
 // Enhanced existing files:
-src/engine/simulation.ts       // Integrated genetic inheritance into breeding
-src/engine/wolfGenerator.ts    // Biome-appropriate wolf generation
-src/ui/components/Profile.tsx   // Enhanced appearance display
-src/ui/components/WolfCard.tsx  // Added mini-portraits
+src / engine / simulation.ts; // Integrated genetic inheritance into breeding
+src / engine / wolfGenerator.ts; // Biome-appropriate wolf generation
+src / ui / components / Profile.tsx; // Enhanced appearance display
+src / ui / components / WolfCard.tsx; // Added mini-portraits
 ```
 
 **Gameplay Features:**
@@ -168,6 +168,7 @@ src/ui/components/WolfCard.tsx  // Added mini-portraits
 - 🏆 **Rare Achievements**: Blue-eyed merle wolves as special genetic combinations
 
 **Performance Impact:**
+
 - Build size increase: +4.5KB (388KB total)
 - Genetic calculations only during breeding events
 - Efficient CSS-based portrait rendering
@@ -473,18 +474,18 @@ describe('Patrol System', () => {
 
 ### **Current Feature Parity Matrix**
 
-| Feature Category     | PackGen Status | ClanGen Feature | Implementation Priority |
-| -------------------- | -------------- | --------------- | ----------------------- |
-| **Core Simulation**  | ✅ Superior    | ✅ Complete     | Maintain                |
-| **Genetics System**  | ✅ Advanced    | ⚪ Basic        | Enhance visuals         |
-| **Patrol System**    | ✅ Complete    | ✅ Complete     | ✅ Done                 |
-| **Monthly Events**   | ✅ Complete    | ✅ Complete     | ✅ Done                 |
-| **Player Decisions** | ✅ Complete    | ✅ Complete     | ✅ Done                 |
+| Feature Category     | PackGen Status  | ClanGen Feature | Implementation Priority |
+| -------------------- | --------------- | --------------- | ----------------------- |
+| **Core Simulation**  | ✅ Superior     | ✅ Complete     | Maintain                |
+| **Genetics System**  | ✅ Advanced     | ⚪ Basic        | Enhance visuals         |
+| **Patrol System**    | ✅ Complete     | ✅ Complete     | ✅ Done                 |
+| **Monthly Events**   | ✅ Complete     | ✅ Complete     | ✅ Done                 |
+| **Player Decisions** | ✅ Complete     | ✅ Complete     | ✅ Done                 |
 | **Wolf Appearance**  | ✅ **Superior** | ✅ Complete     | ✅ **COMPLETED**        |
-| **Death/Memorial**   | ❌ Missing     | ✅ Complete     | **MEDIUM**              |
-| **Pack Culture**     | ❌ Missing     | ✅ Complete     | **LOW**                 |
-| **Save System**      | ✅ Advanced    | ✅ Complete     | Maintain                |
-| **UI/UX**            | 🔄 Functional  | ✅ Polished     | **MEDIUM**              |
+| **Death/Memorial**   | ❌ Missing      | ✅ Complete     | **MEDIUM**              |
+| **Pack Culture**     | ❌ Missing      | ✅ Complete     | **LOW**                 |
+| **Save System**      | ✅ Advanced     | ✅ Complete     | Maintain                |
+| **UI/UX**            | 🔄 Functional   | ✅ Polished     | **MEDIUM**              |
 
 ### **Competitive Advantages of PackGen**
 
@@ -545,7 +546,7 @@ describe('Patrol System', () => {
 ✅ **Phase 1 Complete!** PackGen now has:
 
 - ✅ **Complete patrol system** (4 types, mentor-pup training, resource management)
-- ✅ **Monthly decision events** with meaningful long-term consequences  
+- ✅ **Monthly decision events** with meaningful long-term consequences
 - ✅ **Player agency** through strategic choices with delayed effects
 - ✅ **Core content library** (5 major moon events, 9 consequence templates, base events)
 - ✅ **Ceremony system** integrated into moon events (coming of age, leadership challenges)
