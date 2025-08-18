@@ -1,5 +1,6 @@
 import type { Wolf } from '../../types/wolf';
 import type { Pack } from '../../types/pack';
+import { AppearanceDetail } from './WolfPortrait';
 
 interface ProfileProps {
   wolf: Wolf;
@@ -322,40 +323,10 @@ export function Profile({ wolf, pack, onClose }: ProfileProps) {
               </div>
             </section>
 
-            {/* Appearance */}
-            <section style={{ marginBottom: '24px' }}>
-              <h3
-                style={{
-                  margin: '0 0 12px 0',
-                  color: '#4fc3f7',
-                  fontSize: '1.2rem',
-                }}
-              >
-                Appearance
-              </h3>
-              <div
-                style={{
-                  backgroundColor: '#1a1a1a',
-                  borderRadius: '8px',
-                  padding: '12px',
-                }}
-              >
-                <div style={{ fontSize: '14px', lineHeight: '1.5' }}>
-                  <div>
-                    <strong>Fur:</strong> {wolf.appearance.furColor}{' '}
-                    {wolf.appearance.pattern}
-                  </div>
-                  <div>
-                    <strong>Eyes:</strong> {wolf.appearance.eyeColor}
-                  </div>
-                  {wolf.appearance.scars.length > 0 && (
-                    <div>
-                      <strong>Scars:</strong> {wolf.appearance.scars.join(', ')}
-                    </div>
-                  )}
-                </div>
-              </div>
-            </section>
+            {/* Enhanced Appearance */}
+            <div style={{ marginBottom: '24px' }}>
+              <AppearanceDetail wolf={wolf} />
+            </div>
           </div>
 
           {/* Right Column */}

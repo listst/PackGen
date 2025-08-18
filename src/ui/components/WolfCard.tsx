@@ -1,4 +1,5 @@
 import type { Wolf } from '../../types/wolf';
+import { WolfPortrait } from './WolfPortrait';
 
 interface WolfCardProps {
   wolf: Wolf;
@@ -126,11 +127,14 @@ export function WolfCard({ wolf, onClick, className = '' }: WolfCardProps) {
           </div>
         </div>
 
-        <div style={{ fontSize: '12px', opacity: 0.8, marginTop: '8px' }}>
-          <div>
-            {wolf.appearance.furColor} {wolf.appearance.pattern}
+        <div style={{ marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div style={{ fontSize: '12px', opacity: 0.8 }}>
+            <div>
+              {wolf.appearance.furColor} {wolf.appearance.pattern}
+            </div>
+            <div>{wolf.appearance.eyeColor} eyes</div>
           </div>
-          <div>{wolf.appearance.eyeColor} eyes</div>
+          <WolfPortrait wolf={wolf} size="small" showDetails={false} />
         </div>
 
         <div

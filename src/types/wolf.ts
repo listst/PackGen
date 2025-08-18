@@ -1,8 +1,21 @@
 export interface Appearance {
+  // Primary coat traits
   furColor: string;
   pattern: string;
   eyeColor: string;
   scars: string[];
+  
+  // Extended visual traits for enhanced appearance system
+  baseColor?: string; // Primary base coat color
+  markingColor?: string; // Secondary marking color
+  markingType?: string; // Type of markings (stripes, spots, etc.)
+  noseColor?: string; // Nose pigmentation
+  pawPadColor?: string; // Paw pad color
+  furLength?: 'short' | 'medium' | 'long'; // Coat length
+  furTexture?: 'smooth' | 'coarse' | 'fluffy'; // Coat texture
+  bodySize?: 'small' | 'medium' | 'large'; // Physical build
+  earShape?: 'pointed' | 'rounded' | 'large'; // Ear characteristics
+  tailType?: 'thick' | 'bushy' | 'thin' | 'plume'; // Tail characteristics
 }
 
 export interface Stats {

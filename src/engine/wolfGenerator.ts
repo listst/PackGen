@@ -1,5 +1,6 @@
 import type { Wolf, Role } from '../types/wolf';
 import { random, generateId } from '../types/utils';
+import { appearanceGenerator } from './appearance';
 
 export interface WolfGeneratorConfig {
   minPackSize: number;
@@ -95,19 +96,7 @@ export class WolfGenerator {
     ],
   };
 
-  private readonly FUR_COLORS = [
-    'gray', 'brown', 'black', 'white', 'silver', 'red', 'tawny', 'cream',
-    'dark brown', 'light gray', 'golden', 'russet', 'sable', 'olive'
-  ];
-
-  private readonly FUR_PATTERNS = [
-    'solid', 'striped', 'patched', 'mottled', 'speckled', 'brindle',
-    'merle', 'agouti', 'ticked', 'marbled'
-  ];
-
-  private readonly EYE_COLORS = [
-    'amber', 'brown', 'yellow', 'gold', 'green', 'blue', 'hazel', 'copper'
-  ];
+  // Legacy arrays moved to appearance generator
 
   constructor(config: WolfGeneratorConfig = DEFAULT_GENERATOR_CONFIG) {
     this.config = config;
@@ -149,7 +138,7 @@ export class WolfGenerator {
       sex: random.choice(['male', 'female']),
       age: this.generateAgeForRole(role),
       role,
-      appearance: this.generateRandomAppearance(),
+      appearance: this.generateBiomeAppearance(biome),
       stats: this.generateRandomStats(role),
       traits: this.generateRandomTraits(role),
       xp: random.nextInt(0, 50),
@@ -193,21 +182,8 @@ export class WolfGenerator {
     return random.choice(selectedPool);
   }
 
-  private generateRandomAppearance() {
-    return {
-      furColor: random.choice(this.FUR_COLORS),
-      pattern: random.choice(this.FUR_PATTERNS),
-      eyeColor: random.choice(this.EYE_COLORS),
-      scars: random.next() < 0.3 ? [this.generateRandomScar()] : [], // 30% chance of scars
-    };
-  }
-
-  private generateRandomScar(): string {
-    const scarTypes = [
-      'ear notch', 'leg scar', 'facial scar', 'shoulder mark', 'tail tip',
-      'back stripe', 'chest mark', 'paw scar'
-    ];
-    return random.choice(scarTypes);
+  private generateBiomeAppearance(biome: string) {
+    return appearanceGenerator.generateBiomeAppearance(biome);
   }
 
   private generateRandomStats(role: Role) {

@@ -1,6 +1,7 @@
 import type { Wolf } from '../types/wolf';
 import type { Pack, GameConfig } from '../types/pack';
 import type { EventResult, EventTemplate } from '../types/event';
+import { appearanceGenerator } from './appearance';
 import {
   getCurrentSeason,
   isAlive,
@@ -159,6 +160,8 @@ export class SimulationEngine {
     this.patrolEngine = new PatrolEngine(config);
     this.combatEngine = new CombatEngine(config);
     this.healerEngine = new HealerEngine(config);
+    // Initialize appearance generator with config
+    appearanceGenerator.setConfig(config);
   }
 
   updateConfig(newConfig: Partial<GameConfig>): void {
@@ -166,6 +169,7 @@ export class SimulationEngine {
     this.matingSystem = new MatingSystem(this.config);
     this.patrolEngine.updateConfig(this.config);
     this.combatEngine.updateConfig(this.config);
+    appearanceGenerator.setConfig(this.config);
     this.healerEngine.updateConfig(this.config);
   }
 
@@ -365,21 +369,7 @@ export class SimulationEngine {
       sex: random.choice(['male', 'female']),
       age: 0,
       role: 'pup',
-      appearance: {
-        furColor: random.choice([
-          mother.appearance.furColor,
-          father?.appearance.furColor ?? 'brown',
-        ]),
-        pattern: random.choice([
-          mother.appearance.pattern,
-          father?.appearance.pattern ?? 'solid',
-        ]),
-        eyeColor: random.choice([
-          mother.appearance.eyeColor,
-          father?.appearance.eyeColor ?? 'brown',
-        ]),
-        scars: [],
-      },
+      appearance: appearanceGenerator.inheritAppearance(mother, father || undefined),
       stats: {
         health: Math.max(
           50,

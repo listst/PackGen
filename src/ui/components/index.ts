@@ -8,3 +8,4 @@ export { GeneticsViewer } from './GeneticsViewer';
 export { SaveLoadPanel } from './SaveLoadPanel';
 export { PatrolPanel } from './PatrolPanel';
 export { DecisionModal } from './DecisionModal';
+export { WolfPortrait, AppearanceDetail } from './WolfPortrait';
